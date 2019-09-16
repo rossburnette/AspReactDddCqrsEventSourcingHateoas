@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>YngStrs.Common.EventSourcing</PackageId>
+    <Authors>Jordan Jordanov</Authors>
+    <Company>jjSoft Solutions and Co?!</Company>
+    <Description>
+      An assembly, responsible for publishing and saving events.
+    </Description>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Marten" Version="3.7.1" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>
