@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="ResourceMapper.cs" company="jjSoft Solutions & Co?!">
+// Copyright (c) jjSoft Solutions & Co?! All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,10 +32,10 @@ namespace YngStrs.Common.Hateoas.Business
         /// This should give complete control of
         /// which links are applied at any point within your api code.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResource"></typeparam>
+        /// <typeparam name="T">View model.</typeparam>
+        /// <typeparam name="TResource">Model with links.</typeparam>
         /// <param name="source"></param>
-        /// <returns></returns>
+        /// <returns>Resource from the model including links.</returns>
         /// <exception cref="InvalidOperationException">
         /// </exception>
         public async Task<TResource> MapAsync<T, TResource>(T source)
@@ -57,11 +61,11 @@ namespace YngStrs.Common.Hateoas.Business
         /// Convert collection of models to <see cref="Resource"/>
         /// and applies links to it.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TResource"></typeparam>
-        /// <typeparam name="TContainer"></typeparam>
+        /// <typeparam name="T">View model.</typeparam>
+        /// <typeparam name="TResource">Model with links.</typeparam>
+        /// <typeparam name="TContainer">Class that has a collection of resources.</typeparam>
         /// <param name="models"></param>
-        /// <returns></returns>
+        /// <returns>Collection of resources.</returns>
         public async Task<TContainer> MapContainerAsync<T, TResource, TContainer>(IEnumerable<T> models)
             where TResource : Resource
             where TContainer : ResourceContainer<TResource>, new()
@@ -79,6 +83,12 @@ namespace YngStrs.Common.Hateoas.Business
             return container;
         }
 
+        /// <summary>
+        /// Creates <see cref="Resource"/> with corresponding links, without any other data.
+        /// </summary>
+        /// <typeparam name="TResource"></typeparam>
+        /// <param name="beforeMap"></param>
+        /// <returns>Newly created resource.</returns>
         public async Task<TResource> CreateEmptyResourceAsync<TResource>(Action<TResource> beforeMap = null)
             where TResource : Resource, new()
         {
