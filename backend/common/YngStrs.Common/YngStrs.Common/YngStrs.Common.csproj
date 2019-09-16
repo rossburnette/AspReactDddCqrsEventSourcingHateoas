@@ -1,8 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
+    <PackageId>YngStrs.Common.EventSourcing</PackageId>
+    <Authors>Jordan Jordanov</Authors>
+    <Company>jjSoft Solutions and Co?!</Company>
+    <Description>
+      Common assembly for all services. Must NOT be dependent on another package from the project.
+    </Description>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
