@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="EventBus.cs" company="jjSoft Solutions & Co?!">
+// Copyright (c) jjSoft Solutions & Co?! All rights reserved.
+// </copyright>
+
+using System;
 using System.Threading.Tasks;
 using Marten;
 using MediatR;
@@ -6,9 +10,7 @@ using YngStrs.Common.EventSourcing.Core;
 
 namespace YngStrs.Common.EventSourcing.Business
 {
-    /// <summary>
-    /// The root of the event sourcing.
-    /// </summary>
+    /// <inheritdoc />
     public class EventBus : IEventBus
     {
         private readonly IMediator _mediator;
@@ -26,7 +28,7 @@ namespace YngStrs.Common.EventSourcing.Business
         /// <typeparam name="TEvent"></typeparam>
         /// <param name="streamId"></param>
         /// <param name="events"></param>
-        /// <returns>Void.</returns>
+        /// <returns>Void</returns>
         public async Task<Unit> PublishAsync<TEvent>(Guid streamId, params TEvent[] events)
             where TEvent : IEvent
         {
