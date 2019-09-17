@@ -8,7 +8,7 @@
     <Description>
       An assembly, responsible for mapping view models to HATEOAS resources.
     </Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
 
   </PropertyGroup>
 
