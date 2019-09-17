@@ -1,0 +1,1 @@
+﻿dotnet nuget push YngStrs.Common.EventSourcing.1.0.0.nupkg -k oy2g2y3a65dx5jp4quka62lbt4v7exje7aa6ejolpyqrwm -s https://api.nuget.org/v3/index.json
