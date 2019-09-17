@@ -1,4 +1,8 @@
-﻿using System.Threading;
+﻿// <copyright file="TypedBaseHandler.cs" company="jjSoft Solutions & Co?!">
+// Copyright (c) jjSoft Solutions & Co?! All rights reserved.
+// </copyright>
+
+using System.Threading;
 using System.Threading.Tasks;
 using Optional;
 using Optional.Async.Extensions;
