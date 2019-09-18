@@ -1,4 +1,5 @@
 ﻿using System;
+using YngStrs.Common.Api.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
@@ -7,12 +8,10 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// This is part of the multi-language support.
     /// </summary>
     /// <remarks>
-    /// Stored in the relationship database as 'test_question_title'.
+    /// Stored in the relationship database as 'test_question_titles'.
     /// </remarks>
-    public class TestQuestionTitle
+    public class TestQuestionTitle : RelationalEntity<Guid>
     {
-        public Guid Id { get; set; }
-
         public string Description { get; set; }
 
         /// <!--Many-To-One-Relations-->
