@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 
-namespace YngStrs.PersonalityTests.Api.Persistence
+namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 {
     /// <summary>
     /// Relational database configuration via Entity Framework Code First Fluent API.
