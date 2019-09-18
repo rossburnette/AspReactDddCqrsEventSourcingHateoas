@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using YngStrs.Common.Api.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
@@ -7,12 +8,10 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// Abstract data model that defines the personality test question option data structure.
     /// </summary>
     /// <remarks>
-    /// Stored in the relationship database as 'question_option'.
+    /// Stored in the relationship database as 'question_options'.
     /// </remarks>
-    public class QuestionOption
+    public class QuestionOption : RelationalEntity<Guid>
     {
-        public Guid Id { get; set; }
-
         public bool IsTextOnly { get; set; }
 
         /// <!--Many-To-One-Relations-->

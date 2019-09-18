@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using YngStrs.Common.Api;
+using YngStrs.Common.Api.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
@@ -8,12 +9,10 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// Abstract data model that defines the application language data structure.
     /// </summary>
     /// <remarks>
-    /// Stored in the relationship database as 'language'.
+    /// Stored in the relationship database as 'languages'.
     /// </remarks>
-    public class Language
+    public class Language : RelationalEntity<Guid>
     {
-        public Guid Id { get; set; }
-
         public string EnglishName { get; set; }
 
         public string NativeName { get; set; }
