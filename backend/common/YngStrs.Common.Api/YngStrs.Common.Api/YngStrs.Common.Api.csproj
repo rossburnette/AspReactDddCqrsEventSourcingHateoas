@@ -9,7 +9,7 @@
     <Description>
       Provides resources that all project services would need.
     </Description>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
