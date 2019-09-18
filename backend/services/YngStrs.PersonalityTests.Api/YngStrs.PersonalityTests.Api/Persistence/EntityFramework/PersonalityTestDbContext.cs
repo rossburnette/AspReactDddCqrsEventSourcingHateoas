@@ -4,7 +4,7 @@ using YngStrs.PersonalityTests.Api.Domain.Entities;
 namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 {
     /// <summary>
-    /// Representation of relationship tables.
+    /// Representation of relationship database tables.
     /// </summary>
     public class PersonalityTestDbContext : DbContext
     {
@@ -16,13 +16,13 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         /// <!--Dependency Hierarchy-->
         public DbSet<PersonalityTest> PersonalityTests { get; set; }
 
-        public DbSet<Language> Languages { get; set; }
-
         public DbSet<TestQuestion> TestQuestions { get; set; }
+
+        public DbSet<QuestionOption> QuestionOptions { get; set; }
 
         public DbSet<TestQuestionTitle> TestQuestionTitles { get; set; }
 
-        public DbSet<QuestionOption> QuestionOptions { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         public DbSet<QuestionOptionTitle> QuestionOptionTitles { get; set; }
 
