@@ -27,7 +27,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public Guid ChosenOptionId => Id;
 
         /// <!--Events-->
-        public UserAnsweredQuestion UserAnswer(Guid chosenOptionId) => new UserAnsweredQuestion(chosenOptionId);
+        public UserAnsweredQuestion ChooseAnOption(Guid chosenOptionId) => new UserAnsweredQuestion(chosenOptionId);
 
         public void Apply(UserAnsweredQuestion @event)
         {
