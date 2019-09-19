@@ -16,11 +16,12 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public bool IsShared { get; set; }
 
-
         /// <!--External References-->
         public Guid CustomerId { get; set; }
 
         /// <!--One-To-Many-Relations-->
-        public ICollection<TestQuestion> TestQuestions { get; set; }
+        public ICollection<TestQuestion> TestQuestions { get; set; } = new HashSet<TestQuestion>();
+
+        public ICollection<TestResult> TestResults { get; set; } = new HashSet<TestResult>();
     }
 }

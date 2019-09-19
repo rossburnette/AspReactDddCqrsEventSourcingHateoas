@@ -17,12 +17,14 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public string NativeName { get; set; }
 
-        /// <!--References-->
+        /// <!--External References-->
         public ProjectLanguages EnumValue { get; set; }
 
         /// <!--One-To-Many-Relations-->
-        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; }
+        public ICollection<TestResultTitle> TestResultTitles { get; set; } = new HashSet<TestResultTitle>();
 
-        public ICollection<TestQuestionTitle> TestQuestionTitles { get; set; }
+        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; } = new HashSet<QuestionOptionTitle>();
+
+        public ICollection<TestQuestionTitle> TestQuestionTitles { get; set; } = new HashSet<TestQuestionTitle>();
     }
 }

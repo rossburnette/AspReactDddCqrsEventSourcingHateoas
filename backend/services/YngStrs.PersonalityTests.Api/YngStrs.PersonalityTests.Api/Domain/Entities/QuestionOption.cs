@@ -22,6 +22,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public OptionImageBinary OptionImageBinary { get; set; }
 
         /// <!--One-To-Many-Relations-->
-        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; }
+        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; } = new HashSet<QuestionOptionTitle>();
     }
 }

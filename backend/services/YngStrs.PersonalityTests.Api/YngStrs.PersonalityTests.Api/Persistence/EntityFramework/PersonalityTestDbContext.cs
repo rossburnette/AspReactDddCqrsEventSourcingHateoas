@@ -17,6 +17,8 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         /// <!--Dependency Hierarchy-->
         public DbSet<PersonalityTest> PersonalityTests { get; set; }
 
+        public DbSet<TestResult> TestResults { get; set; }
+
         public DbSet<TestQuestion> TestQuestions { get; set; }
 
         public DbSet<QuestionOption> QuestionOptions { get; set; }
@@ -24,6 +26,8 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         public DbSet<OptionImageBinary> OptionImageBinaries { get; set; }
 
         public DbSet<Language> Languages { get; set; }
+
+        public DbSet<TestResultTitle> TestResultTitles { get; set; }
 
         public DbSet<TestQuestionTitle> TestQuestionTitles { get; set; }
 
@@ -35,10 +39,12 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             modelBuilder.SpecifyTablesName();
             modelBuilder.SpecifyPersonalityTestColumnsMapping();
+            modelBuilder.SpecifyTestResultColumnsMapping();
             modelBuilder.SpecifyTestQuestionColumnsMapping();
             modelBuilder.SpecifyQuestionOptionColumnsMapping();
             modelBuilder.SpecifyOptionImageBinaryColumnsMapping();
             modelBuilder.SpecifyLanguageColumnsMapping();
+            modelBuilder.SpecifyTestResultTitleColumnsMapping();
             modelBuilder.SpecifyTestQuestionTitleColumnsMapping();
             modelBuilder.SpecifyQuestionOptionTitleColumnsMapping();
 

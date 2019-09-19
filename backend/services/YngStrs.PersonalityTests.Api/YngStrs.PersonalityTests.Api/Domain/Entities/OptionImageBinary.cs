@@ -15,6 +15,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public byte[] ImageData { get; set; }
 
         /// <!--One-To-Many-Relations-->
-        public ICollection<QuestionOption> QuestionOptions { get; set; }
+        public ICollection<QuestionOption> QuestionOptions { get; set; } = new HashSet<QuestionOption>();
     }
 }

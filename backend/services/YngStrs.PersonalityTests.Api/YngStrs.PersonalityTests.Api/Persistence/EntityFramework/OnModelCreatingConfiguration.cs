@@ -16,6 +16,16 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .ValueGeneratedOnAdd();
 
             builder
+                .Entity<TestResult>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+            builder
                 .Entity<TestQuestion>()
                 .Property(p => p.Id)
                 .ValueGeneratedOnAdd();
@@ -56,6 +66,9 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         internal static void SpecifyTablesName(this ModelBuilder builder)
         {
             builder.Entity<PersonalityTest>().ToTable("personality_tests");
+
+            builder.Entity<TestResult>().ToTable("test_results");
+            builder.Entity<TestResultTitle>().ToTable("test_result_titles");
 
             builder.Entity<Language>().ToTable("languages");
 
@@ -109,6 +122,40 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .Entity<PersonalityTest>()
                 .Property(test => test.IsShared)
                 .HasColumnName("is_shared");
+        }
+
+        internal static void SpecifyTestResultColumnsMapping(this ModelBuilder builder)
+        {
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.Id)
+                .HasColumnName("id");
+
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.CreatedOn)
+                .HasColumnName("created_on");
+
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.DeletedOn)
+                .HasColumnName("deleted_on");
+
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.IsDeleted)
+                .HasColumnName("is_deleted");
+
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.ModifiedOn)
+                .HasColumnName("modified_on");
+
+
+            builder
+                .Entity<TestResult>()
+                .Property(x => x.PersonalityTestId)
+                .HasColumnName("personality_test_id");
         }
 
         internal static void SpecifyTestQuestionColumnsMapping(this ModelBuilder builder)
@@ -268,6 +315,49 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .HasColumnName("enum_value");
         }
 
+        internal static void SpecifyTestResultTitleColumnsMapping(this ModelBuilder builder)
+        {
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.Id)
+                .HasColumnName("id");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.CreatedOn)
+                .HasColumnName("created_on");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.DeletedOn)
+                .HasColumnName("deleted_on");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.IsDeleted)
+                .HasColumnName("is_deleted");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.ModifiedOn)
+                .HasColumnName("modified_on");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.Description)
+                .HasColumnName("description");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.LanguageId)
+                .HasColumnName("language_id");
+
+            builder
+                .Entity<TestResultTitle>()
+                .Property(x => x.TestResultId)
+                .HasColumnName("test_result_id");
+        }
+
         internal static void SpecifyTestQuestionTitleColumnsMapping(this ModelBuilder builder)
         {
             builder
@@ -355,6 +445,30 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         }
 
         /// <!--Relations configuration-->
+        internal static void ConfigurePersonalityTestResultRelations(this ModelBuilder builder)
+        {
+            builder
+                .Entity<TestResult>()
+                .HasOne(result => result.PersonalityTest)
+                .WithMany(personalityTest => personalityTest.TestResults)
+                .HasForeignKey(result => result.PersonalityTestId);
+        }
+
+        internal static void ConfigureTestResultLanguageTitleRelations(this ModelBuilder builder)
+        {
+            builder
+                .Entity<TestResultTitle>()
+                .HasOne(title => title.TestResult)
+                .WithMany(result => result.TestResultTitles)
+                .HasForeignKey(title => title.TestResultId);
+
+            builder
+                .Entity<TestResultTitle>()
+                .HasOne(title => title.Language)
+                .WithMany(language => language.TestResultTitles)
+                .HasForeignKey(title => title.LanguageId);
+        }
+
         internal static void ConfigurePersonalityTestQuestionRelations(this ModelBuilder builder)
         {
             builder

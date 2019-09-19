@@ -10,7 +10,7 @@ using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 namespace YngStrs.PersonalityTests.Api.Migrations
 {
     [DbContext(typeof(PersonalityTestDbContext))]
-    [Migration("20190918214823_InitialCreate")]
+    [Migration("20190919124455_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.Language", b =>
@@ -250,6 +250,70 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.ToTable("test_question_titles");
                 });
 
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.TestResult", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnName("created_on");
+
+                    b.Property<DateTimeOffset?>("DeletedOn")
+                        .HasColumnName("deleted_on");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnName("modified_on");
+
+                    b.Property<Guid>("PersonalityTestId")
+                        .HasColumnName("personality_test_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonalityTestId");
+
+                    b.ToTable("test_results");
+                });
+
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.TestResultTitle", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnName("created_on");
+
+                    b.Property<DateTimeOffset?>("DeletedOn")
+                        .HasColumnName("deleted_on");
+
+                    b.Property<string>("Description")
+                        .HasColumnName("description");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("is_deleted");
+
+                    b.Property<Guid>("LanguageId")
+                        .HasColumnName("language_id");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnName("modified_on");
+
+                    b.Property<Guid>("TestResultId")
+                        .HasColumnName("test_result_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("TestResultId");
+
+                    b.ToTable("test_result_titles");
+                });
+
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption", b =>
                 {
                     b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary", "OptionImageBinary")
@@ -293,6 +357,27 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion", "TestQuestion")
                         .WithMany("TestQuestionTitles")
                         .HasForeignKey("TestQuestionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.TestResult", b =>
+                {
+                    b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest", "PersonalityTest")
+                        .WithMany("TestResults")
+                        .HasForeignKey("PersonalityTestId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.TestResultTitle", b =>
+                {
+                    b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.Language", "Language")
+                        .WithMany("TestResultTitles")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.TestResult", "TestResult")
+                        .WithMany("TestResultTitles")
+                        .HasForeignKey("TestResultId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
