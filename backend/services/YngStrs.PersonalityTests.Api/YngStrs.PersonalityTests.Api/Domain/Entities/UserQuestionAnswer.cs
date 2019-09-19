@@ -13,25 +13,23 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         {
         }
 
-        public UserQuestionAnswer(Guid chosenOptionId)
+        public UserQuestionAnswer(Guid id)
         {
-            Id = chosenOptionId;
+            Id = id;
         }
 
-        /// <remarks>
-        /// In the current context ID and <see cref="QuestionOption.Id"/> are the same.
-        /// </remarks>
         public Guid Id { get; set; }
 
         /// <!--References-->
-        public Guid ChosenOptionId => Id;
+        public Guid ChosenOptionId { get; set; }
 
         /// <!--Events-->
-        public UserAnsweredQuestion ChooseAnOption(Guid chosenOptionId) => new UserAnsweredQuestion(chosenOptionId);
+        public UserAnsweredQuestion ChooseAnOption(Guid chosenOptionId) =>
+            new UserAnsweredQuestion(chosenOptionId);
 
         public void Apply(UserAnsweredQuestion @event)
         {
-            Id = @event.ChosenOptionId;
+            ChosenOptionId = @event.ChosenOptionId;
         }
     }
 }

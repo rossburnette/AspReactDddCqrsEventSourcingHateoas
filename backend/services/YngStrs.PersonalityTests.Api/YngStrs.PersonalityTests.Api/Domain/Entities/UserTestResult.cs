@@ -27,7 +27,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         /// <!--References-->
         public Guid PersonalityTestId { get; set; }
 
-        public IList<ResultCalculation> TestResultsPercentage { get; set; } = new List<ResultCalculation>();
+        public IList<ResultCalculation> TestResultPercentages { get; set; } = new List<ResultCalculation>();
 
         /// <!--Events-->
         public UserCompletedTest CompletePersonalityTest() => 
@@ -35,10 +35,19 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public void Apply(UserCompletedTest @event)
         {
-            Id = Guid.NewGuid();
             UserEmail = @event.UserEmail;
             PersonalityTestId = @event.PersonalityTestId;
-            TestResultsPercentage = new List<ResultCalculation>();
+            TestResultPercentages = new List<ResultCalculation>();
+        }
+
+        public UserTestResultCalculated BuildConjecturalUserProfile() =>
+            new UserTestResultCalculated(UserEmail, PersonalityTestId, TestResultPercentages);
+
+        public void Apply(UserTestResultCalculated @event)
+        {
+            UserEmail = @event.UserEmail;
+            PersonalityTestId = @event.PersonalityTestId;
+            TestResultPercentages = @event.TestResultPercentages;
         }
     }
 }
