@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using YngStrs.Common.EventSourcing.Core;
+using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
@@ -28,5 +29,16 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public IList<ResultCalculation> TestResultsPercentage { get; set; } = new List<ResultCalculation>();
 
+        /// <!--Events-->
+        public UserCompletedTest CompletePersonalityTest() => 
+            new UserCompletedTest(PersonalityTestId, UserEmail);
+
+        public void Apply(UserCompletedTest @event)
+        {
+            Id = Guid.NewGuid();
+            UserEmail = @event.UserEmail;
+            PersonalityTestId = @event.PersonalityTestId;
+            TestResultsPercentage = new List<ResultCalculation>();
+        }
     }
 }
