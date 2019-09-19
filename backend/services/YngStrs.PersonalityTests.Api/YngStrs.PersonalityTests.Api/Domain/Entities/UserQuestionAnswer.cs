@@ -1,5 +1,6 @@
 ﻿using System;
 using YngStrs.Common.EventSourcing.Core;
+using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
@@ -10,17 +11,27 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     {
         public UserQuestionAnswer()
         {
-            
         }
 
-        public UserQuestionAnswer(Guid id)
+        public UserQuestionAnswer(Guid chosenOptionId)
         {
-            Id = id;
+            Id = chosenOptionId;
         }
 
+        /// <remarks>
+        /// In the current context ID and <see cref="QuestionOption.Id"/> are the same.
+        /// </remarks>
         public Guid Id { get; set; }
 
         /// <!--References-->
-        public Guid ChosenOptionId { get; set; }
+        public Guid ChosenOptionId => Id;
+
+        /// <!--Events-->
+        public UserAnsweredQuestion UserAnswer(Guid chosenOptionId) => new UserAnsweredQuestion(chosenOptionId);
+
+        public void Apply(UserAnsweredQuestion @event)
+        {
+            Id = @event.ChosenOptionId;
+        }
     }
 }
