@@ -34,6 +34,8 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
         public DbSet<TestResultTitle> TestResultTitles { get; set; }
 
+        public DbSet<CommonQuestionTitle> CommonQuestionTitles { get; set; }
+
         public DbSet<TestQuestionTitle> TestQuestionTitles { get; set; }
 
         public DbSet<QuestionOptionTitle> QuestionOptionTitles { get; set; }
@@ -58,6 +60,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.ConfigureGuidPrimaryKeys();
 
             modelBuilder.SpecifyTablesName();
+
             modelBuilder.SpecifyPersonalityTestColumnsMapping();
             modelBuilder.SpecifyTestResultColumnsMapping();
             modelBuilder.SpecifyTestQuestionColumnsMapping();
@@ -65,14 +68,20 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.SpecifyOptionImageBinaryColumnsMapping();
             modelBuilder.SpecifyLanguageColumnsMapping();
             modelBuilder.SpecifyTestResultTitleColumnsMapping();
+            modelBuilder.SpecifyCommonQuestionTitleColumnsMapping();
             modelBuilder.SpecifyTestQuestionTitleColumnsMapping();
             modelBuilder.SpecifyQuestionOptionTitleColumnsMapping();
 
+            modelBuilder.ConfigurePersonalityTestResultRelations();
+            modelBuilder.ConfigureTestResultLanguageTitleRelations();
+
             modelBuilder.ConfigurePersonalityTestQuestionRelations();
-            modelBuilder.ConfigureTestQuestionLanguageTitleRelations();
+            modelBuilder.ConfigureCommonTestQuestionLanguageTitleRelations();
+            modelBuilder.ConfigureTestQuestionTitleRelations();
+
             modelBuilder.ConfigureTestQuestionOptionRelations();
             modelBuilder.ConfigureTestQuestionOptionLanguageTitleRelations();
-            modelBuilder.ConfigureTestOptionImageBinaryRelations();
+            modelBuilder.ConfigureQuestionOptionImageBinaryRelations();
 
             base.OnModelCreating(modelBuilder);
         }
