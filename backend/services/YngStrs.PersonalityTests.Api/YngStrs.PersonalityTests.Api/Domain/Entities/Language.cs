@@ -21,10 +21,13 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public ProjectLanguages EnumValue { get; set; }
 
         /// <!--One-To-Many-Relations-->
-        public ICollection<TestResultTitle> TestResultTitles { get; set; } = new HashSet<TestResultTitle>();
+        public ICollection<TestResultTitle> TestResultTitles { get; set; }
+            = new HashSet<TestResultTitle>();
 
-        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; } = new HashSet<QuestionOptionTitle>();
+        public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; }
+            = new HashSet<QuestionOptionTitle>();
 
-        public ICollection<TestQuestionTitle> TestQuestionTitles { get; set; } = new HashSet<TestQuestionTitle>();
+        public ICollection<CommonQuestionTitle> CommonQuestionTitles { get; set; }
+            = new HashSet<CommonQuestionTitle>();
     }
 }

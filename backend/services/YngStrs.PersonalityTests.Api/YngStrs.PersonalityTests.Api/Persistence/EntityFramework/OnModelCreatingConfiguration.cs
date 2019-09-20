@@ -46,6 +46,11 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .ValueGeneratedOnAdd();
 
             builder
+                .Entity<CommonQuestionTitle>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
+
+            builder
                 .Entity<TestQuestionTitle>()
                 .Property(p => p.Id)
                 .ValueGeneratedOnAdd();
@@ -358,6 +363,44 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .HasColumnName("test_result_id");
         }
 
+        internal static void SpecifyCommonQuestionTitleColumnsMapping(this ModelBuilder builder)
+        {
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.Id)
+                .HasColumnName("id");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.CreatedOn)
+                .HasColumnName("created_on");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.DeletedOn)
+                .HasColumnName("deleted_on");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.IsDeleted)
+                .HasColumnName("is_deleted");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.ModifiedOn)
+                .HasColumnName("modified_on");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.Description)
+                .HasColumnName("description");
+
+            builder
+                .Entity<CommonQuestionTitle>()
+                .Property(x => x.LanguageId)
+                .HasColumnName("language_id");
+        }
+
         internal static void SpecifyTestQuestionTitleColumnsMapping(this ModelBuilder builder)
         {
             builder
@@ -387,13 +430,8 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             builder
                 .Entity<TestQuestionTitle>()
-                .Property(x => x.Description)
-                .HasColumnName("description");
-
-            builder
-                .Entity<TestQuestionTitle>()
-                .Property(x => x.LanguageId)
-                .HasColumnName("language_id");
+                .Property(x => x.CommonQuestionTitleId)
+                .HasColumnName("common_question_title_id");
 
             builder
                 .Entity<TestQuestionTitle>()
@@ -478,7 +516,16 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .HasForeignKey(question => question.PersonalityTestId);
         }
 
-        internal static void ConfigureTestQuestionLanguageTitleRelations(this ModelBuilder builder)
+        internal static void ConfigureCommonTestQuestionLanguageTitleRelations(this ModelBuilder builder)
+        {
+            builder
+                .Entity<CommonQuestionTitle>()
+                .HasOne(title => title.Language)
+                .WithMany(language => language.CommonQuestionTitles)
+                .HasForeignKey(title => title.LanguageId);
+        }
+
+        internal static void ConfigureTestQuestionTitleRelations(this ModelBuilder builder)
         {
             builder
                 .Entity<TestQuestionTitle>()
@@ -488,9 +535,9 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             builder
                 .Entity<TestQuestionTitle>()
-                .HasOne(title => title.Language)
+                .HasOne(title => title.CommonQuestionTitle)
                 .WithMany(language => language.TestQuestionTitles)
-                .HasForeignKey(title => title.LanguageId);
+                .HasForeignKey(title => title.CommonQuestionTitleId);
         }
 
         internal static void ConfigureTestQuestionOptionRelations(this ModelBuilder builder)
@@ -517,7 +564,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .HasForeignKey(title => title.LanguageId);
         }
 
-        internal static void ConfigureTestOptionImageBinaryRelations(this ModelBuilder builder)
+        internal static void ConfigureQuestionOptionImageBinaryRelations(this ModelBuilder builder)
         {
             builder
                 .Entity<QuestionOption>()
