@@ -1,11 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using YngStrs.Common.Api.Entities.Core;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 {
     /// <inheritdoc />
     /// <summary>
-    /// Representation of relationship database tables.
+    /// Representation of relationship database.
     /// </summary>
     public class PersonalityTestDbContext : DbContext
     {
@@ -33,6 +38,21 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
         public DbSet<QuestionOptionTitle> QuestionOptionTitles { get; set; }
 
+        /// <!--Overrides-->
+
+        public override int SaveChanges()
+        {
+            ApplyAuditInfoRules();
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            ApplyAuditInfoRules();
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <!--Model Creating-->
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ConfigureGuidPrimaryKeys();
@@ -55,6 +75,30 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.ConfigureTestOptionImageBinaryRelations();
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        /// <!--Helpers-->
+        private void ApplyAuditInfoRules() // TODO: Take a look at that
+        {
+            var changedEntries = ChangeTracker
+                .Entries()
+                .Where(entry => entry.Entity is IAuditInfo &&
+                                (entry.State == EntityState.Added ||
+                                 entry.State == EntityState.Modified));
+
+            foreach (var changedEntry in changedEntries)
+            {
+                var entity = (IAuditInfo) changedEntry.Entity;
+                if (changedEntry.State == EntityState.Added &&
+                    entity.CreatedOn == default)
+                {
+                    entity.CreatedOn = DateTimeOffset.Now;
+                }
+                else
+                {
+                    entity.ModifiedOn = DateTimeOffset.Now;
+                }
+            }
         }
     }
 }
