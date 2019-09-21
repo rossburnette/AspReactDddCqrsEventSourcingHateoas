@@ -734,7 +734,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
-                TestQuestionId = TestQuestions[39].Id,
+                TestQuestionId = TestQuestions[38].Id,
+                IsTextOnly = false,
+                OptionImageBinaryId = OptionImages.First().Id
+            },
+            new QuestionOption
+            {
+                Id = Guid.NewGuid(),
+                TestQuestionId = TestQuestions[38].Id,
                 IsTextOnly = false,
                 OptionImageBinaryId = OptionImages.First().Id
             },
@@ -742,20 +749,13 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[39].Id,
-                IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
-            },
-            new QuestionOption
-            {
-                Id = Guid.NewGuid(),
-                TestQuestionId = TestQuestions[40].Id,
                 IsTextOnly = true,
                 OptionImageBinaryId = null
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
-                TestQuestionId = TestQuestions[40].Id,
+                TestQuestionId = TestQuestions[39].Id,
                 IsTextOnly = true,
                 OptionImageBinaryId = null
             }
@@ -899,349 +899,349 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[22].Id,
                     Description = "Планирам"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[23].Id,
                     Description = "Действам по същество"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[24].Id,
                     Description = "Умея да се справям с напрежението."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[25].Id,
                     Description = "Съвършенството се постига с практика."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[26].Id,
                     Description = "Добър слушател съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[27].Id,
                     Description = "Мисля бързо."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[28].Id,
                     Description = "Екипен играч съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[29].Id,
                     Description = "Имам логическо мислене."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[30].Id,
                     Description = "Мултитаскинг"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[31].Id,
                     Description = "Обмислям внимателно"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[32].Id,
                     Description = "Скачайки в дълбокото, уча най-добре."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[33].Id,
                     Description = "Логика &gt; Емоции."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[34].Id,
                     Description = "Хората са като отворена книга за мен."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[35].Id,
                     Description = "Не обичам детайлите."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[36].Id,
                     Description = "Първо анализирам, после действам."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[37].Id,
                     Description = "Умея да водя работни срещи."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[38].Id,
                     Description = "„И утре е ден“"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[39].Id,
                     Description = "„Казана дума, хвърлен камък“"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[40].Id,
                     Description = "Авантюрист съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[41].Id,
                     Description = "Изследовател съм"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[42].Id,
                     Description = "Открит човек съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[43].Id,
                     Description = "Иновативен съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[44].Id,
                     Description = "Обичам да чета."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[45].Id,
                     Description = "Решавам проблеми."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[46].Id,
                     Description = "Концентриран/а съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[47].Id,
                     Description = "За мен е важен крайният резултат."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[48].Id,
                     Description = "Обичам да опознавам хората."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[49].Id,
                     Description = "Обичам разнообразието."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[50].Id,
                     Description = "Доверявам се на фактите."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[51].Id,
                     Description = "Използвам въображението си."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[52].Id,
                     Description = "Губя търпение при бавни процеси."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[53].Id,
                     Description = "Имам хиляди мисли в главата си."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[54].Id,
                     Description = "Не обичам прибързаните решения."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[55].Id,
                     Description = "Екипната работа води до прогрес."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[56].Id,
                     Description = "Не се замислям два пъти."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[57].Id,
                     Description = "Не взимам емоционални решения."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[58].Id,
                     Description = "Важно ми е да съм харесван."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[59].Id,
                     Description = "Правя правилните заключения."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[60].Id,
                     Description = "Търся странично мнение."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[61].Id,
                     Description = "Следвам определена методология."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[62].Id,
                     Description = "Обичам да свършвам работата."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[63].Id,
                     Description = "Добрите взаимоотношения са важни."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[64].Id,
                     Description = "Импулсивен/импулсивна съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[65].Id,
                     Description = "Широкоскроен/а съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[66].Id,
                     Description = "„Блага дума железни врати отваря“"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[67].Id,
                     Description = "Обичам трудните задачи."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[68].Id,
                     Description = "Организиран съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[69].Id,
                     Description = "Скачам от задача на задача"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[70].Id,
                     Description = "Комуникирам без проблем с различни хора."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[71].Id,
                     Description = "Стремя се към личностно развитие."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[72].Id,
                     Description = "Идеен съм."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[73].Id,
                     Description = "Не обичам да си губя времето."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[74].Id,
                     Description = "„Обичам да плавам в собствени води“"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[75].Id,
                     Description = "За мен е важно да имам добър ментор."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[76].Id,
                     Description = "Мисля абстрактно."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[77].Id,
                     Description = "Фокусиран/а съм в детайлите"
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[78].Id,
                     Description = "Не обичам разтягането на локуми."
                 },
                 new QuestionOptionTitle
                 {
                     LanguageId = Languages.First().Id,
-                    QuestionOptionId = QuestionOptions[0].Id,
+                    QuestionOptionId = QuestionOptions[79].Id,
                     Description = "Вярвам в себе си."
                 }
             };
