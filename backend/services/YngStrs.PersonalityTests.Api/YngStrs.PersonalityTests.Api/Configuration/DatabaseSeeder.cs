@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using YngStrs.Common.Api;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
+using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 
 namespace YngStrs.PersonalityTests.Api.Configuration
 {
@@ -174,7 +176,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             }
         };
 
-        private List<TestQuestionTitle> TestQuestionTitles()
+        private static List<TestQuestionTitle> TestQuestionTitles()
         {
             var list = new List<TestQuestionTitle>();
 
@@ -1245,5 +1247,38 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                     Description = "Вярвам в себе си."
                 }
             };
+
+        private readonly PersonalityTestDbContext _dbContext;
+
+        public DatabaseSeeder(PersonalityTestDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public void SeedDatabase()
+        {
+            if (!IsDatabaseEmpty())
+            {
+                return;
+            }
+
+            _dbContext.AddRange(PersonalityTests);
+            _dbContext.AddRange(TestResults);
+            _dbContext.AddRange(Languages);
+            _dbContext.AddRange(TestResultTitles);
+            _dbContext.AddRange(TestQuestions);
+            _dbContext.AddRange(CommonQuestionTitles);
+            _dbContext.AddRange(TestQuestionTitles());
+            _dbContext.AddRange(OptionImages);
+            _dbContext.AddRange(QuestionOptions);
+            _dbContext.AddRange(QuestionOptionTitles);
+
+            _dbContext.SaveChanges();
+        }
+
+        private bool IsDatabaseEmpty() =>
+            !_dbContext.PersonalityTests.Any() &&
+            !_dbContext.TestQuestions.Any() &&
+            !_dbContext.QuestionOptions.Any();
     }
 }

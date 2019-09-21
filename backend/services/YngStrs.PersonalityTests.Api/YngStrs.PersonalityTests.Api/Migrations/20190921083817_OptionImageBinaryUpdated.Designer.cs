@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
@@ -9,9 +10,10 @@ using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 namespace YngStrs.PersonalityTests.Api.Migrations
 {
     [DbContext(typeof(PersonalityTestDbContext))]
-    partial class PersonalityTestDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190921083817_OptionImageBinaryUpdated")]
+    partial class OptionImageBinaryUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

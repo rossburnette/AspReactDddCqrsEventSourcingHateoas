@@ -12,6 +12,10 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// </remarks>
     public class OptionImageBinary : RelationalEntity<Guid>
     {
+        public string Description { get; set; }
+
+        public string FileName { get; set; }
+
         public byte[] ImageData { get; set; }
 
         /// <!--One-To-Many-Relations-->

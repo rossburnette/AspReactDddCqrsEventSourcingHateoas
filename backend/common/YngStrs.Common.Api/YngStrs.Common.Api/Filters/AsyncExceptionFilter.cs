@@ -54,7 +54,7 @@ namespace YngStrs.Common.Api.Filters
                 {
                     context.HttpContext.Response.StatusCode = errorStatus;
                     context.Result = new JsonResult(
-                        Error.Critical("An unexpected internal server error has occurred.");
+                        Error.Critical("An unexpected internal server error has occurred."));
                 }
             }
         }
