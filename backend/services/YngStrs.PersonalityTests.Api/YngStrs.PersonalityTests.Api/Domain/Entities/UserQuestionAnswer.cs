@@ -21,15 +21,15 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public Guid Id { get; set; }
 
         /// <!--References-->
-        public Guid ChosenOptionId { get; set; }
+        public Guid ChosenOptionId => Id;
 
         /// <!--Events-->
-        public UserAnsweredQuestion ChooseAnOption(Guid chosenOptionId) =>
-            new UserAnsweredQuestion(chosenOptionId);
+        public UserAnsweredQuestion TestQuestionAnswer() =>
+            new UserAnsweredQuestion(ChosenOptionId);
 
         public void Apply(UserAnsweredQuestion @event)
         {
-            ChosenOptionId = @event.ChosenOptionId;
+            Id = @event.ChosenOptionId;
         }
     }
 }
