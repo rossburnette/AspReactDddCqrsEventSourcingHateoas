@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Baseline;
 using YngStrs.Common.Api;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
@@ -192,13 +194,83 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             return list;
         }
 
-        private static readonly List<OptionImageBinary> OptionImages = new List<OptionImageBinary>
+        private static List<OptionImageBinary> OptionImages()
         {
-            new OptionImageBinary
+            var list = new List<OptionImageBinary>();
+            const string resourcePath = "YngStrs.PersonalityTests.Api.EmbeddedResources.";
+
+            var actingImgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + "1.jpg");
+
+            var actingImageBinary = new OptionImageBinary
             {
-                ImageData = new [] { byte.MaxValue, byte.MaxValue }
-            }
-        };
+                Id = Guid.NewGuid(),
+                Description = "I'm acting.",
+                FileName = "1.jpg",
+                ImageData = actingImgResourceStream.ReadAllBytes()
+            };
+
+            list.Add(actingImageBinary);
+
+            var findSolutionImgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + "2.jpg");
+
+            var findSolutionImageBinary = new OptionImageBinary
+            {
+                Id = Guid.NewGuid(),
+                Description = "I find a solution.",
+                FileName = "2.jpg",
+                ImageData = findSolutionImgResourceStream.ReadAllBytes()
+            };
+
+            list.Add(findSolutionImageBinary);
+
+            var dreamerImgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + "5.jpg");
+
+            var dreamerImageBinary = new OptionImageBinary
+            {
+                Id = Guid.NewGuid(),
+                Description = "I am a dreamer.",
+                FileName = "5.jpg",
+                ImageData = dreamerImgResourceStream.ReadAllBytes()
+            };
+
+            list.Add(dreamerImageBinary);
+
+            var sociableImgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + "6.jpg");
+
+            var sociableImageBinary = new OptionImageBinary
+            {
+                Id = Guid.NewGuid(),
+                Description = "I'm sociable.",
+                FileName = "6.jpg",
+                ImageData = sociableImgResourceStream.ReadAllBytes()
+            };
+
+            list.Add(sociableImageBinary);
+
+            var communicativeImgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + "19.jpg");
+
+            var communicativeImageBinary = new OptionImageBinary
+            {
+                Id = Guid.NewGuid(),
+                Description = "I am communicative.",
+                FileName = "19.jpg",
+                ImageData = communicativeImgResourceStream.ReadAllBytes()
+            };
+
+            list.Add(communicativeImageBinary);
+
+            return list;
+        }
 
         private static readonly List<QuestionOption> QuestionOptions = new List<QuestionOption>
         {
