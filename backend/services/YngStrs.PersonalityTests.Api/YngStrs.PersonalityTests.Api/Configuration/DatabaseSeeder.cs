@@ -194,82 +194,82 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             return list;
         }
 
+        private static readonly List<string> ImagesFileNames = new List<string>
+        {
+
+            "1.jpg",
+            "19.jpg",
+            "2.jpg",
+            "20.jpg",
+            "23.jpg",
+            "24.jpg",
+            "31.jpg",
+            "32.jpg",
+            "41.jpg",
+            "42.jpg",
+            "45.jpg",
+            "46.jpg",
+            "5.jpg",
+            "51.jpg",
+            "52.jpg",
+            "6.jpg",
+            "69.jpg",
+            "70.jpg",
+            "77.jpg",
+            "78.jpg"
+        };
+
+        private static readonly Dictionary<string, string> ImagesMetaDataDictionary 
+            = new Dictionary<string, string>
+            {
+                { "1.jpg", "I'm acting." },
+                { "19.jpg", "I am communicative." },
+                { "2.jpg", "I find a solution." },
+                { "20.jpg", "I'm creative." },
+                { "23.jpg", "I'm planning." },
+                { "24.jpg", "I'm acting on the merits." },
+                { "31.jpg", "Multitasking." },
+                { "32.jpg", "I think carefully." },
+                { "41.jpg", "I'm an adventurer." },
+                { "42.jpg", "I'm a researcher." },
+                { "45.jpg", "I love to read." },
+                { "46.jpg", "I solve problems." },
+                { "5.jpg", "I am a dreamer." },
+                { "51.jpg", "I trust the facts." },
+                { "52.jpg", "I use my imagination." },
+                { "6.jpg", "I'm sociable." },
+                { "69.jpg", "I'm organized." },
+                { "70.jpg", "I jump from task to task." },
+                { "77.jpg", "I think abstractly." },
+                { "78.jpg", "I am focused on the details." }
+            };
+
         private static List<OptionImageBinary> OptionImages()
         {
             var list = new List<OptionImageBinary>();
-            const string resourcePath = "YngStrs.PersonalityTests.Api.EmbeddedResources.";
-
-            var actingImgResourceStream = Assembly
-                .GetExecutingAssembly()
-                .GetManifestResourceStream(resourcePath + "1.jpg");
-
-            var actingImageBinary = new OptionImageBinary
+            foreach (var item in ImagesMetaDataDictionary)
             {
-                Id = Guid.NewGuid(),
-                Description = "I'm acting.",
-                FileName = "1.jpg",
-                ImageData = actingImgResourceStream.ReadAllBytes()
-            };
-
-            list.Add(actingImageBinary);
-
-            var findSolutionImgResourceStream = Assembly
-                .GetExecutingAssembly()
-                .GetManifestResourceStream(resourcePath + "2.jpg");
-
-            var findSolutionImageBinary = new OptionImageBinary
-            {
-                Id = Guid.NewGuid(),
-                Description = "I find a solution.",
-                FileName = "2.jpg",
-                ImageData = findSolutionImgResourceStream.ReadAllBytes()
-            };
-
-            list.Add(findSolutionImageBinary);
-
-            var dreamerImgResourceStream = Assembly
-                .GetExecutingAssembly()
-                .GetManifestResourceStream(resourcePath + "5.jpg");
-
-            var dreamerImageBinary = new OptionImageBinary
-            {
-                Id = Guid.NewGuid(),
-                Description = "I am a dreamer.",
-                FileName = "5.jpg",
-                ImageData = dreamerImgResourceStream.ReadAllBytes()
-            };
-
-            list.Add(dreamerImageBinary);
-
-            var sociableImgResourceStream = Assembly
-                .GetExecutingAssembly()
-                .GetManifestResourceStream(resourcePath + "6.jpg");
-
-            var sociableImageBinary = new OptionImageBinary
-            {
-                Id = Guid.NewGuid(),
-                Description = "I'm sociable.",
-                FileName = "6.jpg",
-                ImageData = sociableImgResourceStream.ReadAllBytes()
-            };
-
-            list.Add(sociableImageBinary);
-
-            var communicativeImgResourceStream = Assembly
-                .GetExecutingAssembly()
-                .GetManifestResourceStream(resourcePath + "19.jpg");
-
-            var communicativeImageBinary = new OptionImageBinary
-            {
-                Id = Guid.NewGuid(),
-                Description = "I am communicative.",
-                FileName = "19.jpg",
-                ImageData = communicativeImgResourceStream.ReadAllBytes()
-            };
-
-            list.Add(communicativeImageBinary);
+                list.Add(BuildOptionImageBinaryByEmbeddedResource(item.Key, item.Value));
+            }
 
             return list;
+        }
+
+        private static OptionImageBinary BuildOptionImageBinaryByEmbeddedResource(string fileName, string description)
+        {
+            const string resourcePath = "YngStrs.PersonalityTests.Api.EmbeddedResources.";
+
+            var imgResourceStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream(resourcePath + fileName);
+
+            return new OptionImageBinary
+            {
+                Id = Guid.NewGuid(),
+                Description = description,
+                FileName = fileName,
+                ImageData = imgResourceStream.ReadAllBytes()
+            };
         }
 
         private static readonly List<QuestionOption> QuestionOptions = new List<QuestionOption>
@@ -279,14 +279,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[0].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[0].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -307,14 +307,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[2].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[2].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -404,14 +404,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[9].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[9].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -432,14 +432,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[11].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[11].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -488,14 +488,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[15].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[15].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -558,14 +558,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[20].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[20].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -586,14 +586,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[22].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[22].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -628,14 +628,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[25].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[25].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -754,14 +754,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[34].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[34].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -810,14 +810,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[38].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[38].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages.First().Id
+                OptionImageBinaryId = OptionImages().First().Id
             },
             new QuestionOption
             {
@@ -1341,7 +1341,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             _dbContext.AddRange(TestQuestions);
             _dbContext.AddRange(CommonQuestionTitles);
             _dbContext.AddRange(TestQuestionTitles());
-            _dbContext.AddRange(OptionImages);
+            _dbContext.AddRange(OptionImages());
             _dbContext.AddRange(QuestionOptions);
             _dbContext.AddRange(QuestionOptionTitles);
 
