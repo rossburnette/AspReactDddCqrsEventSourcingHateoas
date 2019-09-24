@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.PersonalityTests.Api.Configuration;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 
@@ -23,9 +25,18 @@ namespace YngStrs.PersonalityTests.Api
         {
             services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
+            services.AddDbConnectors();
+
             services.AddTransient<DatabaseSeeder>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMediatR(typeof(Startup));
+
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            ConnectionManagerBase
+                .SetConnectionString(Configuration.GetConnectionString("DefaultConnection"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
