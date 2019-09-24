@@ -9,12 +9,13 @@
     <Description>
       Provides resources that all project services would need.
     </Description>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Npgsql" Version="4.0.10" />
     <PackageReference Include="Optional" Version="4.0.0" />
     <PackageReference Include="YngStrs.Common" Version="1.0.1" />
     <PackageReference Include="YngStrs.Common.Cqrs" Version="1.0.0" />

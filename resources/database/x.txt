@@ -2,13 +2,51 @@ SELECT
 pt.id as test_id,
 tq.id as question_id,
 tq.serial_number as question_number,
-'x' as question_title,
-qo.is_text_only as is_text_only,
-qot.description as option_desctiption
+qot.description as option_desctiption,
+sub_qo.is_text_only as is_text_only,
+sub_qo.image_data as image_data
 FROM public.personality_tests as pt
 INNER JOIN public.test_questions as tq 
 ON pt.id = tq.personality_test_id
-INNER JOIN public.question_options as qo
-ON tq.id = qo.test_question_id
-INNER JOIN public.question_option_titles as qot
-ON qot.question_option_id = qo.id
+INNER JOIN 
+(
+	SELECT qo.id as qo_id, qo.test_question_id as quest_id,qo.is_text_only as is_text_only, oib.image_data as image_data
+	FROM public.option_image_binaries as oib
+	INNER JOIN public.question_options as qo
+	ON qo.option_image_binary_id = oib.id
+	UNION
+	SELECT iqo.id as qo_id, iqo.test_question_id  as quest_id,iqo.is_text_only as is_text_only, null as image_data
+	FROM public.question_options as iqo
+	WHERE iqo.option_image_binary_id IS NULL
+) as sub_qo
+ON tq.id = sub_qo.quest_id
+INNER JOIN public.question_option_titles as qot 
+ON qot.question_option_id = sub_qo.qo_id
+ORDER BY tq.serial_number
+
+_______________________________________________________________
+
+SELECT 
+tq.id as question_id,
+tq.serial_number as question_number,
+qot.description as option_desctiption,
+sub_qo.is_text_only as is_text_only,
+sub_qo.image_data as image_data
+FROM public.personality_tests as pt
+INNER JOIN public.test_questions as tq 
+ON pt.id = tq.personality_test_id
+INNER JOIN 
+(
+	SELECT qo.id as qo_id, qo.test_question_id as quest_id,qo.is_text_only as is_text_only, oib.image_data as image_data
+	FROM public.option_image_binaries as oib
+	INNER JOIN public.question_options as qo
+	ON qo.option_image_binary_id = oib.id
+	UNION
+	SELECT iqo.id as qo_id, iqo.test_question_id  as quest_id,iqo.is_text_only as is_text_only, null as image_data
+	FROM public.question_options as iqo
+	WHERE iqo.option_image_binary_id IS NULL
+) as sub_qo
+ON tq.id = sub_qo.quest_id
+INNER JOIN public.question_option_titles as qot 
+ON qot.question_option_id = sub_qo.qo_id
+ORDER BY tq.serial_number
