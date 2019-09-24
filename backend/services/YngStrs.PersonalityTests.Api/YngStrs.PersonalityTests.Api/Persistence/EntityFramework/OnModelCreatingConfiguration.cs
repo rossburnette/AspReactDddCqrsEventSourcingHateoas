@@ -66,7 +66,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         /// </summary>
         /// <param name="builder">
         /// Configures database metadata:
-        /// shape of the entities, the relationships between them, and how they map to the database.
+        /// shape of the entities, the relationships between them and how they map to the database.
         /// </param>
         internal static void SpecifyTablesName(this ModelBuilder builder)
         {
@@ -270,6 +270,16 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .Entity<OptionImageBinary>()
                 .Property(x => x.ModifiedOn)
                 .HasColumnName("modified_on");
+
+            builder
+                .Entity<OptionImageBinary>()
+                .Property(x => x.Description)
+                .HasColumnName("description");
+
+            builder
+                .Entity<OptionImageBinary>()
+                .Property(x => x.FileName)
+                .HasColumnName("file_name");
 
             builder
                 .Entity<OptionImageBinary>()
