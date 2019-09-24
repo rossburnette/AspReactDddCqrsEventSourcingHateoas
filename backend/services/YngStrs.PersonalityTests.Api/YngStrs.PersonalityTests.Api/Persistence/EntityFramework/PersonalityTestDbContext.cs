@@ -41,13 +41,14 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
         public DbSet<QuestionOptionTitle> QuestionOptionTitles { get; set; }
 
         /// <!--Overrides-->
-
+        /// <inheritdoc />
         public override int SaveChanges()
         {
             ApplyAuditInfoRules();
             return base.SaveChanges();
         }
 
+        /// <inheritdoc />
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             ApplyAuditInfoRules();

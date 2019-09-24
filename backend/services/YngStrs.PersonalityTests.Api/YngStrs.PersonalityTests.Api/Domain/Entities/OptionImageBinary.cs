@@ -12,6 +12,23 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// </remarks>
     public class OptionImageBinary : RelationalEntity<Guid>
     {
+        public OptionImageBinary()
+        {
+            
+        }
+
+        public OptionImageBinary(OptionImageBinary imageBinary)
+        {
+            Id = imageBinary.Id;
+            CreatedOn = imageBinary.CreatedOn;
+            ModifiedOn = imageBinary.ModifiedOn;
+            IsDeleted = imageBinary.IsDeleted;
+            DeletedOn = imageBinary.DeletedOn;
+            Description = imageBinary.Description;
+            FileName = imageBinary.FileName;
+            ImageData = imageBinary.ImageData;           
+        }
+
         public string Description { get; set; }
 
         public string FileName { get; set; }

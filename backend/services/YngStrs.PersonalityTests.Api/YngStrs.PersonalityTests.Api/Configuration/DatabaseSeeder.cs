@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Baseline;
 using YngStrs.Common.Api;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
@@ -166,6 +165,174 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 SerialNumber = 12,
                 PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 13,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 14,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 15,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 16,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 17,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 18,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 19,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 20,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 21,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 22,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 23,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 24,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 25,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 26,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 27,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 28,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 29,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 30,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 31,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 32,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 33,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 34,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 35,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 36,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 37,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 38,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 39,
+                PersonalityTestId = PersonalityTests.First().Id
+            },
+            new TestQuestion
+            {
+                Id = Guid.NewGuid(),
+                SerialNumber = 40,
+                PersonalityTestId = PersonalityTests.First().Id
             }
         };
 
@@ -225,35 +392,69 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 { "1.jpg", "I'm acting." }, // 0
                 { "19.jpg", "I am communicative." }, // 1
                 { "2.jpg", "I find a solution." }, // 2
-                { "20.jpg", "I'm creative." }, // 3
+                { "20.jpg", "I'm creative." }, // 3 ---
                 { "23.jpg", "I'm planning." }, // 4
-                { "24.jpg", "I'm acting on the merits." }, // 5
+                { "24.jpg", "I'm acting on the merits." }, // 5 ---
                 { "31.jpg", "Multitasking." }, // 6
-                { "32.jpg", "I think carefully." }, // 7
-                { "41.jpg", "I'm an adventurer." }, // 8
-                { "42.jpg", "I'm a researcher." }, // 9
-                { "45.jpg", "I love to read." }, // 10
-                { "46.jpg", "I solve problems." }, // 11
-                { "5.jpg", "I am a dreamer." }, // 12
-                { "51.jpg", "I trust the facts." }, // 13
-                { "52.jpg", "I use my imagination." }, //14
-                { "6.jpg", "I'm sociable." }, // 15
-                { "69.jpg", "I'm organized." }, // 16
-                { "70.jpg", "I jump from task to task." }, // 17
-                { "77.jpg", "I think abstractly." }, // 18
+                { "32.jpg", "I think carefully." }, // 7 --
+                { "41.jpg", "I'm an adventurer."           }, // 8
+                { "42.jpg", "I'm a researcher."            }, // 9
+                { "45.jpg", "I love to read."              }, // 10
+                { "46.jpg", "I solve problems."            }, // 11
+                { "5.jpg", "I am a dreamer."               }, // 12
+                { "51.jpg", "I trust the facts."           }, // 13
+                { "52.jpg", "I use my imagination."        }, //14
+                { "6.jpg", "I'm sociable."                 }, // 15
+                { "69.jpg", "I'm organized."               }, // 16
+                { "70.jpg", "I jump from task to task."    }, // 17
+                { "77.jpg", "I think abstractly."          }, // 18
                 { "78.jpg", "I am focused on the details." } //19
             };
 
-        private static List<OptionImageBinary> OptionImages()
+        private static readonly List<OptionImageBinary> OptionImages = new List<OptionImageBinary>
         {
-            var list = new List<OptionImageBinary>();
-            foreach (var item in ImagesMetaDataDictionary)
-            {
-                list.Add(BuildOptionImageBinaryByEmbeddedResource(item.Key, item.Value));
-            }
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("1.jpg", "I'm acting.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("19.jpg", "I am communicative.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("2.jpg", "I find a solution.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("20.jpg", "I'm creative.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("23.jpg", "I'm planning.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("24.jpg", "I'm acting on the merits.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("31.jpg", "Multitasking")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("32.jpg", "I think carefully.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("41.jpg", "I'm an adventurer.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("42.jpg", "I'm a researcher.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("45.jpg", "I love to read.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("46.jpg", "I solve problems.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("5.jpg", "I am a dreamer.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("51.jpg", "I trust the facts." )),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("52.jpg", "I use my imagination.")),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("6.jpg", "I'm sociable.")),
+            new OptionImageBinary
+                (BuildOptionImageBinaryByEmbeddedResource("69.jpg", "I'm organized." )),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("70.jpg", "I jump from task to task." )),
+            new OptionImageBinary(
+                BuildOptionImageBinaryByEmbeddedResource("77.jpg", "I think abstractly." )),
+            new OptionImageBinary
+                (BuildOptionImageBinaryByEmbeddedResource("78.jpg", "I am focused on the details.")),
+        };
 
-            return list;
-        }
 
         private static OptionImageBinary BuildOptionImageBinaryByEmbeddedResource(string fileName, string description)
         {
@@ -279,14 +480,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[0].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[0].Id
+                OptionImageBinaryId = OptionImages[0].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[0].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[2].Id
+                OptionImageBinaryId = OptionImages[2].Id
             },
             new QuestionOption
             {
@@ -307,14 +508,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[2].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[12].Id,
+                OptionImageBinaryId = OptionImages[12].Id,
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[2].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[15].Id,
+                OptionImageBinaryId = OptionImages[15].Id,
             },
             new QuestionOption
             {
@@ -404,14 +605,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[9].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[1].Id
+                OptionImageBinaryId = OptionImages[1].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[9].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[3].Id
+                OptionImageBinaryId = OptionImages[3].Id
             },
             new QuestionOption
             {
@@ -432,14 +633,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[11].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[4].Id
+                OptionImageBinaryId = OptionImages[4].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[11].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[5].Id
+                OptionImageBinaryId = OptionImages[5].Id
             },
             new QuestionOption
             {
@@ -488,14 +689,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[15].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[6].Id
+                OptionImageBinaryId = OptionImages[6].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[15].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[7].Id
+                OptionImageBinaryId = OptionImages[7].Id
             },
             new QuestionOption
             {
@@ -558,14 +759,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[20].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[8].Id
+                OptionImageBinaryId = OptionImages[8].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[20].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[9].Id
+                OptionImageBinaryId = OptionImages[9].Id
             },
             new QuestionOption
             {
@@ -586,14 +787,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[22].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[10].Id
+                OptionImageBinaryId = OptionImages[10].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[22].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[11].Id
+                OptionImageBinaryId = OptionImages[11].Id
             },
             new QuestionOption
             {
@@ -628,14 +829,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[25].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[13].Id
+                OptionImageBinaryId = OptionImages[13].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[25].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[14].Id
+                OptionImageBinaryId = OptionImages[14].Id
             },
             new QuestionOption
             {
@@ -754,14 +955,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[34].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[16].Id
+                OptionImageBinaryId = OptionImages[16].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[34].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[17].Id
+                OptionImageBinaryId = OptionImages[17].Id
             },
             new QuestionOption
             {
@@ -810,14 +1011,14 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[38].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[18].Id
+                OptionImageBinaryId = OptionImages[18].Id
             },
             new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[38].Id,
                 IsTextOnly = false,
-                OptionImageBinaryId = OptionImages()[19].Id
+                OptionImageBinaryId = OptionImages[19].Id
             },
             new QuestionOption
             {
@@ -1327,7 +1528,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             _dbContext = dbContext;
         }
 
-        public async Task SeedDatabase()
+        public void SeedDatabase()
         {
             if (!IsDatabaseEmpty())
             {
@@ -1335,17 +1536,34 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             }
 
             _dbContext.AddRange(PersonalityTests);
-            _dbContext.TestResults.AddRange(TestResults);
-            _dbContext.AddRange(Languages);
-            _dbContext.AddRange(TestResultTitles);
-            _dbContext.AddRange(TestQuestions);
-            _dbContext.AddRange(CommonQuestionTitles);
-            _dbContext.AddRange(TestQuestionTitles());
-            _dbContext.AddRange(OptionImages());
-            _dbContext.AddRange(QuestionOptions);
-            _dbContext.AddRange(QuestionOptionTitles);
+            _dbContext.SaveChanges();
 
-            await _dbContext.SaveChangesAsync();
+            _dbContext.TestResults.AddRange(TestResults);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(Languages);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(TestResultTitles);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(TestQuestions);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(CommonQuestionTitles);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(TestQuestionTitles());
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(OptionImages);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(QuestionOptions);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(QuestionOptionTitles);
+            _dbContext.SaveChanges();
         }
 
         private bool IsDatabaseEmpty() =>

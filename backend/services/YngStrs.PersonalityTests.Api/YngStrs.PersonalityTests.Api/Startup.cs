@@ -37,7 +37,7 @@ namespace YngStrs.PersonalityTests.Api
             DatabaseSeeder seeder)
         {
             dbContext.Database.EnsureCreated();
-            seeder.SeedDatabase().Wait();
+            seeder.SeedDatabase();
 
             if (env.IsDevelopment())
             {
