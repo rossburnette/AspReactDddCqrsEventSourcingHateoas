@@ -4,6 +4,7 @@ using Marten;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.EventSourcing.Business;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
@@ -63,6 +64,11 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             services.AddScoped<IEventBus, EventBus>();
 
             return services;
+        }
+
+        internal static IServiceCollection AddDbConnectors(this IServiceCollection serviceCollection)
+        {
+            return serviceCollection.AddScoped<IQueryDbConnector, QueryDbConnector>();
         }
     }
 }
