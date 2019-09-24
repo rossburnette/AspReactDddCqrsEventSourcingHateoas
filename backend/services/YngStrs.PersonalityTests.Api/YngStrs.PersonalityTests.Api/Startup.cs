@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using YngStrs.PersonalityTests.Api.Configuration;
+using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 
 namespace YngStrs.PersonalityTests.Api
 {
@@ -21,12 +23,22 @@ namespace YngStrs.PersonalityTests.Api
         {
             services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
+            services.AddTransient<DatabaseSeeder>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(
+            IApplicationBuilder app,
+            IHostingEnvironment env,
+            ILoggerFactory loggerFactory,
+            PersonalityTestDbContext dbContext,
+            DatabaseSeeder seeder)
         {
+            dbContext.Database.EnsureCreated();
+            seeder.SeedDatabase().Wait();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

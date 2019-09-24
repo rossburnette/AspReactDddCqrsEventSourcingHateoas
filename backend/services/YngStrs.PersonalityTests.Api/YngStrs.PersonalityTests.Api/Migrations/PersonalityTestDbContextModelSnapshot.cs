@@ -47,7 +47,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("CommonQuestionTitles");
+                    b.ToTable("common_question_titles");
                 });
 
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.Language", b =>

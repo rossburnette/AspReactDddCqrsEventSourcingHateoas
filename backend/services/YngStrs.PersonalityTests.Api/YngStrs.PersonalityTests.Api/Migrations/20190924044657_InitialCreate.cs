@@ -34,6 +34,8 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     modified_on = table.Column<DateTimeOffset>(nullable: true),
                     is_deleted = table.Column<bool>(nullable: false),
                     deleted_on = table.Column<DateTimeOffset>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    FileName = table.Column<string>(nullable: true),
                     image_data = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
@@ -57,6 +59,29 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_personality_tests", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "common_question_titles",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    created_on = table.Column<DateTimeOffset>(nullable: false),
+                    modified_on = table.Column<DateTimeOffset>(nullable: true),
+                    is_deleted = table.Column<bool>(nullable: false),
+                    deleted_on = table.Column<DateTimeOffset>(nullable: true),
+                    description = table.Column<string>(nullable: true),
+                    language_id = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_common_question_titles", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_common_question_titles_languages_language_id",
+                        column: x => x.language_id,
+                        principalTable: "languages",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -143,17 +168,16 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     modified_on = table.Column<DateTimeOffset>(nullable: true),
                     is_deleted = table.Column<bool>(nullable: false),
                     deleted_on = table.Column<DateTimeOffset>(nullable: true),
-                    description = table.Column<string>(nullable: true),
-                    language_id = table.Column<Guid>(nullable: false),
-                    test_question_id = table.Column<Guid>(nullable: false)
+                    test_question_id = table.Column<Guid>(nullable: false),
+                    common_question_title_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_test_question_titles", x => x.id);
                     table.ForeignKey(
-                        name: "FK_test_question_titles_languages_language_id",
-                        column: x => x.language_id,
-                        principalTable: "languages",
+                        name: "FK_test_question_titles_common_question_titles_common_question~",
+                        column: x => x.common_question_title_id,
+                        principalTable: "common_question_titles",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -225,6 +249,11 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_common_question_titles_language_id",
+                table: "common_question_titles",
+                column: "language_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_question_option_titles_language_id",
                 table: "question_option_titles",
                 column: "language_id");
@@ -245,9 +274,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 column: "test_question_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_test_question_titles_language_id",
+                name: "IX_test_question_titles_common_question_title_id",
                 table: "test_question_titles",
-                column: "language_id");
+                column: "common_question_title_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_test_question_titles_test_question_id",
@@ -290,7 +319,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 name: "question_options");
 
             migrationBuilder.DropTable(
-                name: "languages");
+                name: "common_question_titles");
 
             migrationBuilder.DropTable(
                 name: "test_results");
@@ -300,6 +329,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "test_questions");
+
+            migrationBuilder.DropTable(
+                name: "languages");
 
             migrationBuilder.DropTable(
                 name: "personality_tests");

@@ -10,8 +10,8 @@ using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 namespace YngStrs.PersonalityTests.Api.Migrations
 {
     [DbContext(typeof(PersonalityTestDbContext))]
-    [Migration("20190920194740_QuestionTitlesManyToManyRelation")]
-    partial class QuestionTitlesManyToManyRelation
+    [Migration("20190924044657_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,7 +49,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("CommonQuestionTitles");
+                    b.ToTable("common_question_titles");
                 });
 
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.Language", b =>
@@ -95,6 +95,10 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
                     b.Property<DateTimeOffset?>("DeletedOn")
                         .HasColumnName("deleted_on");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FileName");
 
                     b.Property<byte[]>("ImageData")
                         .HasColumnName("image_data");

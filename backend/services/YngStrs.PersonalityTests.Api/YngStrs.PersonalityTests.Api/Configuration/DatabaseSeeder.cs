@@ -18,7 +18,8 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             {
                 Id = Guid.NewGuid(),
                 Description = "Initial Personality Test",
-                IsShared = true
+                IsShared = true,
+                CustomerId = Guid.Parse("fa506b08-0e67-41de-aa6b-50b3c7ebfd9b")
             }
         };
 
@@ -1326,7 +1327,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             _dbContext = dbContext;
         }
 
-        public void SeedDatabase()
+        public async Task SeedDatabase()
         {
             if (!IsDatabaseEmpty())
             {
@@ -1334,7 +1335,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             }
 
             _dbContext.AddRange(PersonalityTests);
-            _dbContext.AddRange(TestResults);
+            _dbContext.TestResults.AddRange(TestResults);
             _dbContext.AddRange(Languages);
             _dbContext.AddRange(TestResultTitles);
             _dbContext.AddRange(TestQuestions);
@@ -1344,7 +1345,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             _dbContext.AddRange(QuestionOptions);
             _dbContext.AddRange(QuestionOptionTitles);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
         private bool IsDatabaseEmpty() =>

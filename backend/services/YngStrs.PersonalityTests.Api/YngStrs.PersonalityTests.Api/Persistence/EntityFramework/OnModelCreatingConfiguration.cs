@@ -79,7 +79,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             builder.Entity<TestQuestion>().ToTable("test_questions");
             builder.Entity<TestQuestionTitle>().ToTable("test_question_titles");
-
+            builder.Entity<CommonQuestionTitle>().ToTable("common_question_titles");
 
             builder.Entity<QuestionOption>().ToTable("question_options");
             builder.Entity<OptionImageBinary>().ToTable("option_image_binaries");
