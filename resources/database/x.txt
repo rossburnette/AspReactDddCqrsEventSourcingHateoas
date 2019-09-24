@@ -1,0 +1,14 @@
+SELECT 
+pt.id as test_id,
+tq.id as question_id,
+tq.serial_number as question_number,
+'x' as question_title,
+qo.is_text_only as is_text_only,
+qot.description as option_desctiption
+FROM public.personality_tests as pt
+INNER JOIN public.test_questions as tq 
+ON pt.id = tq.personality_test_id
+INNER JOIN public.question_options as qo
+ON tq.id = qo.test_question_id
+INNER JOIN public.question_option_titles as qot
+ON qot.question_option_id = qo.id
