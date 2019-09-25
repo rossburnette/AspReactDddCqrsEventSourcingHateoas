@@ -21,7 +21,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
         {
             if (string.IsNullOrEmpty(connectionString))
             {
-                throw new ArgumentException(nameof(connectionString));
+                throw new ArgumentNullException(nameof(connectionString));
             }
 
             services.AddDbContext<PersonalityTestDbContext>(opts =>

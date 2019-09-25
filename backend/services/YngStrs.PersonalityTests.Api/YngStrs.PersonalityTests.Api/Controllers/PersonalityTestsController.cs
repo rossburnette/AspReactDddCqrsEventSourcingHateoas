@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Common.Api;
@@ -19,8 +20,13 @@ namespace YngStrs.PersonalityTests.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetPersonalityTest()
+        /// <summary>
+        /// Retrieves the entire personality test with questions, options and languages.
+        /// </summary>
+        /// <response code="200">Personality Test.</response>
+        [HttpGet(Name = nameof(GetFullPersonalityTest))]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetFullPersonalityTest()
         {
             var result = await _mediator.Send(new GetInitialPersonalityTest());
             return Ok(result);
