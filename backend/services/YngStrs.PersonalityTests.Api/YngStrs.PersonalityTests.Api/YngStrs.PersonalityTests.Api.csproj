@@ -105,4 +105,8 @@
     <PackageReference Include="YngStrs.Common.Hateoas" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hateoas\Resources\" />
+  </ItemGroup>
+
 </Project>
