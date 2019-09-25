@@ -1,441 +1,431 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        
-				<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title> #YoungStars </title>
-	
-        <meta name="description" content="">
-		<meta name="keywords" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="theme-color" content="#5fb1a8">   
-        <link rel="icon" href="./images/young-logo.ico" type="image/x-icon">
+<head>
 
-		
-		<link rel="stylesheet" href="./css/style.css?v=20190708.3">
-		<link rel="stylesheet" href="./css/chatbot.css?v=20190708.3">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<!-- JS Framework Vars -->
-        <!-- javascript roots -->
-<script type="text/javascript">
-    var _loggedUser = '';
-    var _root = './';
-    var _root_full = 'http://demo.edesign.bg./';
-    var _controller = 'home';
-    var _action = 'index';
-    var _url_for = 'http://demo.edesign.bg./';
-    var _lang = 'bg';
-    var _langs = '[{"name":"\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438"}]';
-    var _base = 'http://demo.edesign.bg./';
-    var _timezone_offset = '3';
-</script>
+    <title> #YoungStars </title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-	     <script>
-	        WebFont.load({
-	          google: {
-	            families: ['Open Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i,cyrillic,cyrillic-ext,latin-ext', 
-	                       'Oswald:400,500,cyrillic,cyrillic-ext,latin-ext']
-	          }
-	        });
-	    </script>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#5fb1a8">
+    <link rel="icon" href="./images/young-logo.ico" type="image/x-icon">
 
-		
-		<script>
+    <link rel="stylesheet" href="./css/style.css?v=20190708.3">
+    <link rel="stylesheet" href="./css/chatbot.css?v=20190708.3">
 
-		window.fbAsyncInit = function() {
-			FB.init({
-			appId      : '580952139088096',
-			cookie     : false,  // enable cookies to allow the server to access 
-								// the session
-			xfbml      : true,  // parse social plugins on this page
-			version    : 'v3.2' // The Graph API version to use for the call
-			});
+    <!-- JS Framework Vars -->
+    <!-- javascript roots -->
+    <script type="text/javascript">
+        var _loggedUser = '';
+        var _root = './';
+        var _root_full = 'http://demo.edesign.bg./';
+        var _controller = 'home';
+        var _action = 'index';
+        var _url_for = 'http://demo.edesign.bg./';
+        var _lang = 'bg';
+        var _langs = '[{"name":"\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438"}]';
+        var _base = 'http://demo.edesign.bg./';
+        var _timezone_offset = '3';
+    </script>
 
-		};
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ['Open Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i,cyrillic,cyrillic-ext,latin-ext',
+                    'Oswald:400,500,cyrillic,cyrillic-ext,latin-ext'
+                ]
+            }
+        });
+    </script>
 
-		// Load the SDK asynchronously
-		(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '580952139088096',
+                cookie: false, // enable cookies to allow the server to access 
+                // the session
+                xfbml: true, // parse social plugins on this page
+                version: 'v3.2' // The Graph API version to use for the call
+            });
 
-		
-		</script>
-		
-	
-    </head>
+        };
+
+        // Load the SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+</head>
+
 <body>
-<div id="wrapper" class="wrapper">
+    <div id="wrapper" class="wrapper">
 
-
-
-
-
-
-<header id="header" class="header">
- 	<div class="header-wrap">
- 		<div class="mobile-menu-row">
- 			<div class="mobile-logo-container">
- 				<a href="./" class="mobile-logo-link">
- 					<img src="./images/icons/young-logo.svg?v=1" alt="logo" class="template-image">
- 				</a>
- 			</div>
- 			<div class="mobile-menu-container">
- 				<div class="mobile-menu-btn-wrap">
-					<button class="menu-btn" id="menu-btn">
-						<span class="lines-wrap">
+        <header id="header" class="header">
+            <div class="header-wrap">
+                <div class="mobile-menu-row">
+                    <div class="mobile-logo-container">
+                        <a href="./" class="mobile-logo-link">
+                            <img src="./images/icons/young-logo.svg?v=1" alt="logo" class="template-image">
+                        </a>
+                    </div>
+                    <div class="mobile-menu-container">
+                        <div class="mobile-menu-btn-wrap">
+                            <button class="menu-btn" id="menu-btn">
+                                <span class="lines-wrap">
 			                <span class="line line1"></span>
-			                <span class="line line2"></span>
-			                <span class="line line3"></span>
-						</span>
-		            </button>
-				</div>
- 			</div>
- 		</div>
-		<div class="header-box">
+                                <span class="line line2"></span>
+                                <span class="line line3"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-box">
 
-			<div class="header-box-inner">	
-				<nav class="nav">
-					<ul class="menu menu-left">
-						<li class="menu-item menu-anim-el"><a href="./personality-test" class="menu-link ">Направи тест</a></li>
-						<li class="menu-item menu-anim-el"><a href="./chatbot" class="menu-link lc ">RoboStar</a></li>
-						<li class="menu-item menu-anim-el"><a href="./about-us" class="menu-link ">За нас</a></li>
-					</ul>
-					<h1 class="logo"><a class="logo-link desktop" href="./"><img src="./images/icons/young-logo.svg?v=1" alt="Soge young logo"></a></h1>
-					<ul class="menu menu-right">
-						<li class="menu-item menu-anim-el"><a href="./articles" class="menu-link "><strong>#Нещополезно</strong></a></li>
-						<li class="menu-item menu-anim-el"><a href="./careers" class="menu-link ">Обяви</a></li>
-						<li class="menu-item menu-anim-el"><a href="./contacts" class="menu-link ">Контакти</a></li>
-					</ul>
-				</nav>
-				<div class="login-container menu-anim-el">
-					<div class="login-container-inner">	
-							
-														<div class="login-btn-wrap">
-								<a href="./users/login" class="login btn">Вход/регистрация</a>
-							</div>
-													
-					</div>
-				</div>
-			</div>
+                    <div class="header-box-inner">
+                        <nav class="nav">
+                            <ul class="menu menu-left">
+                                <li class="menu-item menu-anim-el"><a href="./personality-test" class="menu-link ">Направи тест</a></li>
+                                <li class="menu-item menu-anim-el"><a href="./chatbot" class="menu-link lc ">RoboStar</a></li>
+                                <li class="menu-item menu-anim-el"><a href="./about-us" class="menu-link ">За нас</a></li>
+                            </ul>
+                            <h1 class="logo"><a class="logo-link desktop" href="./"><img src="./images/icons/young-logo.svg?v=1" alt="Soge young logo"></a></h1>
+                            <ul class="menu menu-right">
+                                <li class="menu-item menu-anim-el"><a href="./articles" class="menu-link "><strong>#Нещополезно</strong></a></li>
+                                <li class="menu-item menu-anim-el"><a href="./careers" class="menu-link ">Обяви</a></li>
+                                <li class="menu-item menu-anim-el"><a href="./contacts" class="menu-link ">Контакти</a></li>
+                            </ul>
+                        </nav>
+                        <div class="login-container menu-anim-el">
+                            <div class="login-container-inner">
 
-		</div>
-	</div>
-</header> 
+                                <div class="login-btn-wrap">
+                                    <a href="./users/login" class="login btn">Вход/регистрация</a>
+                                </div>
 
-<div id="fullpage">
-	
-	<section class="section active">
-		<div class="intro-section fh anim-block">
-			
-			<div class="section-box">
-				<div class="intro-txt center">
-					<div class="intro-title-wrap">
-						<h2 class="title-large white anim-elem top-100">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <div id="fullpage">
+
+            <section class="section active">
+                <div class="intro-section fh anim-block">
+
+                    <div class="section-box">
+                        <div class="intro-txt center">
+                            <div class="intro-title-wrap">
+                                <h2 class="title-large white anim-elem top-100">
 							ТИ си любопитен и различен? Срещни се с чат бот футуристичен. Стартирай кариерата си смело!
 						</h2>
-					</div>
-					<p class="p-big white regular anim-elem top delay-02">
-						# YoungSTARS е твоят пътеводител към успех в кариерата! Ще откриеш своите силни страни и ще се подготвиш за своето първо интервю за работа.
-					</p>
-					<div class="btn-box anim-elem top delay-02">
-						<a href="chatbot" class="btn-big btn-red ">Научи повече</a>
-					</div>
-				</div>
-				<div class="scroll-down-container anim-elem top delay-02">
-					<a href="#test" class="scroll-down-btn" id="scroll-down-btn">
-						<span class="scroll-down-image">
+                            </div>
+                            <p class="p-big white regular anim-elem top delay-02">
+                                # YoungSTARS е твоят пътеводител към успех в кариерата! Ще откриеш своите силни страни и ще се подготвиш за своето първо интервю за работа.
+                            </p>
+                            <div class="btn-box anim-elem top delay-02">
+                                <a href="chatbot" class="btn-big btn-red ">Научи повече</a>
+                            </div>
+                        </div>
+                        <div class="scroll-down-container anim-elem top delay-02">
+                            <a href="#test" class="scroll-down-btn" id="scroll-down-btn">
+                                <span class="scroll-down-image">
 							<img src="./images/icons/scroll-down.svg" alt="icon" class="template-image">
 						</span>
-					</a>
-				</div>
-			</div>
-			
-			<div class="page-navigation">
-				<a href="#home" class="line active anim-elem left"><span class="page-slide">1</span></a>
-				<a href="#test" class="line anim-elem left"><span class="page-slide">2</span></a>
-				<a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
-				<a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
-			</div>
-			<div class="social-links-top-container anim-elem bottom">
-				                				<div class="social-item">
-					<a href="https://facebook.com" class="top-social-link">
-						<span class="social-image-container fb">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="page-navigation">
+                        <a href="#home" class="line active anim-elem left"><span class="page-slide">1</span></a>
+                        <a href="#test" class="line anim-elem left"><span class="page-slide">2</span></a>
+                        <a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
+                        <a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
+                    </div>
+                    <div class="social-links-top-container anim-elem bottom">
+                        <div class="social-item">
+                            <a href="https://facebook.com" class="top-social-link">
+                                <span class="social-image-container fb">
 							<img src="./images/icons/social/top-fb.svg" alt="icon" class="social-image">
 							<img src="./images/icons/social/top-fb-hover.svg" alt="icon" class="social-image-hover">
 						</span>
-					</a>
-				</div>
-												<div class="social-item">
-					<a href="https://instagram.com" class="top-social-link">
-						<span class="social-image-container instagram">
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://instagram.com" class="top-social-link">
+                                <span class="social-image-container instagram">
 							<img src="./images/icons/social/top-instagram.svg" alt="icon" class="social-image">
 							<img src="./images/icons/social/top-instagram-hover.svg" alt="icon" class="social-image-hover">
 						</span>
-					</a>
-				</div>
-																				<div class="social-item">
-					<a href="https://twitter.com" class="top-social-link">
-						<span class="social-image-container twitter">
+                            </a>
+                        </div>
+                        <div class="social-item">
+                            <a href="https://twitter.com" class="top-social-link">
+                                <span class="social-image-container twitter">
 							<img src="./images/icons/social/top-twitter.svg" alt="icon" class="social-image">
 							<img src="./images/icons/social/top-twitter-hover.svg" alt="icon" class="social-image-hover">
 						</span>
-					</a>
-				</div>
-							</div>
-		</div>
-	</section>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <section class="section">
+                <div class="intro-test-section fh anim-block">
+                    <div class="section-box">
+                        <div class="intro-test-txt center">
+                            <div class="intro-test-txt-box white-box center anim-elem top-visibility">
+                                <div class="addition-txt-box">
+                                    <span class="p-huge lightGrey addition-txt">РАЗБЕРИ</span>
+                                </div>
+                                <div class="wrap-txt">
+                                    <h3 class="title-big black">КАКВО ТЕ ПРАВИ <strong class="red">#РАЗЛИЧЕН</strong>?</h3>
+                                    <p class="p-small">
+                                        Открий твоите силни страни и ще получиш ориентация какви позиции са най-подходящи за теб.
+                                    </p>
+                                    <div class="curve-box">
+                                        <a href="personality-test" class="btn-big btn-gray">Направи теста</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-item anim-elem left-100">
+                                <div class="boy-image">
+                                    <img src="./images/home/boy.png" alt="boy" class="template-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="page-navigation dark anim-block">
+                        <a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
+                        <a href="#test" class="line active anim-elem left"><span class="page-slide">2</span></a>
+                        <a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
+                        <a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
+                    </div>
+                </div>
+            </section>
 
-	<section class="section">
-		<div class="intro-test-section fh anim-block">
-			<div class="section-box">
-				<div class="intro-test-txt center">
-					<div class="intro-test-txt-box white-box center anim-elem top-visibility">
-						<div class="addition-txt-box">
-							<span class="p-huge lightGrey addition-txt">РАЗБЕРИ</span>
-						</div>
-						<div class="wrap-txt">	
-							<h3 class="title-big black">КАКВО ТЕ ПРАВИ <strong class="red">#РАЗЛИЧЕН</strong>?</h3>
-							<p class="p-small">
-								Открий твоите силни страни и ще получиш ориентация какви позиции са най-подходящи за теб.
-							</p>
-							<div class="curve-box">
-								<a href="personality-test" class="btn-big btn-gray">Направи теста</a>
-						    </div>
-						</div>
-					</div>
-					<div class="image-item anim-elem left-100">
-						<div class="boy-image">
-							<img src="./images/home/boy.png" alt="boy" class="template-image">
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="page-navigation dark anim-block">
-				<a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
-				<a href="#test" class="line active anim-elem left"><span class="page-slide">2</span></a>
-				<a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
-				<a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
-			</div>
-		</div>
-	</section>
+            <section class="section">
+                <div class="chat-bot-section fh anim-block">
+                    <div class="section-box">
+                        <div class="intro-test-txt center">
+                            <div class="image-item anim-elem top">
+                                <div class="robot-image">
+                                    <img src="./images/home/robot.png" alt="robot" class="template-image">
+                                </div>
+                            </div>
+                            <div class="intro-test-txt-box white-box center anim-elem top delay-02">
+                                <div class="addition-txt-box">
+                                    <span class="p-huge lightGrey addition-txt">ПИШИ МИ</span>
+                                </div>
+                                <div class="wrap-txt">
+                                    <h3 class="title-big black">Правил ли си #интервю с <strong class="red"> чат бот</strong>?</h3>
+                                    <p class="p-small">
+                                        Запознай се с #ROBOstar и направи интервю за работа, докато си чатиш. Така ще си добре подготвен за реална среща с работодател
+                                    </p>
+                                    <div class="curve-box">
+                                        <a href="chatbot" class="btn-big btn-gray">Започни интервюто</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="page-navigation dark anim-block">
+                        <a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
+                        <a href="test" class="line anim-elem left"><span class="page-slide">2</span></a>
+                        <a href="#help" class="line active anim-elem left"><span class="page-slide">3</span></a>
+                        <a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
+                    </div>
+                </div>
+            </section>
 
+            <section class="section">
+                <div class="advice-section fh anim-block">
+                    <div class="mobile-only advice-section-mob-img">
+                        <img class="responsive b-lazy" data-src-small="./images/home/advice-mobile-img.jpg" data-src-mid="./images/home/advice-tablet-img.jpg" data-src-big="./images/home/advice-tablet-img.jpg" src="./images/home/desktop-hidden-image.jpg" alt="Try our test image">
 
-
-	<section class="section">
-		<div class="chat-bot-section fh anim-block">
-			<div class="section-box">
-				<div class="intro-test-txt center">
-					<div class="image-item anim-elem top">
-						<div class="robot-image">
-							<img src="./images/home/robot.png" alt="robot" class="template-image">
-						</div>
-					</div>
-					<div class="intro-test-txt-box white-box center anim-elem top delay-02">
-						<div class="addition-txt-box">
-							<span class="p-huge lightGrey addition-txt">ПИШИ МИ</span>
-						</div>
-						<div class="wrap-txt">	
-							<h3 class="title-big black">Правил ли си #интервю с <strong class="red"> чат бот</strong>?</h3>
-							<p class="p-small">
-								Запознай се с #ROBOstar и направи интервю за работа, докато си чатиш. Така ще си добре подготвен за реална среща с работодател
-							</p>
-							<div class="curve-box">
-								<a href="chatbot" class="btn-big btn-gray">Започни интервюто</a>
-						    </div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="page-navigation dark anim-block">
-				<a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
-				<a href="test" class="line anim-elem left"><span class="page-slide">2</span></a>
-				<a href="#help" class="line active anim-elem left"><span class="page-slide">3</span></a>
-				<a href="#advice" class="line anim-elem left"><span class="page-slide">4</span></a>
-			</div>
-		</div>
-	</section>
-
-
-
-
-	<section class="section">
-		<div class="advice-section fh anim-block">
-			<div class="mobile-only advice-section-mob-img">
-				<img class="responsive b-lazy" 
-				data-src-small="./images/home/advice-mobile-img.jpg" 
-				data-src-mid="./images/home/advice-tablet-img.jpg" 
-				data-src-big="./images/home/advice-tablet-img.jpg" 
-				src="./images/home/desktop-hidden-image.jpg" 
-				alt="Try our test image">
-
-			</div>
-			<div class="section-box">
-				<div class="advice-title-wrap anim-elem top">
-					<h3 class="title-big white">
+                    </div>
+                    <div class="section-box">
+                        <div class="advice-title-wrap anim-elem top">
+                            <h3 class="title-big white">
 						<strong>#</strong>Съвети за <strong>интервю</strong>
 					</h3>
-				</div>
-				<div class="advice-slider-container anim-elem top">
-					<div class="advice-slider swiper-container slider-swipper" data-items="3" data-items-laptop="2" data-items-mobile="1">
-						<div class="swiper-wrapper">
-														<div class="advice-slide swiper-slide">
-								<div class="addition-txt-box">
-									<span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
-								</div>
-								<div class="advice-slide-inner">
-									<div class="advice-slide-content">	
-										<div class="advice-slide-content-text">	
-											<p>
-												Ангели на <strong class="red">иновациите <br /></strong>
-											</p>
-											<a href="./articles/angeli-na-inovatsiite" class="abs-item-link"></a>
-										</div>
-										<div class="item-btn-wrap">
-											<a href="./articles/angeli-na-inovatsiite" class="wave-btn">
-												<span class="wave-btn-text">КЪМ СТАТИЯТА</span>
-												<span class="wave"></span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-														<div class="advice-slide swiper-slide">
-								<div class="addition-txt-box">
-									<span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
-								</div>
-								<div class="advice-slide-inner">
-									<div class="advice-slide-content">	
-										<div class="advice-slide-content-text">	
-											<p>
-												<strong class="red"><strong>Банка ДСК и Експресбанк</strong> </strong>с най-голямата клонова мрежа в страната
-											</p>
-											<a href="./articles/banka-dsk-i-ekspresbank-s-nay-golyamata-klonova-mreja-v-stranata" class="abs-item-link"></a>
-										</div>
-										<div class="item-btn-wrap">
-											<a href="./articles/banka-dsk-i-ekspresbank-s-nay-golyamata-klonova-mreja-v-stranata" class="wave-btn">
-												<span class="wave-btn-text">КЪМ СТАТИЯТА</span>
-												<span class="wave"></span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-														<div class="advice-slide swiper-slide">
-								<div class="addition-txt-box">
-									<span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
-								</div>
-								<div class="advice-slide-inner">
-									<div class="advice-slide-content">	
-										<div class="advice-slide-content-text">	
-											<p>
-												Проектът <strong class="red">#YOUNGstars стартира</strong>
-											</p>
-											<a href="./articles/angelite-na-inovatsiite" class="abs-item-link"></a>
-										</div>
-										<div class="item-btn-wrap">
-											<a href="./articles/angelite-na-inovatsiite" class="wave-btn">
-												<span class="wave-btn-text">КЪМ СТАТИЯТА</span>
-												<span class="wave"></span>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-													</div>
-						<div class="swiper-pagination advice-slider-pagination"></div>
+                        </div>
+                        <div class="advice-slider-container anim-elem top">
+                            <div class="advice-slider swiper-container slider-swipper" data-items="3" data-items-laptop="2" data-items-mobile="1">
+                                <div class="swiper-wrapper">
+                                    <div class="advice-slide swiper-slide">
+                                        <div class="addition-txt-box">
+                                            <span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
+                                        </div>
+                                        <div class="advice-slide-inner">
+                                            <div class="advice-slide-content">
+                                                <div class="advice-slide-content-text">
+                                                    <p>
+                                                        Ангели на <strong class="red">иновациите <br /></strong>
+                                                    </p>
+                                                    <a href="./articles/angeli-na-inovatsiite" class="abs-item-link"></a>
+                                                </div>
+                                                <div class="item-btn-wrap">
+                                                    <a href="./articles/angeli-na-inovatsiite" class="wave-btn">
+                                                        <span class="wave-btn-text">КЪМ СТАТИЯТА</span>
+                                                        <span class="wave"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="advice-slide swiper-slide">
+                                        <div class="addition-txt-box">
+                                            <span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
+                                        </div>
+                                        <div class="advice-slide-inner">
+                                            <div class="advice-slide-content">
+                                                <div class="advice-slide-content-text">
+                                                    <p>
+                                                        <strong class="red"><strong>Банка ДСК и Експресбанк</strong> </strong>с най-голямата клонова мрежа в страната
+                                                    </p>
+                                                    <a href="./articles/banka-dsk-i-ekspresbank-s-nay-golyamata-klonova-mreja-v-stranata" class="abs-item-link"></a>
+                                                </div>
+                                                <div class="item-btn-wrap">
+                                                    <a href="./articles/banka-dsk-i-ekspresbank-s-nay-golyamata-klonova-mreja-v-stranata" class="wave-btn">
+                                                        <span class="wave-btn-text">КЪМ СТАТИЯТА</span>
+                                                        <span class="wave"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="advice-slide swiper-slide">
+                                        <div class="addition-txt-box">
+                                            <span class="p-huge lightGrey addition-txt">ПРОЧЕТИ</span>
+                                        </div>
+                                        <div class="advice-slide-inner">
+                                            <div class="advice-slide-content">
+                                                <div class="advice-slide-content-text">
+                                                    <p>
+                                                        Проектът <strong class="red">#YOUNGstars стартира</strong>
+                                                    </p>
+                                                    <a href="./articles/angelite-na-inovatsiite" class="abs-item-link"></a>
+                                                </div>
+                                                <div class="item-btn-wrap">
+                                                    <a href="./articles/angelite-na-inovatsiite" class="wave-btn">
+                                                        <span class="wave-btn-text">КЪМ СТАТИЯТА</span>
+                                                        <span class="wave"></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination advice-slider-pagination"></div>
 
-					</div>
-				</div>
-			</div>
-			
-			<div class="page-navigation anim-block">
-				<a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
-				<a href="#test" class="line anim-elem left"><span class="page-slide">2</span></a>
-				<a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
-				<a href="#advice" class="line active anim-elem left"><span class="page-slide">4</span></a>
-			</div>
-		</div>
-	</section>	
+                            </div>
+                        </div>
+                    </div>
 
-<footer class="section fp-auto-height">
-    <div class="footer">
-        <div class="footer-box">
-            <div class="footer-tools cf">
-                <div class="scroll-top">
-                    <a href="#home" class="scroll-top-link scroll-top-btn" data-scroll="wrapper">Върни се в началото</a>
-                </div>
-                <div class="footer-content">
-                    <div class="footer-logo desktop">
-                        <a href="index.php">
-                            <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
-                        </a>
-                    </div>
-                    <div class="footer-menu cf">
-                        <ul class="footer-nav">
-                            <li class="footer-item"><a href="./inteview" class="footer-link"><strong>Направи тест</strong></a></li>
-                            <li class="footer-item"><a href="./chatbot" class="footer-link">RoboStar</a></li>
-                            <li class="footer-item"><a href="./articles" class="footer-link"><strong>#НещоПолезно</strong></a></li>
-                        </ul>
-                        <ul class="footer-nav">
-                            <li class="footer-item"><a href="./careers" class="footer-link">Обяви</a></li>
-                            <li class="footer-item"><a href="./about-us" class="footer-link">За нас</a></li>
-                            <li class="footer-item"><a href="./contacts" class="footer-link">Контакти</a></li>  
-                        </ul>
-                    </div>
-                                        <div class="footer-login">
-                        <a href="./users/login" class="login btn">Вход/регистрация</a>
-                    </div>
-                                        <div class="footer-social">
-                        <span class="share-with">Сподели в:</span>
-                        <ul class="social-list">
-                            <li class="social-item"><a href="https://facebook.com" class="social-link social-icon fb" target="_blank"></a></li>                            <li class="social-item"><a href="https://instagram.com" class="social-link social-icon instagram" target="_blank"></a></li>                                                                                    <li class="social-item"><a href="https://twitter.com" class="social-link social-icon tw" target="_blank"></a></li>                        </ul>
-                    </div>
-                    <div class="footer-logo mobile">
-                        <a href="./">
-                            <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
-                        </a>
+                    <div class="page-navigation anim-block">
+                        <a href="#home" class="line anim-elem left"><span class="page-slide">1</span></a>
+                        <a href="#test" class="line anim-elem left"><span class="page-slide">2</span></a>
+                        <a href="#help" class="line anim-elem left"><span class="page-slide">3</span></a>
+                        <a href="#advice" class="line active anim-elem left"><span class="page-slide">4</span></a>
                     </div>
                 </div>
-            </div>
-            <div class="footer-copy-right">
-                <span class="copy-right">DSK Bank 2019. All rights reserved.</span>
-            </div>
+            </section>
+
+            <footer class="section fp-auto-height">
+                <div class="footer">
+                    <div class="footer-box">
+                        <div class="footer-tools cf">
+                            <div class="scroll-top">
+                                <a href="#home" class="scroll-top-link scroll-top-btn" data-scroll="wrapper">Върни се в началото</a>
+                            </div>
+                            <div class="footer-content">
+                                <div class="footer-logo desktop">
+                                    <a href="index.php">
+                                        <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
+                                    </a>
+                                </div>
+                                <div class="footer-menu cf">
+                                    <ul class="footer-nav">
+                                        <li class="footer-item"><a href="./inteview" class="footer-link"><strong>Направи тест</strong></a></li>
+                                        <li class="footer-item"><a href="./chatbot" class="footer-link">RoboStar</a></li>
+                                        <li class="footer-item"><a href="./articles" class="footer-link"><strong>#НещоПолезно</strong></a></li>
+                                    </ul>
+                                    <ul class="footer-nav">
+                                        <li class="footer-item"><a href="./careers" class="footer-link">Обяви</a></li>
+                                        <li class="footer-item"><a href="./about-us" class="footer-link">За нас</a></li>
+                                        <li class="footer-item"><a href="./contacts" class="footer-link">Контакти</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-login">
+                                    <a href="./users/login" class="login btn">Вход/регистрация</a>
+                                </div>
+                                <div class="footer-social">
+                                    <span class="share-with">Сподели в:</span>
+                                    <ul class="social-list">
+                                        <li class="social-item">
+                                            <a href="https://facebook.com" class="social-link social-icon fb" target="_blank"></a>
+                                        </li>
+                                        <li class="social-item">
+                                            <a href="https://instagram.com" class="social-link social-icon instagram" target="_blank"></a>
+                                        </li>
+                                        <li class="social-item">
+                                            <a href="https://twitter.com" class="social-link social-icon tw" target="_blank"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-logo mobile">
+                                    <a href="./">
+                                        <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-copy-right">
+                            <span class="copy-right">DSK Bank 2019. All rights reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
         </div>
-    </div>
-</footer>
- 
 
+        <script src="./js/main.js?v=20190708.9"></script>
+        <script src="./js/chatbot.js?v=20190708.9"></script>
+        <script type='text/javascript'>
+            (function(d, t)
 
-
-
-
-
-</div>
-
-<script src="./js/main.js?v=20190708.9"></script>
-<script src="./js/chatbot.js?v=20190708.9"></script>
-<script type='text/javascript'>
-(function (d, t)
-
-{ var bh = d.createElement(t), s = d.getElementsByTagName(t)[0]; bh.type = 'text/javascript'; bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=icadtiafwnhavpspncxiow'; s.parentNode.insertBefore(bh, s); }
-)(document, 'script');
-</script>
-<script>
-	App.init();
-</script>
+                {
+                    var bh = d.createElement(t),
+                        s = d.getElementsByTagName(t)[0];
+                    bh.type = 'text/javascript';
+                    bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=icadtiafwnhavpspncxiow';
+                    s.parentNode.insertBefore(bh, s);
+                }
+            )(document, 'script');
+        </script>
+        <script>
+            App.init();
+        </script>
 
 </body>
+
 </html>
