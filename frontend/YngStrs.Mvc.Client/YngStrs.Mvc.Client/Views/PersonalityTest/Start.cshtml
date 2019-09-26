@@ -1,12 +1,13 @@
-﻿@model IEnumerable<PersonalityTestQuestion>
+﻿@model List<PersonalityTestQuestion>
 
 @{
     ViewData["Title"] = "Personality test start";
 }
 
 <div class="total-wrap-content">
+
     <div class="template-top-section">
-        <div class="bg-image" style="background-image:url('~/images/test/top-bg.jpg')"></div>
+        <div class="bg-image" style="background-image: url('./images/test/top-bg.jpg')"></div>
         <div class="main-wrap-content">
             <div class="template-top-grid anim-block">
                 <div class="image-item anim-elem left-visibility">
@@ -26,70 +27,95 @@
             </div>
         </div>
     </div>
+
     <section class="section-test-layout anim-block">
         <div class="main-wrap-content anim-elem top delay-03">
             <div class="section-test-layout-box cf">
                 <div class="test-col">
                     <div class="section-test-layout-content">
-                        <form action="./interview/get_results" method="POST" id="test">
+                        
+                        <form action="." method="POST" id="test">
                             <div class="cover-div"></div>
-                            @foreach (var question in Model)
-                            {
-                                <div class="question section-test-layout-question text-question">
-                                    <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
-                                    <div class="section-test-layout-answer cf">
-                                        @for (var i = 0; i < question.QuestionOptions.Count(); i++)
-                                        {
-                                            if (question.QuestionOptions[i].IsTextOnly)
-                                            {
-                                                <div class="answer uestion-item-onlyText">
-                                                    <label class="container">
-                                                        <input type="radio"
-                                                               data-answer=""
-                                                               data-question="@question.QuestionOptions[i].QuestionNumber"
-                                                               name="question-@question.QuestionOptions[i].QuestionNumber"
-                                                               value="">
 
+                            <div class="question active section-test-layout-question images-question">
+                                <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
+                                <div class="section-test-layout-answer cf">
+                                    <!-- answer 1 -->
+                                    <div class="answer question-item-img">
+                                        <h3 class="new-test-title">Действам</h3>
+                                        <label class="container">
+                                            <input type="radio" data-answer="1" data-question="1" name="question-1" value="action">
+                                            <img src="~/images/test/1.jpg" class="responsive question-item-bckg">
+                                        </label>
+                                    </div>
+                                    <!-- answer 2 -->
+                                    <div class="answer question-item-img">
+                                        <h3 class="new-test-title">Намирам решение</h3>
+                                        <label class="container">
+                                            <input type="radio" data-answer="2" data-question="1" name="question-1" value="process">
+                                            <img src="~/images/test/2.jpg" class="responsive question-item-bckg">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @for (var i = 1; i < Model.Count() - 1; i++)
+                            {
+                                if (Model[i].QuestionOptions.First().IsTextOnly)
+                                {
+                                    <div class="question section-test-layout-question text-question">
+                                        <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
+                                        <div class="section-test-layout-answer cf">
+                                            @foreach (var option in Model[i].QuestionOptions)
+                                            {
+                                                <div class="answer question-item-onlyText">
+                                                    <label class="container">
+                                                        <input type="radio">
                                                         <span class="only-text-content">
                                                             <span class="only-text-content-wrap">
                                                                 <span class="checkmark"></span>
-                                                                <span class="question-item-txt"><span>@question.QuestionOptions[i].OptionDescription</span></span>
+                                                                <span class="question-item-txt"><span>@option.OptionDescription</span></span>
                                                             </span>
                                                         </span>
                                                     </label>
                                                 </div>
                                             }
-                                            else
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="question section-test-layout-question images-question">
+                                        <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
+                                        <div class="section-test-layout-answer cf">
+                                            @foreach (var option in Model[i].QuestionOptions)
                                             {
                                                 <div class="answer question-item-img">
-                                                    <h3 class="new-test-title">@question.QuestionOptions[i].OptionDescription</h3>
+                                                    <h3 class="new-test-title">@option.OptionDescription</h3>
                                                     <label class="container">
-                                                        <input type="radio"
-                                                               data-answer="1"
-                                                               data-question="@question.QuestionOptions[i].QuestionNumber"
-                                                               name="question-@question.QuestionOptions[i].QuestionNumber"
-                                                               value="">
-                                                        <img src="data:image/png;base64, @question.QuestionOptions[i].Base64Image"
+                                                        <input type="radio">
+                                                        <img src="data:image/png;base64, @option.Base64Image"
                                                              class="responsive question-item-bckg">
                                                     </label>
                                                 </div>
                                             }
-
-                                        }
+                                        </div>
                                     </div>
-                                </div>
-
+                                }
                             }
-
                         </form>
-                        <p id="errorTest" class="error-field red"></p>
+
                     </div>
                 </div>
                 <!-- /.col-->
             </div>
         </div>
     </section>
+    
+    
+
     <div class="templete-bottom-section">
-        <div class="bg-image" style="background-image:url('~/images/test/bottom-bg.jpg')"></div>
+        <div class="bg-image" style="background-image: url('./images/test/bottom-bg.jpg')"></div>
     </div>
+
 </div>
