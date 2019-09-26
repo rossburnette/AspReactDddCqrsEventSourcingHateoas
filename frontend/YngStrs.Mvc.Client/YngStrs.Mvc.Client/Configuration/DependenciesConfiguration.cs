@@ -33,6 +33,7 @@ namespace YngStrs.Mvc.Client.Configuration
         internal static IServiceCollection AddServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IPersonalityTestsService, PersonalityTestsService>();
+            serviceCollection.AddTransient<IChatbotService, ChatbotService>();
 
             return serviceCollection;
         }

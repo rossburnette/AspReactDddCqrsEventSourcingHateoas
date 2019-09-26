@@ -21,6 +21,7 @@
         var _langs = '[{"name":"\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438"}]';
         var _base = 'http://demo.edesign.bg./';
         var _timezone_offset = '3';
+        var _botQuestionsUrl = "@Url.Action("Questions", "Chatbot")";
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -64,7 +65,7 @@
                                     <a asp-controller="PersonalityTest" asp-action="Index" class="menu-link ">Направи тест</a>
                                 </li>
                                 <li class="menu-item menu-anim-el">
-                                    <a asp-controller="PersonalityTest" asp-action="Index" class="menu-link lc ">RoboStar</a>
+                                    <a asp-controller="Chatbot" asp-action="Index" class="menu-link lc ">RoboStar</a>
                                 </li>
                                 <li class="menu-item menu-anim-el">
                                     <a href="./about-us" class="menu-link ">За нас</a>

@@ -2458,7 +2458,7 @@ var SoGeYoung = {
     qReader: null,
     start: function () {
         $.ajax({
-            url: 'https://localhost:5001/api/values/5'
+            url: _botQuestionsUrl
         }).done(SoGeYoung.init);
     },
     chatbot: {
