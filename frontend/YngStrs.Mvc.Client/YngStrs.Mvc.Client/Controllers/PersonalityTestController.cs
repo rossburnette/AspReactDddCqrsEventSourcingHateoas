@@ -2,9 +2,16 @@
 
 namespace YngStrs.Mvc.Client.Controllers
 {
-    public class HomeController : Controller
+    public class PersonalityTestController : Controller
     {
+        // GET
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        //
+        public IActionResult Start()
         {
             return View();
         }
