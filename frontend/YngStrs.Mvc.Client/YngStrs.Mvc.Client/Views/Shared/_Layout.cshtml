@@ -60,9 +60,15 @@
                     <div class="header-box-inner">
                         <nav class="nav">
                             <ul class="menu menu-left">
-                                <li class="menu-item menu-anim-el"><a href="./personality-test" class="menu-link ">Направи тест</a></li>
-                                <li class="menu-item menu-anim-el"><a href="./chatbot" class="menu-link lc ">RoboStar</a></li>
-                                <li class="menu-item menu-anim-el"><a href="./about-us" class="menu-link ">За нас</a></li>
+                                <li class="menu-item menu-anim-el">
+                                    <a asp-controller="PersonalityTest" asp-action="Index" class="menu-link ">Направи тест</a>
+                                </li>
+                                <li class="menu-item menu-anim-el">
+                                    <a asp-controller="PersonalityTest" asp-action="Index" class="menu-link lc ">RoboStar</a>
+                                </li>
+                                <li class="menu-item menu-anim-el">
+                                    <a href="./about-us" class="menu-link ">За нас</a>
+                                </li>
                             </ul>
                             <h1 class="logo"><a class="logo-link desktop" href="./"><img src="./images/icons/young-logo.svg?v=1" alt="Soge young logo"></a></h1>
                             <ul class="menu menu-right">
@@ -83,66 +89,63 @@
             </div>
         </header>
 
-        <div>
-            @RenderBody()
+        @RenderBody()
 
-
-            <footer class="section fp-auto-height">
-                <div class="footer">
-                    <div class="footer-box">
-                        <div class="footer-tools cf">
-                            <div class="scroll-top">
-                                <a href="#home" class="scroll-top-link scroll-top-btn" data-scroll="wrapper">Върни се в началото</a>
-                            </div>
-                            <div class="footer-content">
-                                <div class="footer-logo desktop">
-                                    <a href="index.php">
-                                        <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
-                                    </a>
-                                </div>
-                                <div class="footer-menu cf">
-                                    <ul class="footer-nav">
-                                        <li class="footer-item"><a href="./inteview" class="footer-link"><strong>Направи тест</strong></a></li>
-                                        <li class="footer-item"><a href="./chatbot" class="footer-link">RoboStar</a></li>
-                                        <li class="footer-item"><a href="./articles" class="footer-link"><strong>#НещоПолезно</strong></a></li>
-                                    </ul>
-                                    <ul class="footer-nav">
-                                        <li class="footer-item"><a href="./careers" class="footer-link">Обяви</a></li>
-                                        <li class="footer-item"><a href="./about-us" class="footer-link">За нас</a></li>
-                                        <li class="footer-item"><a href="./contacts" class="footer-link">Контакти</a></li>
-                                    </ul>
-                                </div>
-                                <div class="footer-login">
-                                    <a href="./users/login" class="login btn">Вход/регистрация</a>
-                                </div>
-                                <div class="footer-social">
-                                    <span class="share-with">Сподели в:</span>
-                                    <ul class="social-list">
-                                        <li class="social-item">
-                                            <a href="https://facebook.com" class="social-link social-icon fb" target="_blank"></a>
-                                        </li>
-                                        <li class="social-item">
-                                            <a href="https://instagram.com" class="social-link social-icon instagram" target="_blank"></a>
-                                        </li>
-                                        <li class="social-item">
-                                            <a href="https://twitter.com" class="social-link social-icon tw" target="_blank"></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="footer-logo mobile">
-                                    <a href="./">
-                                        <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
-                                    </a>
-                                </div>
-                            </div>
+        <footer class="section fp-auto-height">
+            <div class="footer">
+                <div class="footer-box">
+                    <div class="footer-tools cf">
+                        <div class="scroll-top">
+                            <a href="#home" class="scroll-top-link scroll-top-btn" data-scroll="wrapper">Върни се в началото</a>
                         </div>
-                        <div class="footer-copy-right">
-                            <span class="copy-right"> All rights reserved.</span>
+                        <div class="footer-content">
+                            <div class="footer-logo desktop">
+                                <a href="index.php">
+                                    <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
+                                </a>
+                            </div>
+                            <div class="footer-menu cf">
+                                <ul class="footer-nav">
+                                    <li class="footer-item"><a href="./inteview" class="footer-link"><strong>Направи тест</strong></a></li>
+                                    <li class="footer-item"><a href="./chatbot" class="footer-link">RoboStar</a></li>
+                                    <li class="footer-item"><a href="./articles" class="footer-link"><strong>#НещоПолезно</strong></a></li>
+                                </ul>
+                                <ul class="footer-nav">
+                                    <li class="footer-item"><a href="./careers" class="footer-link">Обяви</a></li>
+                                    <li class="footer-item"><a href="./about-us" class="footer-link">За нас</a></li>
+                                    <li class="footer-item"><a href="./contacts" class="footer-link">Контакти</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-login">
+                                <a href="./users/login" class="login btn">Вход/регистрация</a>
+                            </div>
+                            <div class="footer-social">
+                                <span class="share-with">Сподели в:</span>
+                                <ul class="social-list">
+                                    <li class="social-item">
+                                        <a href="https://facebook.com" class="social-link social-icon fb" target="_blank"></a>
+                                    </li>
+                                    <li class="social-item">
+                                        <a href="https://instagram.com" class="social-link social-icon instagram" target="_blank"></a>
+                                    </li>
+                                    <li class="social-item">
+                                        <a href="https://twitter.com" class="social-link social-icon tw" target="_blank"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer-logo mobile">
+                                <a href="./">
+                                    <img src="./images/icons/young-logo.svg?v=1" alt="Soge logo">
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    <div class="footer-copy-right">
+                        <span class="copy-right"> All rights reserved.</span>
+                    </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
     </div>
 
     <script src="~/js/main.js"></script>

@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace YngStrs.PersonalityTests.Api
 {
+    /// <summary>
+    /// Root of the service.
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args, null).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args, params string[] urls)
+        {
+            var builder = WebHost
+                .CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+
+            if (urls?.Length > 0)
+            {
+                builder.UseUrls(urls);
+            }
+
+            return builder;
+        }
     }
 }

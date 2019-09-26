@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,10 +7,12 @@ using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries;
 using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
-using YngStrs.PersonalityTests.Api.Hateoas.Resources.PersonalityTest;
 
 namespace YngStrs.PersonalityTests.Api.Controllers
 {
+    /// <summary>
+    /// Controller responsible for retrieving the main business logic for <c>YngStrs.PersonalityTests.Api</c>.
+    /// </summary>
     [Route("api/personality-tests")]
     [ApiController]
     public class PersonalityTestsController : ApiController
@@ -25,11 +28,8 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// </summary>
         /// <response code="200"></response>
         [HttpGet(Name = nameof(GetFullPersonalityTest))]
-        [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
-        public Task<IActionResult> GetFullPersonalityTest() =>
-            ResourceContainerResult<
-                InitPersonalityTestView,
-                PersonalityTestResource,
-                PersonalityTestContainerResource>(new GetInitialPersonalityTest());
+        [ProducesResponseType(typeof(IList<InitPersonalityTestView>), (int) HttpStatusCode.OK)]
+        public async Task<IActionResult> GetFullPersonalityTest() =>
+            Ok(await Mediator.Send(new GetInitialPersonalityTest()));
     }
 }
