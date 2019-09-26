@@ -5,6 +5,16 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="EmbeddedResources\questions.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResources\questions.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Marvin.StreamExtensions" Version="1.1.0" />
