@@ -75,7 +75,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             return serviceCollection.AddScoped<IQueryDbConnector, QueryDbConnector>();
         }
 
-        public static IServiceCollection AddHateoas(this IServiceCollection services)
+        internal static IServiceCollection AddHateoas(this IServiceCollection services)
         {
             services.AddTransient<IResourceMapper, ResourceMapper>();
 
