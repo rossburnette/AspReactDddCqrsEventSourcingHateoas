@@ -93,6 +93,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Marten" Version="3.8.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -103,10 +105,6 @@
     <PackageReference Include="YngStrs.Common.Cqrs" Version="1.0.0" />
     <PackageReference Include="YngStrs.Common.EventSourcing" Version="1.0.0" />
     <PackageReference Include="YngStrs.Common.Hateoas" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Hateoas\Resources\" />
   </ItemGroup>
 
 </Project>

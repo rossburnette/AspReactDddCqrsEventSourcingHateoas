@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,11 @@ namespace YngStrs.PersonalityTests.Api
 
             services.AddTransient<DatabaseSeeder>();
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddMediatR(typeof(Startup));
+
+            services.AddHateoas();
 
             services
                 .AddMvc()
