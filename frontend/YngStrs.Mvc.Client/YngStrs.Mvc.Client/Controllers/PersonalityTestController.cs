@@ -26,5 +26,17 @@ namespace YngStrs.Mvc.Client.Controllers
             var testModel = await _personalityTestsService.GetAsync();
             return View(testModel);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PrepareResults()
+        {
+            var x = "";
+            return RedirectToAction("Done");
+        }
+
+        public IActionResult Done()
+        {
+            return View();
+        }
     }
 }

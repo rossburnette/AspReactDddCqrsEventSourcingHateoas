@@ -7,7 +7,7 @@
 <div class="total-wrap-content">
 
     <div class="template-top-section">
-        <div class="bg-image" style="background-image: url('./images/test/top-bg.jpg')"></div>
+        <div class="bg-image" style="background-image: url('../../images/test/top-bg.jpg')"></div>
         <div class="main-wrap-content">
             <div class="template-top-grid anim-block">
                 <div class="image-item anim-elem left-visibility">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
 
-                            @for (var i = 1; i < Model.Count() - 1; i++)
+                            @for (var i = 1; i < Model.Count; i++)
                             {
                                 if (Model[i].QuestionOptions.First().IsTextOnly)
                                 {
@@ -115,7 +115,7 @@
     
 
     <div class="templete-bottom-section">
-        <div class="bg-image" style="background-image: url('./images/test/bottom-bg.jpg')"></div>
+        <div class="bg-image" style="background-image: url('../../images/test/bottom-bg.jpg')"></div>
     </div>
 
 </div>
