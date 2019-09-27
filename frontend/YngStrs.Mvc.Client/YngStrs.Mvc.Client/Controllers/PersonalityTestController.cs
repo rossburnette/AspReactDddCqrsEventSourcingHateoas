@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Mvc.Client.Services.Core;
 
@@ -25,6 +26,17 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             var testModel = await _personalityTestsService.GetAsync();
             return View(testModel);
+        }
+
+        [HttpPost]
+        public IActionResult Form([FromBody] dynamic form)
+        {
+            return RedirectToAction("Done");
+        }
+
+        public IActionResult Done()
+        {
+            return View();
         }
     }
 }
