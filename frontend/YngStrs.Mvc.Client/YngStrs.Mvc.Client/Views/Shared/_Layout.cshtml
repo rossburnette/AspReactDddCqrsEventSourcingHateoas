@@ -68,14 +68,26 @@
                                     <a asp-controller="Chatbot" asp-action="Index" class="menu-link lc ">RoboStar</a>
                                 </li>
                                 <li class="menu-item menu-anim-el">
-                                    <a href="./about-us" class="menu-link ">За нас</a>
+                                    <a asp-controller="Home" asp-action="AboutUs" class="menu-link ">За нас</a>
                                 </li>
                             </ul>
-                            <h1 class="logo"><a class="logo-link desktop" href="./"><img src="~/images/icons/young-logo.svg?v=1" alt="Soge young logo"></a></h1>
+                            <h1 class="logo">
+                                <a class="logo-link desktop" href="./">
+                                    <img src="~/images/icons/young-logo.svg?v=1" alt="Soge young logo">
+                                </a>
+                            </h1>
                             <ul class="menu menu-right">
-                                <li class="menu-item menu-anim-el"><a href="./articles" class="menu-link "><strong>#Нещополезно</strong></a></li>
-                                <li class="menu-item menu-anim-el"><a href="./careers" class="menu-link ">Обяви</a></li>
-                                <li class="menu-item menu-anim-el"><a href="./contacts" class="menu-link ">Контакти</a></li>
+                                <li class="menu-item menu-anim-el">
+                                    <a href="./articles" class="menu-link ">
+                                        <strong>#Нещополезно</strong>
+                                    </a>
+                                </li>
+                                <li class="menu-item menu-anim-el">
+                                    <a href="./careers" class="menu-link ">Обяви</a>
+                                </li>
+                                <li class="menu-item menu-anim-el">
+                                    <a asp-controller="Home" asp-action="Contacts" class="menu-link ">Контакти</a>
+                                </li>
                             </ul>
                         </nav>
                         <div class="login-container menu-anim-el">

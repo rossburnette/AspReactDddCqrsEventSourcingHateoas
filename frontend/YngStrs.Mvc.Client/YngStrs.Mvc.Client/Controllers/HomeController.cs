@@ -8,5 +8,15 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return View();
         }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public IActionResult Contacts()
+        {
+            return View();
+        }
     }
 }
