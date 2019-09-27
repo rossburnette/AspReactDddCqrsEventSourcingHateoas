@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Controllers
@@ -29,9 +31,14 @@ namespace YngStrs.Mvc.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult Form([FromBody] dynamic form)
+        public IActionResult Form([FromQuery]string v, [FromForm] object form)
         {
-            return RedirectToAction("Done");
+            var result = new
+            {
+                redirect = "https://localhost:5001/PersonalityTest/Done",
+            };
+
+            return Json(result);
         }
 
         public IActionResult Done()
