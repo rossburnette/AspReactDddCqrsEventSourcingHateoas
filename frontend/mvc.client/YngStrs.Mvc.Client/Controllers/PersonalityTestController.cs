@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Controllers
@@ -31,7 +31,9 @@ namespace YngStrs.Mvc.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult Form([FromQuery]string v, [FromForm] object form)
+        public IActionResult Form(
+            [FromQuery]string v,
+            [FromForm] object model)
         {
             var result = new
             {
