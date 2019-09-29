@@ -59,6 +59,11 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .Entity<QuestionOptionTitle>()
                 .Property(p => p.Id)
                 .ValueGeneratedOnAdd();
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(p => p.Id)
+                .ValueGeneratedOnAdd();
         }
 
         /// <summary>
@@ -84,6 +89,9 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             builder.Entity<QuestionOption>().ToTable("question_options");
             builder.Entity<OptionImageBinary>().ToTable("option_image_binaries");
             builder.Entity<QuestionOptionTitle>().ToTable("question_option_titles");
+
+            builder.Entity<ResultOptionMap>().ToTable("result_option_maps");
+
         }
 
         internal static void SpecifyPersonalityTestColumnsMapping(this ModelBuilder builder)
@@ -492,6 +500,44 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .HasColumnName("question_option_id");
         }
 
+        internal static void SpecifyResultOptionMapColumnsMapping(this ModelBuilder builder)
+        {
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.Id)
+                .HasColumnName("id");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.CreatedOn)
+                .HasColumnName("created_on");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.DeletedOn)
+                .HasColumnName("deleted_on");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.IsDeleted)
+                .HasColumnName("is_deleted");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.ModifiedOn)
+                .HasColumnName("modified_on");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.QuestionOptionId)
+                .HasColumnName("question_option_id");
+
+            builder
+                .Entity<ResultOptionMap>()
+                .Property(x => x.TestResultId)
+                .HasColumnName("test_result_id");
+        }
+
         /// <!--Relations configuration-->
         internal static void ConfigurePersonalityTestResultRelations(this ModelBuilder builder)
         {
@@ -582,6 +628,21 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .WithMany(imageBinary => imageBinary.QuestionOptions)
                 .HasForeignKey(option => option.OptionImageBinaryId)
                 .IsRequired(false);
+        }
+
+        internal static void ConfigureTestResultQuestionOptionRelations(this ModelBuilder builder)
+        {
+            builder
+                .Entity<ResultOptionMap>()
+                .HasOne(map => map.TestResult)
+                .WithMany(result => result.ResultOptionMaps)
+                .HasForeignKey(option => option.TestResultId);
+
+            builder
+                .Entity<ResultOptionMap>()
+                .HasOne(map => map.QuestionOption)
+                .WithMany(option => option.ResultOptionMaps)
+                .HasForeignKey(map => map.QuestionOptionId);
         }
     }
 }

@@ -94,9 +94,11 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.Property<DateTimeOffset?>("DeletedOn")
                         .HasColumnName("deleted_on");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasColumnName("description");
 
-                    b.Property<string>("FileName");
+                    b.Property<string>("FileName")
+                        .HasColumnName("file_name");
 
                     b.Property<byte[]>("ImageData")
                         .HasColumnName("image_data");
@@ -214,6 +216,32 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.HasIndex("QuestionOptionId");
 
                     b.ToTable("question_option_titles");
+                });
+
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTimeOffset>("CreatedOn");
+
+                    b.Property<DateTimeOffset?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTimeOffset?>("ModifiedOn");
+
+                    b.Property<Guid>("QuestionOptionId");
+
+                    b.Property<Guid>("TestResultId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionOptionId");
+
+                    b.HasIndex("TestResultId");
+
+                    b.ToTable("result_option_maps");
                 });
 
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion", b =>
@@ -374,6 +402,19 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption", "QuestionOption")
                         .WithMany("QuestionOptionTitles")
                         .HasForeignKey("QuestionOptionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap", b =>
+                {
+                    b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption", "QuestionOption")
+                        .WithMany("ResultOptionMaps")
+                        .HasForeignKey("QuestionOptionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("YngStrs.PersonalityTests.Api.Domain.Entities.TestResult", "TestResult")
+                        .WithMany("ResultOptionMaps")
+                        .HasForeignKey("TestResultId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from '../../images/icons/young-logo.svg'
+import logo from '../../images/icons/young-logo.svg';
 
 const Header = () => {
   const activeStyle = { color: "#F15B2A" };
