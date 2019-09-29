@@ -253,26 +253,26 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 name: "result_option_maps",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
-                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTimeOffset>(nullable: true),
-                    QuestionOptionId = table.Column<Guid>(nullable: false),
-                    TestResultId = table.Column<Guid>(nullable: false)
+                    id = table.Column<Guid>(nullable: false),
+                    created_on = table.Column<DateTimeOffset>(nullable: false),
+                    modified_on = table.Column<DateTimeOffset>(nullable: true),
+                    is_deleted = table.Column<bool>(nullable: false),
+                    deleted_on = table.Column<DateTimeOffset>(nullable: true),
+                    question_option_id = table.Column<Guid>(nullable: false),
+                    test_result_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_result_option_maps", x => x.Id);
+                    table.PrimaryKey("PK_result_option_maps", x => x.id);
                     table.ForeignKey(
-                        name: "FK_result_option_maps_question_options_QuestionOptionId",
-                        column: x => x.QuestionOptionId,
+                        name: "FK_result_option_maps_question_options_question_option_id",
+                        column: x => x.question_option_id,
                         principalTable: "question_options",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_result_option_maps_test_results_TestResultId",
-                        column: x => x.TestResultId,
+                        name: "FK_result_option_maps_test_results_test_result_id",
+                        column: x => x.test_result_id,
                         principalTable: "test_results",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -304,14 +304,14 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 column: "test_question_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_result_option_maps_QuestionOptionId",
+                name: "IX_result_option_maps_question_option_id",
                 table: "result_option_maps",
-                column: "QuestionOptionId");
+                column: "question_option_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_result_option_maps_TestResultId",
+                name: "IX_result_option_maps_test_result_id",
                 table: "result_option_maps",
-                column: "TestResultId");
+                column: "test_result_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_test_question_titles_common_question_title_id",
