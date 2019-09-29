@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using Marvin.StreamExtensions;
 using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Services.Core;
@@ -14,13 +15,15 @@ namespace YngStrs.Mvc.Client.Services.Business
     public class PersonalityTestsService : IPersonalityTestsService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IMapper _mapper;
 
         private readonly CancellationTokenSource _cancellationTokenSource =
             new CancellationTokenSource();
 
-        public PersonalityTestsService(IHttpClientFactory httpClientFactory)
+        public PersonalityTestsService(IHttpClientFactory httpClientFactory, IMapper mapper)
         {
             _httpClientFactory = httpClientFactory;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<PersonalityTestQuestion>> GetAsync()
@@ -45,12 +48,8 @@ namespace YngStrs.Mvc.Client.Services.Business
                 {
                     switch (response.StatusCode)
                     {
-                        // inspect the status code
                         case System.Net.HttpStatusCode.NotFound:
-                            // show this to the user
-                            return new List<PersonalityTestQuestion>();
                         case System.Net.HttpStatusCode.Unauthorized:
-                            // trigger a login flow
                             return new List<PersonalityTestQuestion>();
                         default:
                             response.EnsureSuccessStatusCode();
@@ -65,7 +64,7 @@ namespace YngStrs.Mvc.Client.Services.Business
             return ConvertServiceModelToView(result);
         }
 
-        private static IEnumerable<PersonalityTestQuestion> ConvertServiceModelToView(
+        private IEnumerable<PersonalityTestQuestion> ConvertServiceModelToView(
             IEnumerable<PersonalityTestServiceModel> serviceModels)
         {
             IDictionary<Guid, List<QuestionOption>> dictionary = new Dictionary<Guid, List<QuestionOption>>();
@@ -74,27 +73,14 @@ namespace YngStrs.Mvc.Client.Services.Business
             {
                 if (dictionary.ContainsKey(serviceModel.QuestionId))
                 {
-                    dictionary[serviceModel.QuestionId].Add(new QuestionOption
-                    {
-                        QuestionNumber = serviceModel.QuestionNumber,
-                        IsTextOnly = serviceModel.IsTextOnly,
-                        OptionId = serviceModel.OptionId,
-                        OptionDescription = serviceModel.OptionDescription,
-                        Base64Image = serviceModel.Base64Image
-                    });
+                    dictionary[serviceModel.QuestionId].Add(
+                        _mapper.Map<QuestionOption>(serviceModel));
                 }
                 else
                 {
                     var questionOptions = new List<QuestionOption>
                     {
-                        new QuestionOption
-                        {
-                            QuestionNumber = serviceModel.QuestionNumber,
-                            IsTextOnly = serviceModel.IsTextOnly,
-                            OptionId = serviceModel.OptionId,
-                            Base64Image = serviceModel.Base64Image,
-                            OptionDescription = serviceModel.OptionDescription
-                        }
+                        _mapper.Map<QuestionOption>(serviceModel)
                     };
 
                     dictionary.Add(serviceModel.QuestionId, questionOptions);
