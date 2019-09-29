@@ -33,8 +33,9 @@ namespace YngStrs.Mvc.Client.Controllers
         [HttpPost]
         public IActionResult Form(
             [FromQuery]string v,
-            [FromForm] object model)
+            [FromForm]PersonalityTestBindingModel bindingModel)
         {
+            var x = bindingModel;
             var result = new
             {
                 redirect = "https://localhost:5001/PersonalityTest/Done",

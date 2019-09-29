@@ -40,6 +40,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.QueryHand
                 QuestionNumber = reader.GetInt32(reader.GetOrdinal("question_number")),
                 OptionId = reader.GetGuid(reader.GetOrdinal("option_id")),
                 OptionDescription = reader["option_description"].ToString(),
+                OptionResult = reader["option_result"].ToString(),
                 IsTextOnly = reader.GetBoolean(reader.GetOrdinal("is_text_only")),
                 Base64Image = reader.IsDBNull(reader.GetOrdinal("image_data")) ?
                     null :

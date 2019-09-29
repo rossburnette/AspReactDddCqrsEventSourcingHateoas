@@ -8,6 +8,7 @@
               tq.serial_number as question_number,
               sub_qo.qo_id as option_id,
               qot.description as option_description,
+              tr.value as option_result,
               sub_qo.is_text_only as is_text_only,
               sub_qo.image_data as image_data
               FROM public.personality_tests as pt
@@ -27,6 +28,10 @@
               ON tq.id = sub_qo.quest_id
               INNER JOIN public.question_option_titles as qot 
               ON qot.question_option_id = sub_qo.qo_id
+              INNER JOIN public.result_option_maps as rom
+              ON rom.question_option_id = sub_qo.qo_id
+              INNER JOIN public.test_results as tr
+              ON tr.id = rom.test_result_id
               ORDER BY tq.serial_number";
     }
 }
