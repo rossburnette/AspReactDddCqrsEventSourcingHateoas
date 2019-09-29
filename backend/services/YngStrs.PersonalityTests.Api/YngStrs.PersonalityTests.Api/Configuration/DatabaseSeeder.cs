@@ -26,23 +26,27 @@ namespace YngStrs.PersonalityTests.Api.Configuration
         {
             new TestResult
             {
-                Id = Guid.NewGuid(), // Idea Oriented
-                PersonalityTestId = PersonalityTests.First().Id
+                Id = Guid.NewGuid(),
+                PersonalityTestId = PersonalityTests.First().Id,
+                Value = "idea"
             },
             new TestResult
             {
                 Id = Guid.NewGuid(),
-                PersonalityTestId = PersonalityTests.First().Id
+                PersonalityTestId = PersonalityTests.First().Id,
+                Value = "people"
             },
             new TestResult
             {
                 Id = Guid.NewGuid(),
-                PersonalityTestId = PersonalityTests.First().Id
+                PersonalityTestId = PersonalityTests.First().Id,
+                Value = "process"
             },
             new TestResult
             {
                 Id = Guid.NewGuid(),
-                PersonalityTestId = PersonalityTests.First().Id
+                PersonalityTestId = PersonalityTests.First().Id,
+                Value = "action"
             }
         };
 

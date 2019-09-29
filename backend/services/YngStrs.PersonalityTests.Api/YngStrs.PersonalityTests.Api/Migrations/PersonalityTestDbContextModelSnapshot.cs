@@ -329,6 +329,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     b.Property<Guid>("PersonalityTestId")
                         .HasColumnName("personality_test_id");
 
+                    b.Property<string>("Value")
+                        .HasColumnName("value");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PersonalityTestId");

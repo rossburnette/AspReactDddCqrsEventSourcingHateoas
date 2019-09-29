@@ -10,7 +10,7 @@ using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 namespace YngStrs.PersonalityTests.Api.Migrations
 {
     [DbContext(typeof(PersonalityTestDbContext))]
-    [Migration("20190929135317_InitialCreate")]
+    [Migration("20190929144651_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -330,6 +330,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
                     b.Property<Guid>("PersonalityTestId")
                         .HasColumnName("personality_test_id");
+
+                    b.Property<string>("Value")
+                        .HasColumnName("value");
 
                     b.HasKey("Id");
 

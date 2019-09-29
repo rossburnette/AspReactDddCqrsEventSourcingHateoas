@@ -12,6 +12,8 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// </remarks>
     public class TestResult : RelationalEntity<Guid>
     {
+        public string Value { get; set; }
+
         /// <!--Many-To-One-Relations-->
         public Guid PersonalityTestId { get; set; }
         public PersonalityTest PersonalityTest { get; set; }
