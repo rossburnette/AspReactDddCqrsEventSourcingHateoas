@@ -74,7 +74,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.SpecifyCommonQuestionTitleColumnsMapping();
             modelBuilder.SpecifyTestQuestionTitleColumnsMapping();
             modelBuilder.SpecifyQuestionOptionTitleColumnsMapping();
-            modelBuilder.SpecifyTestResultTitleColumnsMapping();
+            modelBuilder.SpecifyResultOptionMapColumnsMapping();
 
             modelBuilder.ConfigurePersonalityTestResultRelations();
             modelBuilder.ConfigureTestResultLanguageTitleRelations();

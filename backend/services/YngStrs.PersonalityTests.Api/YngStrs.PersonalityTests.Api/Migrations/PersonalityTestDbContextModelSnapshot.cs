@@ -221,19 +221,26 @@ namespace YngStrs.PersonalityTests.Api.Migrations
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
 
-                    b.Property<DateTimeOffset>("CreatedOn");
+                    b.Property<DateTimeOffset>("CreatedOn")
+                        .HasColumnName("created_on");
 
-                    b.Property<DateTimeOffset?>("DeletedOn");
+                    b.Property<DateTimeOffset?>("DeletedOn")
+                        .HasColumnName("deleted_on");
 
-                    b.Property<bool>("IsDeleted");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("is_deleted");
 
-                    b.Property<DateTimeOffset?>("ModifiedOn");
+                    b.Property<DateTimeOffset?>("ModifiedOn")
+                        .HasColumnName("modified_on");
 
-                    b.Property<Guid>("QuestionOptionId");
+                    b.Property<Guid>("QuestionOptionId")
+                        .HasColumnName("question_option_id");
 
-                    b.Property<Guid>("TestResultId");
+                    b.Property<Guid>("TestResultId")
+                        .HasColumnName("test_result_id");
 
                     b.HasKey("Id");
 
