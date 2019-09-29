@@ -116,6 +116,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     modified_on = table.Column<DateTimeOffset>(nullable: true),
                     is_deleted = table.Column<bool>(nullable: false),
                     deleted_on = table.Column<DateTimeOffset>(nullable: true),
+                    value = table.Column<string>(nullable: true),
                     personality_test_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
