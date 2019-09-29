@@ -26,7 +26,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
         {
             new TestResult
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid(), // Idea Oriented
                 PersonalityTestId = PersonalityTests.First().Id
             },
             new TestResult
@@ -69,7 +69,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             new TestResultTitle
             {
                 LanguageId = Languages[1].Id,
-                TestResultId = TestResults.First().Id,
+                TestResultId = TestResults[0].Id,
                 Description = "Idea Oriented"
             },
             new TestResultTitle
@@ -87,8 +87,8 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             new TestResultTitle
             {
                 LanguageId = Languages[1].Id,
-                TestResultId = TestResults[2].Id,
-                Description = "... Oriented"
+                TestResultId = TestResults[3].Id,
+                Description = "Action Oriented"
             },
         };
 
@@ -1521,6 +1521,411 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 }
             };
 
+        private static readonly List<ResultOptionMap> ResultOptionMaps = new List<ResultOptionMap>
+        {
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[0].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[1].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[2].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[3].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[4].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[5].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[6].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[7].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[8].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[9].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[10].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[11].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[12].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[13].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[14].Id,
+                TestResultId = TestResults[1].Id
+            },
+
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[15].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[16].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[17].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[18].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[19].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[20].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[21].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[22].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[23].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[24].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[25].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[26].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[27].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[28].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[29].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[30].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[31].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[32].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[33].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[34].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[35].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[36].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[37].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[38].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[39].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[40].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[41].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[42].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[43].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[44].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[45].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[46].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[47].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[48].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[49].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[50].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[51].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[52].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[53].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[54].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[55].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[56].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[57].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[58].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[59].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[60].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[61].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[62].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[63].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[64].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[65].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[66].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[67].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[68].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[69].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[70].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[71].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[72].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[73].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[74].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[75].Id,
+                TestResultId = TestResults[1].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[76].Id,
+                TestResultId = TestResults[0].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[77].Id,
+                TestResultId = TestResults[2].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[78].Id,
+                TestResultId = TestResults[3].Id
+            },
+            new ResultOptionMap
+            {
+                QuestionOptionId = QuestionOptions[79].Id,
+                TestResultId = TestResults[1].Id
+            },
+        };
+
         private readonly PersonalityTestDbContext _dbContext;
 
         public DatabaseSeeder(PersonalityTestDbContext dbContext)
@@ -1563,6 +1968,9 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             _dbContext.SaveChanges();
 
             _dbContext.AddRange(QuestionOptionTitles);
+            _dbContext.SaveChanges();
+
+            _dbContext.AddRange(ResultOptionMaps);
             _dbContext.SaveChanges();
         }
 

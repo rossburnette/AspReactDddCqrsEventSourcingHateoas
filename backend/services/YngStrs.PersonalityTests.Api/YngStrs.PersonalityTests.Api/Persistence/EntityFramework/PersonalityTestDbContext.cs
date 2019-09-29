@@ -40,6 +40,8 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
         public DbSet<QuestionOptionTitle> QuestionOptionTitles { get; set; }
 
+        public DbSet<ResultOptionMap> ResultOptionMaps { get; set; }
+
         /// <!--Overrides-->
         /// <inheritdoc />
         public override int SaveChanges()
@@ -72,6 +74,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.SpecifyCommonQuestionTitleColumnsMapping();
             modelBuilder.SpecifyTestQuestionTitleColumnsMapping();
             modelBuilder.SpecifyQuestionOptionTitleColumnsMapping();
+            modelBuilder.SpecifyTestResultTitleColumnsMapping();
 
             modelBuilder.ConfigurePersonalityTestResultRelations();
             modelBuilder.ConfigureTestResultLanguageTitleRelations();
@@ -83,12 +86,13 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             modelBuilder.ConfigureTestQuestionOptionRelations();
             modelBuilder.ConfigureTestQuestionOptionLanguageTitleRelations();
             modelBuilder.ConfigureQuestionOptionImageBinaryRelations();
+            modelBuilder.ConfigureTestResultQuestionOptionRelations();
 
             base.OnModelCreating(modelBuilder);
         }
 
         /// <!--Helpers-->
-        private void ApplyAuditInfoRules() // TODO: Take a look at that
+        private void ApplyAuditInfoRules()
         {
             var changedEntries = ChangeTracker
                 .Entries()

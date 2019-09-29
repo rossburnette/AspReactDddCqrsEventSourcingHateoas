@@ -23,5 +23,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         /// <!--One-To-Many-Relations-->
         public ICollection<QuestionOptionTitle> QuestionOptionTitles { get; set; } = new HashSet<QuestionOptionTitle>();
+
+        public ICollection<ResultOptionMap> ResultOptionMaps { get; set; } = new HashSet<ResultOptionMap>();
     }
 }

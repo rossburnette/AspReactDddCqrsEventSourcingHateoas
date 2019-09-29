@@ -34,8 +34,8 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     modified_on = table.Column<DateTimeOffset>(nullable: true),
                     is_deleted = table.Column<bool>(nullable: false),
                     deleted_on = table.Column<DateTimeOffset>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    FileName = table.Column<string>(nullable: true),
+                    description = table.Column<string>(nullable: true),
+                    file_name = table.Column<string>(nullable: true),
                     image_data = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
@@ -248,6 +248,35 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "result_option_maps",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedOn = table.Column<DateTimeOffset>(nullable: false),
+                    ModifiedOn = table.Column<DateTimeOffset>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTimeOffset>(nullable: true),
+                    QuestionOptionId = table.Column<Guid>(nullable: false),
+                    TestResultId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_result_option_maps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_result_option_maps_question_options_QuestionOptionId",
+                        column: x => x.QuestionOptionId,
+                        principalTable: "question_options",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_result_option_maps_test_results_TestResultId",
+                        column: x => x.TestResultId,
+                        principalTable: "test_results",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_common_question_titles_language_id",
                 table: "common_question_titles",
@@ -272,6 +301,16 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                 name: "IX_question_options_test_question_id",
                 table: "question_options",
                 column: "test_question_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_result_option_maps_QuestionOptionId",
+                table: "result_option_maps",
+                column: "QuestionOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_result_option_maps_TestResultId",
+                table: "result_option_maps",
+                column: "TestResultId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_test_question_titles_common_question_title_id",
@@ -308,6 +347,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "question_option_titles");
+
+            migrationBuilder.DropTable(
+                name: "result_option_maps");
 
             migrationBuilder.DropTable(
                 name: "test_question_titles");

@@ -10,21 +10,11 @@ namespace YngStrs.PersonalityTests.Api
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args, null).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args, params string[] urls)
-        {
-            var builder = WebHost
-                .CreateDefaultBuilder(args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
-
-            if (urls?.Length > 0)
-            {
-                builder.UseUrls(urls);
-            }
-
-            return builder;
-        }
     }
 }
