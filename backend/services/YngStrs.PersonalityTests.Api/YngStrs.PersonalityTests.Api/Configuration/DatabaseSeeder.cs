@@ -1969,6 +1969,9 @@ namespace YngStrs.PersonalityTests.Api.Configuration
 
             _dbContext.AddRange(QuestionOptionTitles);
             _dbContext.SaveChanges();
+
+            _dbContext.AddRange(ResultOptionMaps);
+            _dbContext.SaveChanges();
         }
 
         private bool IsDatabaseEmpty() =>
