@@ -9,6 +9,7 @@ function App() {
     <div id="wrapper" className="wrapper">
       <Header />
       <Switch>
+		<Route exact path="/" component={HomePage} />
       </Switch>
     </div>
   );
