@@ -113,6 +113,8 @@ namespace YngStrs.PersonalityTests.Api.Configuration
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
+            services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
+
             return services;
         }
     }

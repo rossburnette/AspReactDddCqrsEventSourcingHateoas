@@ -14,6 +14,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
     public class BeginPersonalityTestHandler : TypedBaseHandler<BeginPersonalityTest, UserAnswersStreamView>
     {
         private readonly IUserQuestionAnswerRepository _answerRepository;
+
         public BeginPersonalityTestHandler(
             IEventBus eventBus,
             ICommandValidator<BeginPersonalityTest> validator,
