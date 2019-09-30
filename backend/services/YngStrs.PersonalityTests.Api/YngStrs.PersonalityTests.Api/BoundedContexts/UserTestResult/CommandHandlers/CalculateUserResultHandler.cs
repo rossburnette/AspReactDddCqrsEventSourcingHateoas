@@ -38,9 +38,15 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 
             var topResult = await ParseTopTwoTestResultIdsAsync(dictionary);
 
-            return topResult
-                .ToArray()
-                .Some<Guid[], Error>();
+            var resultArray = topResult as Guid[] ?? topResult.ToArray();
+
+            await PublishEventsAsync(
+                command.UserAnswersEventStreamId,
+                new Domain.Entities.UserTestResult(
+                    Guid.Parse("a6098d1e-2119-49d3-83e3-f996c2c10e14"),
+                    resultArray).Result());
+
+            return resultArray.Some<Guid[], Error>();
         }
 
         private static Dictionary<Guid, List<Guid>> ConvertListToTree(IEnumerable<UserAnsweredQuestion> events)
@@ -79,7 +85,8 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                     .OrderByDescending(pair => pair.Value.Count)
                     .ToList();
 
-                // in case user's top styles are the same, we consider him/her as 'complex personality'
+                // in case user's top styles are with the same power,
+                // we consider him/her as 'complex personality'
                 if (orderedPairs[0].Value.Count == orderedPairs[1].Value.Count)
                 {
                     var complexPersonalityResult = await _testResultRepository.GetComplexPersonalityResultAsync();

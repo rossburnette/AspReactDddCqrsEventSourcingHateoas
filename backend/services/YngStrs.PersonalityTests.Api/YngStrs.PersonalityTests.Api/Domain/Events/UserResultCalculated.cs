@@ -3,17 +3,16 @@ using YngStrs.Common.EventSourcing.Core;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Events
 {
-    public class UserCompletedTest : IEvent
+    public class UserResultCalculated : IEvent
     {
-        public UserCompletedTest(Guid personalityTestId, string userEmail)
+        public UserResultCalculated(Guid personalityTestId, Guid[] testResultsIds)
         {
             PersonalityTestId = personalityTestId;
-            UserEmail = userEmail;
+            TestResultsIds = testResultsIds;
         }
 
         public Guid PersonalityTestId { get; set; }
 
-        public string UserEmail { get; set; }
-
+        public Guid[] TestResultsIds { get; set; }
     }
 }
