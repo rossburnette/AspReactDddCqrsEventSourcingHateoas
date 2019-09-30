@@ -11,10 +11,11 @@ using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
+using YngStrs.PersonalityTests.Api.Domain.Views.UserTestResult;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHandlers
 {
-    public class CalculateUserResultHandler : TypedBaseHandler<CalculateUserResult, Guid[]>
+    public class CalculateUserResultHandler : TypedBaseHandler<CalculateUserResult, UserTestResultView>
     {
         private readonly IUserQuestionAnswerRepository _answerRepository;
         private readonly ITestResultRepository _testResultRepository;
@@ -30,7 +31,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             _testResultRepository = testResultRepository;
         }
 
-        public override async Task<Option<Guid[], Error>> HandleAsync(CalculateUserResult command, CancellationToken cancellationToken)
+        public override async Task<Option<UserTestResultView, Error>> HandleAsync(CalculateUserResult command, CancellationToken cancellationToken)
         {
             var events = await _answerRepository.GetEventsByStreamIdAsync(command.UserAnswersEventStreamId);
 
@@ -46,7 +47,8 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                     Guid.Parse("a6098d1e-2119-49d3-83e3-f996c2c10e14"),
                     resultArray).Result());
 
-            return resultArray.Some<Guid[], Error>();
+            return new UserTestResultView(resultArray)
+                .Some<UserTestResultView, Error>();
         }
 
         private static Dictionary<Guid, List<Guid>> ConvertListToTree(IEnumerable<UserAnsweredQuestion> events)
