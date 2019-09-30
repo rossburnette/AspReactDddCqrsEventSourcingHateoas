@@ -6,7 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
+using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
+using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserQuestionAnswer;
+using Optional.Async.Extensions;
+using YngStrs.PersonalityTests.Api.Domain.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Controllers
 {
@@ -31,5 +36,20 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         [ProducesResponseType(typeof(IList<InitPersonalityTestView>), (int) HttpStatusCode.OK)]
         public async Task<IActionResult> GetFullPersonalityTest() =>
             Ok(await Mediator.Send(new GetInitialPersonalityTest()));
+
+        /// POST /api/personality-tests/begin
+        /// <summary>
+        /// Creates event stream for <see cref="UserQuestionAnswer"/> aggregate.
+        /// </summary>
+        /// <returns>
+        /// Event Stream ID
+        /// </returns>
+        /// <response code="200"></response>
+        [HttpPost("begin", Name = nameof(BeginTest))]
+        [ProducesResponseType(typeof(UserAnswersStreamResource), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> BeginTest() => 
+            (await Mediator.Send(new BeginPersonalityTest())
+                .MapAsync(ToResourceAsync<UserAnswersStreamView, UserAnswersStreamResource>))
+                .Match(Ok, Error);
     }
 }

@@ -7,13 +7,17 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RiskFirst.Hateoas;
 using YngStrs.Common.Api.DatabaseConnectors;
+using YngStrs.Common.Cqrs.Business;
+using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Business;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.Common.Hateoas.Business;
 using YngStrs.Common.Hateoas.Core;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Events;
+using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
+using YngStrs.PersonalityTests.Api.Persistence.Repositories;
 
 namespace YngStrs.PersonalityTests.Api.Configuration
 {
@@ -32,6 +36,12 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 opts.UseNpgsql(connectionString));
 
             return services;
+        }
+
+        internal static IServiceCollection AddCqrs(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton(typeof(ICommandValidator<>), typeof(CommandValidator<>));
+            return serviceCollection;
         }
 
         internal static IServiceCollection AddEventSourcing(
@@ -97,6 +107,12 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 }
             });
 
+            return services;
+        }
+
+        internal static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
             return services;
         }
     }

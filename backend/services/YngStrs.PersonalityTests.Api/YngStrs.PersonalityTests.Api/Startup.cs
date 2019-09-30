@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YngStrs.Common.Api.DatabaseConnectors;
+using YngStrs.Common.Api.Filters;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Configuration;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 
@@ -34,10 +37,23 @@ namespace YngStrs.PersonalityTests.Api
 
             services.AddMediatR(typeof(Startup));
 
+            services.AddCqrs();
+
+            services.AddEventSourcing(Configuration);
+
             services.AddHateoas();
 
+            services.AddRepositories();
+
             services
-                .AddMvc()
+                .AddMvc(options =>
+                {
+                    options.Filters.Add<ExceptionFilter>();
+                })
+                .AddFluentValidation(fv =>
+                {
+                    fv.RegisterValidatorsFromAssemblyContaining<BeginPersonalityTestValidator>();
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             ConnectionManagerBase
@@ -54,6 +70,8 @@ namespace YngStrs.PersonalityTests.Api
         {
             dbContext.Database.EnsureCreated();
             seeder.SeedDatabase();
+
+            DatabaseConfiguration.EnsureEventStoreIsCreated(Configuration);
 
             if (env.IsDevelopment())
             {
