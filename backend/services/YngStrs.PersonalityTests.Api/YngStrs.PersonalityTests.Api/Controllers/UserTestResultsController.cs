@@ -21,7 +21,8 @@ namespace YngStrs.PersonalityTests.Api.Controllers
     {
         public UserTestResultsController(
             IResourceMapper resourceMapper,
-            IMediator mediator) : base(resourceMapper, mediator)
+            IMediator mediator)
+            : base(resourceMapper, mediator)
         {
         }
 
