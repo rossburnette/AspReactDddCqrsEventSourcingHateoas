@@ -12,6 +12,8 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// </remarks>
     public class TestResultTitle : MultiLanguageTitleRelationalEntity
     {
+        public string Explanation { get; set; }
+
         /// <!--Many-To-One-Relations-->
         public Guid TestResultId { get; set; }
         public TestResult TestResult { get; set; }

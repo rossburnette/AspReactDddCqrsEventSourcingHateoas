@@ -17,14 +17,17 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
     public class CalculateUserResultHandler : TypedBaseHandler<CalculateUserResult, Guid[]>
     {
         private readonly IUserQuestionAnswerRepository _answerRepository;
+        private readonly ITestResultRepository _testResultRepository;
 
         public CalculateUserResultHandler(
             IEventBus eventBus,
             ICommandValidator<CalculateUserResult> commandValidator,
-            IUserQuestionAnswerRepository answerRepository)
+            IUserQuestionAnswerRepository answerRepository,
+            ITestResultRepository testResultRepository)
             : base(eventBus, commandValidator)
         {
             _answerRepository = answerRepository;
+            _testResultRepository = testResultRepository;
         }
 
         public override async Task<Option<Guid[], Error>> HandleAsync(CalculateUserResult command, CancellationToken cancellationToken)
@@ -33,9 +36,11 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 
             var dictionary = ConvertListToTree(events);
 
-            var topResult = ParseTopTwoTestResultIds(dictionary).ToArray();
+            var topResult = await ParseTopTwoTestResultIdsAsync(dictionary);
 
-            return topResult.Some<Guid[], Error>();
+            return topResult
+                .ToArray()
+                .Some<Guid[], Error>();
         }
 
         private static Dictionary<Guid, List<Guid>> ConvertListToTree(IEnumerable<UserAnsweredQuestion> events)
@@ -60,7 +65,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             return dictionary;
         }
 
-        private static IEnumerable<Guid> ParseTopTwoTestResultIds(Dictionary<Guid, List<Guid>> eventTree)
+        private async Task<IEnumerable<Guid>> ParseTopTwoTestResultIdsAsync(Dictionary<Guid, List<Guid>> eventTree)
         {
             var topTestResultIds = new List<Guid>();
 
@@ -73,6 +78,14 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                 var orderedPairs = eventTree
                     .OrderByDescending(pair => pair.Value.Count)
                     .ToList();
+
+                // in case user's top styles are the same, we consider him/her as 'complex personality'
+                if (orderedPairs[0].Value.Count == orderedPairs[1].Value.Count)
+                {
+                    var complexPersonalityResult = await _testResultRepository.GetComplexPersonalityResultAsync();
+                    topTestResultIds.Add(complexPersonalityResult.Id);
+                    return topTestResultIds;
+                }
 
                 topTestResultIds.Add(orderedPairs[0].Key);
                 topTestResultIds.Add(orderedPairs[1].Key);

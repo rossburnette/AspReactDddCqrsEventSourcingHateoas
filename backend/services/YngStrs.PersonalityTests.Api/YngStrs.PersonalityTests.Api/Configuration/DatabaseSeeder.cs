@@ -47,6 +47,12 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 Id = Guid.NewGuid(),
                 PersonalityTestId = PersonalityTests.First().Id,
                 Value = "action"
+            },
+            new TestResult
+            {
+                Id = Guid.NewGuid(),
+                PersonalityTestId = PersonalityTests.First().Id,
+                Value = "complex"
             }
         };
 
@@ -74,25 +80,56 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             {
                 LanguageId = Languages[1].Id,
                 TestResultId = TestResults[0].Id,
-                Description = "Idea Oriented"
+                Description = "Idea Oriented",
+                Explanation = "You are creative and you carry the spirit of innovation in yourself. " +
+                              "You provoke others to look for new ways to deal with every problem. " +
+                              "You love ideas, big concepts, theories and innovation. " +
+                              "People like you like to struggle with problems, improve, innovate, look for alternatives and take advantage of new opportunities. " +
+                              "Their actions are characterized by imagination and charisma, but sometimes they seem high in the clouds and difficult to understand."
             },
             new TestResultTitle
             {
                 LanguageId = Languages[1].Id,
                 TestResultId = TestResults[1].Id,
-                Description = "People Oriented"
+                Description = "People Oriented",
+                Explanation = "You are spontaneous, emotional, communicative. " +
+                              "You love working in a team and communicate with clients, colleagues and managers with ease. " +
+                              "You are the type of person who relies on their relationships with people, and expect them to help in their work. " +
+                              "You love teamwork, team spirit, group development, pay close attention to the expectations that others have for you. " +
+                              "Your actions are characterized by spontaneity and empathy."
             },
             new TestResultTitle
             {
                 LanguageId = Languages[1].Id,
                 TestResultId = TestResults[2].Id,
-                Description = "Process Oriented"
+                Description = "Process Oriented",
+                Explanation = "You are logical, systematic and precise - in every little detail. " +
+                              "You have good organizational skills and analytical mind. " +
+                              "You love processes, strategy, organization and facts, as well as controlling and testing, " +
+                              "carefully observing the results. Your actions are characterized by attention, patience, " +
+                              "facts and logic, you love to do things one after the other."
             },
             new TestResultTitle
             {
                 LanguageId = Languages[1].Id,
                 TestResultId = TestResults[3].Id,
-                Description = "Action Oriented"
+                Description = "Action Oriented",
+                Explanation = "You are responsible, direct, impatient, energetic, quick to react in any situation. " +
+                              "Flexible in a constantly changing environment, you love the actions, the results, the clear goals and their active pursuit. " +
+                              "You value high productivity and efficiency, responsibility and experience. " +
+                              "Your actions are characterized by pragmatism, directness, often provoking others to show the best in themselves. "
+            },
+            new TestResultTitle
+            {
+                LanguageId = Languages[1].Id,
+                TestResultId = TestResults[4].Id,
+                Description = "Deep and Complex Personality",
+                Explanation = "You don’t depend on others for your happiness! " +
+                              "Probably you hate small-talk. " +
+                              "You love to listen to others and learn about other people. " +
+                              "You let your emotions come as they are! " +
+                              "You feel inspired by the world around you! " +
+                              "You pay attention to the smallest details about a person or place."
             },
         };
 

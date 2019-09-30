@@ -200,6 +200,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
                     deleted_on = table.Column<DateTimeOffset>(nullable: true),
                     description = table.Column<string>(nullable: true),
                     language_id = table.Column<Guid>(nullable: false),
+                    explanation = table.Column<string>(nullable: true),
                     test_result_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>

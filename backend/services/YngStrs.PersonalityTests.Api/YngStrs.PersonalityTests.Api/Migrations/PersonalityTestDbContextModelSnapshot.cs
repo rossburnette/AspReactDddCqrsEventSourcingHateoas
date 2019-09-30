@@ -16,7 +16,7 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle", b =>
@@ -360,6 +360,9 @@ namespace YngStrs.PersonalityTests.Api.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnName("description");
+
+                    b.Property<string>("Explanation")
+                        .HasColumnName("explanation");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnName("is_deleted");
