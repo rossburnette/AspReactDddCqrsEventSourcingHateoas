@@ -8,7 +8,5 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
         public Guid EventStreamId { get; set; }
 
         public Guid ChosenOptionId { get; set; }
-
-        public string ResultValue { get; set; }
     }
 }

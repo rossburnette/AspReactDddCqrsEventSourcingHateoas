@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands
+namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands
 {
     public class BeginPersonalityTestValidator : AbstractValidator<BeginPersonalityTest>
     {

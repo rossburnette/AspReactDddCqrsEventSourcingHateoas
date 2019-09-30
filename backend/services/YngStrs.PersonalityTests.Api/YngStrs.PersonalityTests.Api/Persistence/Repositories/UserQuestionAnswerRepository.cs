@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Marten;
 using Marten.Events;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
+using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 
 namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
@@ -26,6 +29,12 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
             return eventStream;
         }
 
+        public async Task<IEnumerable<UserAnsweredQuestion>> GetEventsByStreamIdAsync(Guid streamId)
+        {
+            var events = await _session.Events.FetchStreamAsync(streamId);
+            return events
+                .Select(@event => (UserAnsweredQuestion) @event.Data);
+        }
 
     }
 }

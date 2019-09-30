@@ -5,14 +5,15 @@ namespace YngStrs.PersonalityTests.Api.Domain.Events
 {
     public class UserAnsweredQuestion : IEvent
     {
-        public UserAnsweredQuestion(Guid chosenOptionId, string resultValue)
+        public UserAnsweredQuestion(Guid chosenOptionId, Guid testResultId)
         {
             ChosenOptionId = chosenOptionId;
-            ResultValue = resultValue;
+            TestResultId = testResultId;
         }
 
         public Guid ChosenOptionId { get; set; }
 
-        public string ResultValue { get; set; }
+        public Guid TestResultId { get; set; }
+
     }
 }
