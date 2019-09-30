@@ -16,10 +16,11 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<QuestionOption> GetByIdAsync(Guid id) =>
+        public Task<QuestionOption> GetWithResultMapByIdAsync(Guid id) =>
             _dbContext
                 .QuestionOptions
                 .AsNoTracking()
+                .Include(option => option.ResultOptionMaps)
                 .FirstOrDefaultAsync(option => option.Id == id);
     }
 }

@@ -8,7 +8,6 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
         {
             RuleFor(cmd => cmd.EventStreamId).NotNull();
             RuleFor(cmd => cmd.ChosenOptionId).NotNull();
-            RuleFor(cmd => cmd.ResultValue).NotNull();
         }
     }
 }

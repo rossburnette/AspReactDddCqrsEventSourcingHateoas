@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Api.Filters;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Configuration;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;

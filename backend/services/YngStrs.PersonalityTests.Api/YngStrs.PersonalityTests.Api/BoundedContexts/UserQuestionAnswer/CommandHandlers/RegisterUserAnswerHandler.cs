@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Marten.Events;
 using MediatR;
@@ -33,8 +34,8 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
         public override Task<Option<Unit, Error>> HandleAsync(RegisterUserAnswer command,
             CancellationToken cancellationToken) =>
             EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
-            EnsureQuestionOptionExistsAsync(command).MapAsync(__ =>
-            PublishEventsAsync(command.EventStreamId, CreateAggregate(command).TestQuestionAnswer())));
+            EnsureQuestionOptionExistsAsync(command).MapAsync(questionOption =>
+            PublishEventsAsync(command.EventStreamId, CreateAggregate(command, questionOption).TestQuestionAnswer())));
 
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>
             _answerRepository
@@ -43,10 +44,10 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
 
         private Task<Option<QuestionOption, Error>> EnsureQuestionOptionExistsAsync(RegisterUserAnswer command) =>
             _questionOptionRepository
-                .GetByIdAsync(command.ChosenOptionId)
+                .GetWithResultMapByIdAsync(command.ChosenOptionId)
                 .SomeNotNullAsync(Error.NotFound($"Test question option with ID '{command.ChosenOptionId}' does not exists!"));
 
-        private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command) =>
-            new Domain.Entities.UserQuestionAnswer(command.ChosenOptionId, command.ResultValue);
+        private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, QuestionOption option) =>
+            new Domain.Entities.UserQuestionAnswer(command.ChosenOptionId, option.ResultOptionMaps.First().Id);
     }
 }

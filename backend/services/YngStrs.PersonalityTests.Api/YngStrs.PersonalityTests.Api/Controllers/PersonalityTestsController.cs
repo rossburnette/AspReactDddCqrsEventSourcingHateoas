@@ -11,6 +11,8 @@ using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
 using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserQuestionAnswer;
 using Optional.Async.Extensions;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Controllers
@@ -51,5 +53,12 @@ namespace YngStrs.PersonalityTests.Api.Controllers
             (await Mediator.Send(new BeginPersonalityTest())
                 .MapAsync(ToResourceAsync<UserAnswersStreamView, UserAnswersStreamResource>))
                 .Match(Ok, Error);
+
+        [HttpPost("user-result")]
+        public async Task<IActionResult> UserResult(CalculateUserResult command)
+        {
+            var x = await Mediator.Send(command);
+            return Ok();
+        }
     }
 }

@@ -6,6 +6,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Repositories
 {
     public interface IQuestionOptionRepository
     {
-        Task<QuestionOption> GetByIdAsync(Guid id);
+        Task<QuestionOption> GetWithResultMapByIdAsync(Guid id);
     }
 }

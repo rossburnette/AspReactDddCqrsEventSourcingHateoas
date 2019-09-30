@@ -5,11 +5,11 @@ using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
-using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
 
-namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.CommandHandlers
+namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.CommandHandlers
 {
     public class BeginPersonalityTestHandler : TypedBaseHandler<BeginPersonalityTest, UserAnswersStreamView>
     {

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Marten.Events;
+using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Repositories
 {
@@ -9,5 +11,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Repositories
         Task<StreamState> GetUserQuestionAnswerEventStreamByIdAsync(Guid id);
 
         EventStream CreateUserQuestionAnswerEventStream();
+
+        Task<IEnumerable<UserAnsweredQuestion>> GetEventsByStreamIdAsync(Guid streamId);
     }
 }
