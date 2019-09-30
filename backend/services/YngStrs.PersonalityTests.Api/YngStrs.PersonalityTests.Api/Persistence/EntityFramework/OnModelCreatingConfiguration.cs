@@ -377,6 +377,11 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             builder
                 .Entity<TestResultTitle>()
+                .Property(x => x.Explanation)
+                .HasColumnName("explanation");
+
+            builder
+                .Entity<TestResultTitle>()
                 .Property(x => x.LanguageId)
                 .HasColumnName("language_id");
 

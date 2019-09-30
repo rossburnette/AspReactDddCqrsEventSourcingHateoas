@@ -114,6 +114,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
         {
             services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
             services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
+            services.AddScoped<ITestResultRepository, TestResultRepository>();
 
             return services;
         }
