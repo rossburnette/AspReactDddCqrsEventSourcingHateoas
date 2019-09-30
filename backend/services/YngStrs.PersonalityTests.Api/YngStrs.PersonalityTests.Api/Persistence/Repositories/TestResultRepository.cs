@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using Marten;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;

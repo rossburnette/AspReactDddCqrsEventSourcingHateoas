@@ -6,48 +6,37 @@ using YngStrs.PersonalityTests.Api.Domain.Events;
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Represents a cluster of domain objects (treated as a single unit), which occurs when a user finishes a test.
+    /// Represents a cluster of domain objects (treated as a single unit),
+    /// which occurs when a user finishes a test.
     /// </summary>
     public class UserTestResult : IAggregate
     {
-        public UserTestResult()
+        public UserTestResult(Guid[] testResultsIds)
         {
-            
+            TestResultsIds = testResultsIds;
         }
 
-        public UserTestResult(Guid id)
+        public UserTestResult(Guid id, Guid[] testResultsIds)
         {
             Id = id;
+            TestResultsIds = testResultsIds;
         }
 
         public Guid Id { get; set; }
 
-        public string UserEmail { get; set; }
-
         /// <!--References-->
-        public Guid PersonalityTestId { get; set; }
+        public Guid PersonalityTestId => Id;
 
-        public IList<ResultCalculation> TestResultPercentages { get; set; } = new List<ResultCalculation>();
+        public Guid[] TestResultsIds { get; set; }
 
         /// <!--Events-->
-        public UserCompletedTest CompletePersonalityTest() => 
-            new UserCompletedTest(PersonalityTestId, UserEmail);
+        public UserResultCalculated Result() => 
+            new UserResultCalculated(PersonalityTestId, TestResultsIds);
 
-        public void Apply(UserCompletedTest @event)
+        public void Apply(UserResultCalculated @event)
         {
-            UserEmail = @event.UserEmail;
-            PersonalityTestId = @event.PersonalityTestId;
-            TestResultPercentages = new List<ResultCalculation>();
-        }
-
-        public UserTestResultCalculated BuildConjecturalUserProfile() =>
-            new UserTestResultCalculated(UserEmail, PersonalityTestId, TestResultPercentages);
-
-        public void Apply(UserTestResultCalculated @event)
-        {
-            UserEmail = @event.UserEmail;
-            PersonalityTestId = @event.PersonalityTestId;
-            TestResultPercentages = @event.TestResultPercentages;
+            Id = @event.PersonalityTestId;
+            TestResultsIds = @event.TestResultsIds;
         }
     }
 }

@@ -14,6 +14,5 @@ namespace YngStrs.PersonalityTests.Api.Domain.Events
         public Guid ChosenOptionId { get; set; }
 
         public Guid TestResultId { get; set; }
-
     }
 }
