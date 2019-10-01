@@ -31,7 +31,9 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             _testResultRepository = testResultRepository;
         }
 
-        public override async Task<Option<UserTestResultView, Error>> HandleAsync(CalculateUserResult command, CancellationToken cancellationToken)
+        public override async Task<Option<UserTestResultView, Error>> HandleAsync(
+            CalculateUserResult command,
+            CancellationToken cancellationToken)
         {
             var events = await _answerRepository.GetEventsByStreamIdAsync(command.UserAnswersEventStreamId);
 
@@ -39,15 +41,9 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 
             var topResult = await ParseTopTwoTestResultIdsAsync(dictionary);
 
-            var resultArray = topResult as Guid[] ?? topResult.ToArray();
+            await PublishEventsAsync(command.UserAnswersEventStreamId, CreateAggregate(topResult).Result());
 
-            await PublishEventsAsync(
-                command.UserAnswersEventStreamId,
-                new Domain.Entities.UserTestResult(
-                    Guid.Parse("a6098d1e-2119-49d3-83e3-f996c2c10e14"),
-                    resultArray).Result());
-
-            return new UserTestResultView(resultArray)
+            return new UserTestResultView(topResult)
                 .Some<UserTestResultView, Error>();
         }
 
@@ -73,7 +69,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             return dictionary;
         }
 
-        private async Task<IEnumerable<Guid>> ParseTopTwoTestResultIdsAsync(Dictionary<Guid, List<Guid>> eventTree)
+        private async Task<Guid[]> ParseTopTwoTestResultIdsAsync(Dictionary<Guid, List<Guid>> eventTree)
         {
             var topTestResultIds = new List<Guid>();
 
@@ -93,14 +89,17 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                 {
                     var complexPersonalityResult = await _testResultRepository.GetComplexPersonalityResultAsync();
                     topTestResultIds.Add(complexPersonalityResult.Id);
-                    return topTestResultIds;
+                    return topTestResultIds.ToArray();
                 }
 
                 topTestResultIds.Add(orderedPairs[0].Key);
                 topTestResultIds.Add(orderedPairs[1].Key);
             }
 
-            return topTestResultIds;
+            return topTestResultIds.ToArray();
         }
+
+        private static Domain.Entities.UserTestResult CreateAggregate(Guid[] testResultIds) => 
+            new Domain.Entities.UserTestResult(Guid.Parse("a6098d1e-2119-49d3-83e3-f996c2c10e14"), testResultIds);
     }
 }

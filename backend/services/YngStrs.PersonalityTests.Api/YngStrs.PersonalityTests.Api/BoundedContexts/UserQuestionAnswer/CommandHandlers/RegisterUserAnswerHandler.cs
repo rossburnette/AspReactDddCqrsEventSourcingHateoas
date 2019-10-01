@@ -31,7 +31,8 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
             _questionOptionRepository = questionOptionRepository;
         }
 
-        public override Task<Option<Unit, Error>> HandleAsync(RegisterUserAnswer command,
+        public override Task<Option<Unit, Error>> HandleAsync(
+            RegisterUserAnswer command,
             CancellationToken cancellationToken) =>
             EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
             EnsureQuestionOptionExistsAsync(command).MapAsync(questionOption =>
@@ -48,6 +49,9 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
                 .SomeNotNullAsync(Error.NotFound($"Test question option with ID '{command.ChosenOptionId}' does not exists!"));
 
         private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, QuestionOption option) =>
-            new Domain.Entities.UserQuestionAnswer(command.ChosenOptionId, option.ResultOptionMaps.First().Id);
+            new Domain.Entities.UserQuestionAnswer(
+                command.EventStreamId, // Because event stream is unique, it is used as user identifier
+                command.ChosenOptionId, // chosen question option
+                option.ResultOptionMaps.First().Id); // it is OK for initial test, in future, we will pass the test result value
     }
 }

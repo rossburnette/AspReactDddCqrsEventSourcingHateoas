@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Represents a cluster of domain objects (treated as a single unit),
-    /// which occurs when a user finishes a test.
+    /// Represents <see cref="TestResult"/> which the user received after made <see cref="PersonalityTest"/>.
+    /// Technically, it is a domain object:
+    /// 1) Considered as event sourced aggregate!
+    /// 2) Linked with the event - User finished test!
     /// </summary>
     public class UserTestResult : IAggregate
     {
@@ -22,20 +23,33 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
             TestResultsIds = testResultsIds;
         }
 
+        /// <summary>
+        /// Considered as User identifier (ID).
+        /// </summary>
+        /// <remarks>
+        /// Same as <see cref="UserResultCalculated"/> event stream!
+        /// </remarks>
         public Guid Id { get; set; }
 
         /// <!--References-->
-        public Guid PersonalityTestId => Id;
+        /// <summary>
+        /// <see cref="PersonalityTest"/> identifier (ID).
+        /// </summary>
+        public Guid PersonalityTestId { get; set; }
 
+        /// <summary>
+        /// Identifiers of <see cref="TestResult"/> that describe user personality.
+        /// </summary>
         public Guid[] TestResultsIds { get; set; }
 
         /// <!--Events-->
         public UserResultCalculated Result() => 
-            new UserResultCalculated(PersonalityTestId, TestResultsIds);
+            new UserResultCalculated(Id, PersonalityTestId, TestResultsIds);
 
         public void Apply(UserResultCalculated @event)
         {
-            Id = @event.PersonalityTestId;
+            Id = @event.UserIdentifier;
+            PersonalityTestId = @event.PersonalityTestId;
             TestResultsIds = @event.TestResultsIds;
         }
     }
