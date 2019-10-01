@@ -30,9 +30,11 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <param name="command"></param>
         /// <response code="201">User answer saved.</response>
         /// <response code="404">Event stream ID or question option ID invalid.</response>
+        /// <response code="409">Similar answer for user already exists.</response>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.Conflict)]
         public async Task<IActionResult> RegisterUserAnswer([FromBody] RegisterUserAnswer command) =>
             (await Mediator.Send(command))
             .Match(
