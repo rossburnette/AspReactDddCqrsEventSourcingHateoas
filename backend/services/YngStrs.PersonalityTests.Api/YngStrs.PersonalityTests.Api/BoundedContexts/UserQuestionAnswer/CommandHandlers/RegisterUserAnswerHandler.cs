@@ -35,8 +35,11 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
             RegisterUserAnswer command,
             CancellationToken cancellationToken) =>
             EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
+            EnsureSimilarAnswerDoesNotExistsAsync(command).FlatMapAsync(__ => 
             EnsureQuestionOptionExistsAsync(command).MapAsync(questionOption =>
-            PublishEventsAsync(command.EventStreamId, CreateAggregate(command, questionOption).TestQuestionAnswer())));
+            PublishEventsAsync(
+                command.EventStreamId, 
+                CreateAggregate(command, questionOption).TestQuestionAnswer()))));
 
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>
             _answerRepository
@@ -47,6 +50,16 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
             _questionOptionRepository
                 .GetWithResultMapByIdAsync(command.ChosenOptionId)
                 .SomeNotNullAsync(Error.NotFound($"Test question option with ID '{command.ChosenOptionId}' does not exists!"));
+
+        private async Task<Option<Unit, Error>> EnsureSimilarAnswerDoesNotExistsAsync(RegisterUserAnswer command) =>
+            (await _answerRepository
+                .GetByUserAndOptionIdAsync(
+                    command.ChosenOptionId,
+                    command.EventStreamId))
+            .SomeWhen(
+                answer => answer == default,
+                Error.Conflict($"There is already such answer for the current user stream!"))
+            .Map(_ => Unit.Value);
 
         private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, QuestionOption option) =>
             new Domain.Entities.UserQuestionAnswer(

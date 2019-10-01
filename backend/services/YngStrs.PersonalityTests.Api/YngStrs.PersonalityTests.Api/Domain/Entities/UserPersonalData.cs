@@ -15,18 +15,21 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         {
             
         }
+
         public UserPersonalData(SubmitNecessaryData command)
         {
-            Id = command.EventStreamId;
+            Id = Guid.NewGuid();
+            UserIdentifier = command.UserEventStreamId;
             Name = command.Name;
             Email = command.Email;
         }
 
-        /// <summary>
-        /// Current user identifier.
-        /// Same as <see cref="UserSubmittedPersonalData"/> event stream ID.
-        /// </summary>
         public Guid Id { get; set; }
+
+        /// <remarks>
+        /// Same as <see cref="UserAnsweredQuestion"/> event stream!
+        /// </remarks>
+        public Guid UserIdentifier { get; set; }
 
         public string Name { get; set; }
 
@@ -38,7 +41,8 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public void Apply(UserSubmittedPersonalData @event)
         {
-            Id = @event.UserIdentifier;
+            Id = Guid.NewGuid();
+            UserIdentifier = @event.UserIdentifier;
             Name = @event.Name;
             Email = @event.Email;
         }

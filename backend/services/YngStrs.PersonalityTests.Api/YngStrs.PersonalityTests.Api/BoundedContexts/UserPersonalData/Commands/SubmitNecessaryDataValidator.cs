@@ -6,6 +6,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands
     {
         public SubmitNecessaryDataValidator()
         {
+            RuleFor(data => data.UserEventStreamId).NotNull();
             RuleFor(data => data.Name).NotEmpty();
             RuleFor(data => data.Email).EmailAddress();
         }
