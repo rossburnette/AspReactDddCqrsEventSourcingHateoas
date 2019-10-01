@@ -12,24 +12,25 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     /// </summary>
     public class UserTestResult : IAggregate
     {
-        public UserTestResult(Guid[] testResultsIds)
+        public UserTestResult()
         {
+            
+        }
+
+        public UserTestResult(Guid personalityTestId, Guid userIdentifier, Guid[] testResultsIds)
+        {
+            Id = Guid.NewGuid();
+            PersonalityTestId = personalityTestId;
+            UserIdentifier = UserIdentifier;
             TestResultsIds = testResultsIds;
         }
 
-        public UserTestResult(Guid id, Guid[] testResultsIds)
-        {
-            Id = id;
-            TestResultsIds = testResultsIds;
-        }
-
-        /// <summary>
-        /// Considered as User identifier (ID).
-        /// </summary>
-        /// <remarks>
-        /// Same as <see cref="UserResultCalculated"/> event stream!
-        /// </remarks>
         public Guid Id { get; set; }
+
+        /// <remarks>
+        /// Same as <see cref="UserAnsweredQuestion"/> event stream!
+        /// </remarks>
+        public Guid UserIdentifier { get; set; }
 
         /// <!--References-->
         /// <summary>
@@ -48,7 +49,8 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         public void Apply(UserResultCalculated @event)
         {
-            Id = @event.UserIdentifier;
+            Id = Guid.NewGuid();
+            UserIdentifier = @event.UserIdentifier;
             PersonalityTestId = @event.PersonalityTestId;
             TestResultsIds = @event.TestResultsIds;
         }

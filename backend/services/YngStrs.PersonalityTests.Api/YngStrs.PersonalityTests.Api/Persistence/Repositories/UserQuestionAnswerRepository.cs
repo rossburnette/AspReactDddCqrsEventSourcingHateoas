@@ -36,5 +36,17 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
                 .Select(@event => (UserAnsweredQuestion) @event.Data);
         }
 
+        public Task<IReadOnlyList<UserQuestionAnswer>> GetAnswersByUserStreamAsync(Guid streamId) => 
+            _session
+                .Query<UserQuestionAnswer>()
+                .Where(answer => answer.UserIdentifier == streamId)
+                .ToListAsync();
+
+        public Task<UserQuestionAnswer> GetByUserAndOptionIdAsync(Guid chosenOptionId, Guid userIdentifier) =>
+            _session
+                .Query<UserQuestionAnswer>()
+                .FirstOrDefaultAsync(answer =>
+                    answer.ChosenOptionId == chosenOptionId &&
+                    answer.UserIdentifier == userIdentifier);
     }
 }

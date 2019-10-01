@@ -1,35 +1,44 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Optional;
+using Optional.Async.Extensions;
 using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands;
+using YngStrs.PersonalityTests.Api.Domain.Repositories;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.CommandHandlers
 {
     public class SubmitNecessaryDataHandler : VoidBaseHandler<SubmitNecessaryData>
     {
+        private readonly IUserPersonalDataRepository _repository;
         public SubmitNecessaryDataHandler(
             IEventBus eventBus,
-            ICommandValidator<SubmitNecessaryData> commandValidator)
+            ICommandValidator<SubmitNecessaryData> commandValidator,
+            IUserPersonalDataRepository repository)
             : base(eventBus, commandValidator)
         {
+            _repository = repository;
         }
 
-        public override async Task<Option<Unit, Error>> HandleAsync(
+        public override Task<Option<Unit, Error>> HandleAsync(
             SubmitNecessaryData command,
-            CancellationToken cancellationToken)
-        {
-            await PublishEventsAsync(
-                command.EventStreamId,
-                new Domain.Entities.UserPersonalData(command.Name, command.Email)
-                    .SubmitNecessaryData());
+            CancellationToken cancellationToken) => 
+            EnsureNoDataForCurrentUserAsync(command).MapAsync(_ => 
+            PublishEventsAsync(Guid.NewGuid(), CreateAggregate(command).SubmitNecessaryData()));
 
-            return Unit.Value.Some<Unit, Error>();
-        }
-            
+        private async Task<Option<Domain.Entities.UserPersonalData, Error>> EnsureNoDataForCurrentUserAsync(
+            SubmitNecessaryData command) =>
+            (await _repository
+            .GetByUserIdentifierAsync(command.UserEventStreamId))
+            .SomeWhen(data => data == default, Error.Conflict($"Data found for user stream {command.UserEventStreamId}!"));
+
+        private static Domain.Entities.UserPersonalData CreateAggregate(SubmitNecessaryData command) =>
+            new Domain.Entities.UserPersonalData(command);
+
     }
 }

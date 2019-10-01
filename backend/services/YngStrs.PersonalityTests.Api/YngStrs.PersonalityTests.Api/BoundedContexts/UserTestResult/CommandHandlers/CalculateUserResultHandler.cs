@@ -17,58 +17,51 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 {
     public class CalculateUserResultHandler : TypedBaseHandler<CalculateUserResult, UserTestResultView>
     {
+        private static readonly Guid _initialPersonalityTestId = Guid.Parse("00ff378b-c5e4-4933-81f4-52bc84f2ca9c");
+
         private readonly IUserQuestionAnswerRepository _answerRepository;
         private readonly ITestResultRepository _testResultRepository;
+        private readonly IUserTestResultRepository _userTestResultRepository;
 
         public CalculateUserResultHandler(
             IEventBus eventBus,
             ICommandValidator<CalculateUserResult> commandValidator,
             IUserQuestionAnswerRepository answerRepository,
-            ITestResultRepository testResultRepository)
+            ITestResultRepository testResultRepository,
+            IUserTestResultRepository userTestResultRepository)
             : base(eventBus, commandValidator)
         {
             _answerRepository = answerRepository;
             _testResultRepository = testResultRepository;
+            _userTestResultRepository = userTestResultRepository;
         }
 
         public override async Task<Option<UserTestResultView, Error>> HandleAsync(
             CalculateUserResult command,
             CancellationToken cancellationToken)
         {
-            var events = await _answerRepository.GetEventsByStreamIdAsync(command.UserAnswersEventStreamId);
+            var userTestResult = await _userTestResultRepository
+                .GetByUserAndTestAsync(command.UserAnswersEventStreamId, _initialPersonalityTestId);
 
-            var dictionary = ConvertListToTree(events);
+            if (userTestResult != default)
+            {
+                return Option.None<UserTestResultView, Error>(
+                    Error.Conflict($"There is already a reported result for user stream ID: {command.UserAnswersEventStreamId}."));
+            }
+
+            var answers = await _answerRepository.GetAnswersByUserStreamAsync(command.UserAnswersEventStreamId);
+            var dictionary = ConvertCollectionToTree(answers);
 
             var topResult = await ParseTopTwoTestResultIdsAsync(dictionary);
 
-            await PublishEventsAsync(command.UserAnswersEventStreamId, CreateAggregate(topResult).Result());
+            await PublishEventsAsync(
+                Guid.NewGuid(),
+                CreateAggregate(command.UserAnswersEventStreamId, topResult).Result());
 
             return new UserTestResultView(topResult)
                 .Some<UserTestResultView, Error>();
         }
-
-        private static Dictionary<Guid, List<Guid>> ConvertListToTree(IEnumerable<UserAnsweredQuestion> events)
-        {
-            var dictionary = new Dictionary<Guid, List<Guid>>();
-
-            foreach (var @event in events)
-            {
-                if (dictionary.ContainsKey(@event.TestResultId))
-                {
-                    dictionary[@event.TestResultId].Add(@event.ChosenOptionId);
-                }
-                else
-                {
-                    dictionary.Add(@event.TestResultId, new List<Guid>
-                    {
-                        @event.ChosenOptionId
-                    });
-                }
-            }
-
-            return dictionary;
-        }
-
+        
         private async Task<Guid[]> ParseTopTwoTestResultIdsAsync(Dictionary<Guid, List<Guid>> eventTree)
         {
             var topTestResultIds = new List<Guid>();
@@ -99,7 +92,33 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             return topTestResultIds.ToArray();
         }
 
-        private static Domain.Entities.UserTestResult CreateAggregate(Guid[] testResultIds) => 
-            new Domain.Entities.UserTestResult(Guid.Parse("a6098d1e-2119-49d3-83e3-f996c2c10e14"), testResultIds);
+        private static Domain.Entities.UserTestResult CreateAggregate(Guid eventStreamId, Guid[] testResultIds) => 
+            new Domain.Entities.UserTestResult(
+                eventStreamId,
+                _initialPersonalityTestId,
+                testResultIds);
+
+
+        private static Dictionary<Guid, List<Guid>> ConvertCollectionToTree(IEnumerable<Domain.Entities.UserQuestionAnswer> events)
+        {
+            var dictionary = new Dictionary<Guid, List<Guid>>();
+
+            foreach (var @event in events)
+            {
+                if (dictionary.ContainsKey(@event.TestResultId))
+                {
+                    dictionary[@event.TestResultId].Add(@event.ChosenOptionId);
+                }
+                else
+                {
+                    dictionary.Add(@event.TestResultId, new List<Guid>
+                    {
+                        @event.ChosenOptionId
+                    });
+                }
+            }
+
+            return dictionary;
+        }
     }
 }

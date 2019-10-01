@@ -61,6 +61,8 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 options.DatabaseSchemaName = schemaName;
 
                 options.Events.InlineProjections.AggregateStreamsWith<UserQuestionAnswer>();
+                options.Events.InlineProjections.AggregateStreamsWith<UserTestResult>();
+                options.Events.InlineProjections.AggregateStreamsWith<UserPersonalData>();
 
                 var events = typeof(UserAnsweredQuestion)
                     .Assembly
@@ -112,9 +114,40 @@ namespace YngStrs.PersonalityTests.Api.Configuration
 
         internal static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IUserQuestionAnswerRepository, UserQuestionAnswerRepository>();
-            services.AddScoped<IQuestionOptionRepository, QuestionOptionRepository>();
-            services.AddScoped<ITestResultRepository, TestResultRepository>();
+            var repositoryTypes = Assembly
+                .GetAssembly(typeof(IUserQuestionAnswerRepository))
+                .GetTypes()
+                .Where(t => t.Name.EndsWith("Repository") &&
+                            t.IsInterface)
+                .ToArray();
+
+            var repositoryImplementationTypes = Assembly
+                .GetAssembly(typeof(UserQuestionAnswerRepository))
+                .GetTypes()
+                .Where(t => t.Name.EndsWith("Repository") &&
+                            t.IsClass)
+                .ToDictionary(t => t.Name, t => t);
+
+            foreach (var repositoryType in repositoryTypes)
+            {
+                var expectedImplementationName = repositoryType
+                    .Name
+                    .Substring(1);
+
+                if (!repositoryImplementationTypes.ContainsKey(expectedImplementationName))
+                {
+                    throw new InvalidOperationException($"Could not find implementation for {repositoryType.FullName}.");
+                }
+
+                var implementation = repositoryImplementationTypes[expectedImplementationName];
+
+                if (!repositoryType.IsAssignableFrom(implementation))
+                {
+                    throw new InvalidOperationException($"For repository {repositoryType.Name} found matching type {implementation.Name}, but it does not implement it.");
+                }
+
+                services.AddScoped(repositoryType, implementation);
+            }
 
             return services;
         }

@@ -5,7 +5,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands
 {
     public class SubmitNecessaryData : ICommand
     {
-        public Guid EventStreamId { get; set; }
+        public Guid UserEventStreamId { get; set; }
 
         public string Name { get; set; }
 
