@@ -60,14 +60,13 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                 command.UserAnswersEventStreamId,
                 InitialPersonalityTestId))
             .SomeWhen(
-                result => result == default,
-                Error.Conflict($"There is already a reported result for user stream ID: {command.UserAnswersEventStreamId}."))
+                predicate:result => result == default,
+                exception:Error.Conflict($"There is already a reported result for user stream ID: {command.UserAnswersEventStreamId}."))
             .Map(_ => Unit.Value);
 
         private async Task<Option<IReadOnlyList<Domain.Entities.UserQuestionAnswer>, Error>> GetAnswersByStreamAsync(
             CalculateUserResult command) =>
-            (await _answerRepository
-                .GetAnswersByUserStreamAsync(command.UserAnswersEventStreamId))
+            (await _answerRepository.GetAnswersByUserStreamAsync(command.UserAnswersEventStreamId))
             .SomeWhen(list => list.Any(), Error.NotFound($"No user answers found for stream ID: {command.UserAnswersEventStreamId}."));
 
         private async Task<Option<Guid[], Error>> ParseResultAsync(
@@ -85,7 +84,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                     Guid.NewGuid(),
                     CreateAggregate(command.UserAnswersEventStreamId, topResult).Result())
                 .SomeNotNullAsync(
-                    Error.Critical("Something wend wrong while persisting the data in event store!"));
+                    Error.Critical("Something wend wrong while persisting the data in the event store!"));
 
         private static Dictionary<Guid, List<Guid>> ConvertCollectionToTree(
             IEnumerable<Domain.Entities.UserQuestionAnswer> events)
