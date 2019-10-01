@@ -1,21 +1,31 @@
 ﻿using System;
 using YngStrs.Common.EventSourcing.Core;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Represents a cluster of domain objects (treated as a single unit),
-    /// which occurs when a user accept terms and conditions amd submit name and email.
+    /// Represents a domain objects, linked with event
+    /// that occurs when a user accepts terms and conditions and submits name and email.
     /// </summary>
     public class UserPersonalData : IAggregate
     {
-        public UserPersonalData(string name, string email)
+        public UserPersonalData()
         {
-            Name = name;
-            Email = email;
+            
+        }
+        public UserPersonalData(SubmitNecessaryData command)
+        {
+            Id = command.EventStreamId;
+            Name = command.Name;
+            Email = command.Email;
         }
 
+        /// <summary>
+        /// Current user identifier.
+        /// Same as <see cref="UserSubmittedPersonalData"/> event stream ID.
+        /// </summary>
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -24,11 +34,11 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         /// <!--Events-->
         public UserSubmittedPersonalData SubmitNecessaryData() => 
-            new UserSubmittedPersonalData(Name, Email);
+            new UserSubmittedPersonalData(Id, Name, Email);
 
         public void Apply(UserSubmittedPersonalData @event)
         {
-            Id = Guid.NewGuid();
+            Id = @event.UserIdentifier;
             Name = @event.Name;
             Email = @event.Email;
         }

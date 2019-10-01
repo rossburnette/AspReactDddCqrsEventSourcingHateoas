@@ -19,20 +19,26 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         {
         }
 
-        public UserQuestionAnswer(Guid id, Guid testResultId)
+        public UserQuestionAnswer(Guid id, Guid chosenOptionId, Guid testResultId)
         {
             Id = id;
+            ChosenOptionId = chosenOptionId;
             TestResultId = testResultId;
         }
 
         /// <summary>
-        /// Considered as <see cref="QuestionOption"/> identifier (ID).
+        /// Considered as User identifier (ID).
         /// </summary>
+        /// <remarks>
+        /// Same as <see cref="UserAnsweredQuestion"/> event stream!
+        /// </remarks>
         public Guid Id { get; set; }
 
         /// <!--References-->
-        /// <see cref="QuestionOption"/>
-        public Guid ChosenOptionId => Id;
+        /// <summary>
+        /// <see cref="QuestionOption"/> identifier (ID).
+        /// </summary>
+        public Guid ChosenOptionId { get; set; }
 
         /// <summary>
         /// <see cref="TestResult"/> identifier (ID).
@@ -41,11 +47,12 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         /// <!--Events-->
         public UserAnsweredQuestion TestQuestionAnswer() =>
-            new UserAnsweredQuestion(ChosenOptionId, TestResultId);
+            new UserAnsweredQuestion(Id, ChosenOptionId, TestResultId);
 
         public void Apply(UserAnsweredQuestion @event)
         {
-            Id = @event.ChosenOptionId;
+            Id = @event.UserIdentifier;
+            ChosenOptionId = @event.ChosenOptionId;
             TestResultId = @event.TestResultId;
         }
     }
