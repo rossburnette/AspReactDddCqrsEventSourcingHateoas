@@ -34,6 +34,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <response code="200"></response>
         [HttpGet(Name = nameof(GetFullPersonalityTest))]
         [ProducesResponseType(typeof(IList<InitPersonalityTestView>), (int) HttpStatusCode.OK)]
+        [ResponseCache(Duration = int.MaxValue, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> GetFullPersonalityTest() =>
             Ok(await Mediator.Send(new GetInitialPersonalityTest()));
 
