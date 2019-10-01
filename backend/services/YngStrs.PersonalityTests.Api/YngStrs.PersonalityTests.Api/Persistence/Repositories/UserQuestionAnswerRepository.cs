@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Marten;
 using Marten.Events;
+using Optional;
+using Optional.Async.Extensions;
+using YngStrs.Common;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
@@ -21,6 +25,10 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
 
         public Task<StreamState> GetUserQuestionAnswerEventStreamByIdAsync(Guid id) =>
             _session.Events.FetchStreamStateAsync(id);
+
+        public Task<Option<StreamState, Error>> GetUserAnswerEventStreamByIdAsync(Guid eventStreamId) => 
+            GetUserQuestionAnswerEventStreamByIdAsync(eventStreamId)
+                .SomeNotNullAsync(Error.NotFound($"Event stream with ID '{eventStreamId}' does not exists!"));
 
         public EventStream CreateUserQuestionAnswerEventStream()
         {

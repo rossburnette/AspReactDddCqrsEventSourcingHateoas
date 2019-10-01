@@ -7,5 +7,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Repositories
     public interface IUserPersonalDataRepository
     {
         Task<UserPersonalData> GetByUserIdentifierAsync(Guid userIdentifier);
+
+        Task<bool> HasAnyForUserIdentifierAsync(Guid userIdentifier);
     }
 }

@@ -37,7 +37,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
 
         /// <!--Events-->
         public UserSubmittedPersonalData SubmitNecessaryData() => 
-            new UserSubmittedPersonalData(Id, Name, Email);
+            new UserSubmittedPersonalData(UserIdentifier, Name, Email);
 
         public void Apply(UserSubmittedPersonalData @event)
         {

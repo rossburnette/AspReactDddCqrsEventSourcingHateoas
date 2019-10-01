@@ -42,9 +42,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
                 CreateAggregate(command, questionOption).TestQuestionAnswer()))));
 
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>
-            _answerRepository
-                .GetUserQuestionAnswerEventStreamByIdAsync(command.EventStreamId)
-                .SomeNotNullAsync(Error.NotFound($"Event stream with ID '{command.EventStreamId}' does not exists!"));
+            _answerRepository.GetUserAnswerEventStreamByIdAsync(command.EventStreamId);
 
         private Task<Option<QuestionOption, Error>> EnsureQuestionOptionExistsAsync(RegisterUserAnswer command) =>
             _questionOptionRepository
