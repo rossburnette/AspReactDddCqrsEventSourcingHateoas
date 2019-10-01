@@ -19,5 +19,10 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
             _session
                 .Query<UserPersonalData>()
                 .FirstOrDefaultAsync(data => data.UserIdentifier == userIdentifier);
+
+        public Task<bool> HasAnyForUserIdentifierAsync(Guid userIdentifier) =>
+            _session
+                .Query<UserPersonalData>()
+                .AnyAsync(data => data.UserIdentifier == userIdentifier);
     }
 }
