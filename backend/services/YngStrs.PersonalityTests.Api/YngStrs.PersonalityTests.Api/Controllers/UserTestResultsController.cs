@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optional.Async.Extensions;
+using YngStrs.Common;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
@@ -33,8 +34,13 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <response code="200">
         /// <see cref="TestResult"/> identifiers (IDs).
         /// </response>
+        /// <response code="200">User result saved.</response>
+        /// <response code="404">Invalid <see cref="CalculateUserResult.UserAnswersEventStreamId"/></response>
+        /// <response code="409">Already processed result for user.</response>
         [HttpPost(Name = nameof(UserResult))]
         [ProducesResponseType(typeof(UserTestResultResource), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.Conflict)]
         public async Task<IActionResult> UserResult(CalculateUserResult command) =>
             (await Mediator.Send(command)
             .MapAsync(ToResourceAsync<UserTestResultView, UserTestResultResource>))

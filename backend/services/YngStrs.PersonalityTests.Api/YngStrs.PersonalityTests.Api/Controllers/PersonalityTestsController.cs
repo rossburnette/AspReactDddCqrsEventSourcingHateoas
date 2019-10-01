@@ -51,7 +51,5 @@ namespace YngStrs.PersonalityTests.Api.Controllers
             (await Mediator.Send(new BeginPersonalityTest())
                 .MapAsync(ToResourceAsync<UserAnswersStreamView, UserAnswersStreamResource>))
                 .Match(Ok, Error);
-
-
     }
 }
