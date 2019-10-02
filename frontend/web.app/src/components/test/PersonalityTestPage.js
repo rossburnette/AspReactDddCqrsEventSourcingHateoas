@@ -39,7 +39,7 @@ const PersonalityTestPage = () => (
                         <p className="p-big white regular">Открий кои са твоите силни страни и какви позиции са
                             подходящи за теб.</p>
                         <div className="btn-box">
-                            <a >ЗАПОЧНИ ТЕСТА</a>
+                            <a href="./begin" className="btn-mid btn-red " >ЗАПОЧНИ ТЕСТА</a>
                         </div>
                     </div>
                 </div>
