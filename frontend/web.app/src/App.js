@@ -5,7 +5,6 @@ import Header from "./components/common/Header";
 import HomePage from "./components/home/HomePage";
 import PersonalityTestPage from "./components/test/PersonalityTestPage";
 import Footer from "./components/common/Footer";
-import TestStartPage from "./components/test/TestStartPage";
 import AboutPage from "./components/about/AboutPage";
 import CareersPage from "./components/careers/CareersPage";
 import ChatbotPage from "./components/chatbot/ChatbotPage";
@@ -17,7 +16,6 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/personality-test" component={PersonalityTestPage}/>
-                <Route path="/personality-test/start" component={TestStartPage}/>
                 <Route path="/chatbot" component={ChatbotPage}/>
                 <Route path="/about-us" component={AboutPage}/>
                 <Route path="/careers" component={CareersPage}/>
