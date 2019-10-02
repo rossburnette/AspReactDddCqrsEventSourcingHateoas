@@ -1,9 +1,6 @@
 import React from "react";
 
-import Background from '../../images/test/top-bg.jpg';
-import Boy from '../../images/test/boy.png';
-
-const TestStartPage = () => (
+const PersonalityTestStartPage = () => (
     <div>
         <h2>About</h2>
         <p>
@@ -13,4 +10,4 @@ const TestStartPage = () => (
     </div>
 );
 
-export default TestStartPage;
+export default PersonalityTestStartPage;
