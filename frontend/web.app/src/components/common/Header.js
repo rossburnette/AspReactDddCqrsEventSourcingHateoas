@@ -46,8 +46,8 @@ const Header = () => {
                                 </a>
                             </h1>
                             <ul className="menu menu-right">
-                                <li className="menu-item menu-anim-el"><a href="./articles"
-                                                                          className="menu-link "><strong>#Нещополезно</strong></a>
+                                <li className="menu-item menu-anim-el">
+                                    <a href="./articles" className="menu-link "><strong>#Нещополезно</strong></a>
                                 </li>
                                 <li className="menu-item menu-anim-el">
                                     <a href="./careers" className="menu-link ">Обяви</a></li>

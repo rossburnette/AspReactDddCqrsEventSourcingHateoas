@@ -8,6 +8,8 @@ import Footer from "./components/common/Footer";
 import AboutPage from "./components/about/AboutPage";
 import CareersPage from "./components/careers/CareersPage";
 import ChatbotPage from "./components/chatbot/ChatbotPage";
+import ArticlesPage from "./components/articles/ArticlesPage";
+import PersonalityTestStartPage from "./components/test/PersonalityTestStartPage";
 
 function App() {
     return (
@@ -19,6 +21,8 @@ function App() {
                 <Route path="/chatbot" component={ChatbotPage}/>
                 <Route path="/about-us" component={AboutPage}/>
                 <Route path="/careers" component={CareersPage}/>
+                <Route path="/articles" component={ArticlesPage}/>
+                <Route path="/begin" component={PersonalityTestStartPage}/>
             </Switch>
             <Footer/>
         </div>
