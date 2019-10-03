@@ -63,6 +63,6 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
             new Domain.Entities.UserQuestionAnswer(
                 command.EventStreamId, // Because event stream is unique, it is used as user identifier
                 command.ChosenOptionId, // chosen question option
-                option.ResultOptionMaps.First().Id); // it is OK for initial test, in future, we will pass the test result value
+                option.ResultOptionMaps.First().TestResultId); // TODO: pass the test result value as arg, so then we can map it properly
     }
 }
