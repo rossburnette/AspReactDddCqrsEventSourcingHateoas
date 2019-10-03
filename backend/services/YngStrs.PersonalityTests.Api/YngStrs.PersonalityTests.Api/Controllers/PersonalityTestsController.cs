@@ -33,7 +33,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// </summary>
         /// <response code="200"></response>
         [HttpGet(Name = nameof(GetFullPersonalityTest))]
-        [ProducesResponseType(typeof(IList<InitPersonalityTestView>), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IList<InitPersonalityTestView>), (int)HttpStatusCode.OK)]
         [ResponseCache(Duration = int.MaxValue, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> GetFullPersonalityTest() =>
             Ok(await Mediator.Send(new GetInitialPersonalityTest()));
@@ -48,7 +48,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <response code="200"></response>
         [HttpPost("begin", Name = nameof(BeginTest))]
         [ProducesResponseType(typeof(UserAnswersStreamResource), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> BeginTest() => 
+        public async Task<IActionResult> BeginTest() =>
             (await Mediator.Send(new BeginPersonalityTest())
                 .MapAsync(ToResourceAsync<UserAnswersStreamView, UserAnswersStreamResource>))
                 .Match(Ok, Error);

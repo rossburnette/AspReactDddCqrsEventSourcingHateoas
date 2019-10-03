@@ -60,8 +60,8 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                 command.UserAnswersEventStreamId,
                 InitialPersonalityTestId))
             .SomeWhen(
-                predicate:result => result == default,
-                exception:Error.Conflict($"There is already a reported result for user stream ID: {command.UserAnswersEventStreamId}."))
+                predicate: result => result == default,
+                exception: Error.Conflict($"There is already a reported result for user stream ID: {command.UserAnswersEventStreamId}."))
             .Map(_ => Unit.Value);
 
         private async Task<Option<IReadOnlyList<Domain.Entities.UserQuestionAnswer>, Error>> GetAnswersByStreamAsync(
@@ -142,7 +142,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 
         private static Domain.Entities.UserTestResult CreateAggregate(
             Guid eventStreamId,
-            Guid[] testResultIds) => 
+            Guid[] testResultIds) =>
             new Domain.Entities.UserTestResult(
                 personalityTestId: InitialPersonalityTestId,
                 userIdentifier: eventStreamId,

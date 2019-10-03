@@ -32,11 +32,11 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.CommandH
 
         public override Task<Option<Unit, Error>> HandleAsync(
             SubmitNecessaryData command,
-            CancellationToken cancellationToken) => 
+            CancellationToken cancellationToken) =>
             EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
-            EnsureNoDataForCurrentUserAsync(command).MapAsync(__ => 
+            EnsureNoDataForCurrentUserAsync(command).MapAsync(__ =>
             PublishEventsAsync(
-                Guid.NewGuid(), 
+                Guid.NewGuid(),
                 CreateAggregate(command).SubmitNecessaryData())));
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(SubmitNecessaryData command) =>
             _answerRepository.GetUserAnswerEventStreamByIdAsync(command.UserEventStreamId);

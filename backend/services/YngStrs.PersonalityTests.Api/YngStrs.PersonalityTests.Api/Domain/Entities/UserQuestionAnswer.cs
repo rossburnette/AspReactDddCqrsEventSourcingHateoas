@@ -27,7 +27,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
             TestResultId = testResultId;
         }
 
-
         public Guid Id { get; set; }
 
         /// <remarks>

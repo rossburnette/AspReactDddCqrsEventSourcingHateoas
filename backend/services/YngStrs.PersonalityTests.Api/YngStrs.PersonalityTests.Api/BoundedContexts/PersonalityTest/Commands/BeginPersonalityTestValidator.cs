@@ -6,7 +6,6 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands
     {
         public BeginPersonalityTestValidator()
         {
-            
         }
     }
 }

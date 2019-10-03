@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YngStrs.PersonalityTests.Api</name>
+    </assembly>
+    <members>
+        <member name="T:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController">
+            <summary>
+            Controller responsible for retrieving the main business logic for <c>YngStrs.PersonalityTests.Api</c>.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.GetFullPersonalityTest">
+            GET /api/personality-tests
+            <summary>
+            Retrieves the entire personality test with questions, options and languages.
+            </summary>
+            <response code="200"></response>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.BeginTest">
+            POST /api/personality-tests/begin
+            <summary>
+            Creates event stream for <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/> aggregate.
+            </summary>
+            <returns>
+            Event Stream ID
+            </returns>
+            <response code="200"></response>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController">
+            <summary>
+            Controller responsible for business logic linked with <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/>.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController.RegisterUserAnswer(YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands.RegisterUserAnswer)">
+            <summary>
+            Creates new event for <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/> aggregate.
+            </summary>
+            <param name="command"></param>
+            <response code="201">User answer saved.</response>
+            <response code="404">Event stream ID or question option ID invalid.</response>
+            <response code="409">Similar answer for user already exists.</response>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Controllers.UserDataController">
+            <summary>
+            Controller responsible for properly persisting user data.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserDataController.SaveUserData(YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands.SubmitNecessaryData)">
+            <summary>
+            Saves user email and name after test completed.
+            </summary>
+            <param name="command"></param>
+            <response code="200">Data saved.</response>
+            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands.SubmitNecessaryData.UserEventStreamId"/></response>
+            <response code="409">User data already saved.</response>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController">
+            <summary>
+            A controller responsible for user test result.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.UserResult(YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult)">
+            <summary>
+            Calculates and saves user test result.
+            </summary>
+            <param name="command"></param>
+            <response code="200">
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> identifiers (IDs).
+            </response>
+            <response code="200">User result saved.</response>
+            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
+            <response code="409">Already processed result for user.</response>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle.TestQuestionTitles">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.Language">
+            <summary>
+            Abstract data model that defines the application language data structure.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'languages'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.Language.EnumValue">
+            <!--External References-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.Language.TestResultTitles">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary">
+            <summary>
+            Abstract data model that stores the question option image binary data.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'option_image_binaries'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary.QuestionOptions">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest">
+            <summary>
+            Abstract data model that defines the personality test data structure.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'personality_tests'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest.CustomerId">
+            <!--External References-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest.TestQuestions">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption">
+            <summary>
+            Abstract data model that defines the personality test question option data structure.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'question_options'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption.TestQuestionId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption.QuestionOptionTitles">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOptionTitle">
+            <summary>
+            Abstract data model that defines the personality test question option -> title data structure.
+            This is part of the multi-language support.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'question_option_titles'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOptionTitle.QuestionOptionId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap">
+            <summary>
+            Abstract data model that defines mapping between
+            <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap.TestResult"/> and <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap.QuestionOption"/>.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'result_option_maps'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.ResultOptionMap.QuestionOptionId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion">
+            <summary>
+            Abstract data model that defines the personality test question data structure.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'test_questions'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion.PersonalityTestId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion.QuestionOptions">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestionTitle">
+            <summary>
+            Abstract data model that defines the personality test question -> title data structure.
+            This is part of the multi-language support.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'test_question_titles'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestionTitle.TestQuestionId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult">
+            <summary>
+            Abstract data model that defines the personality test result data structure.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'test_results'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult.PersonalityTestId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult.TestResultTitles">
+            <!--One-To-Many-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResultTitle">
+            <summary>
+            Abstract data model that defines the personality test result -> title data structure.
+            This is part of the multi-language support.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'test_result_titles'.
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestResultTitle.TestResultId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserPersonalData">
+            <summary>
+            Represents a domain objects, linked with event
+            that occurs when a user accepts terms and conditions and submits name and email.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserPersonalData.UserIdentifier">
+            <remarks>
+            Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!
+            </remarks>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Domain.Entities.UserPersonalData.SubmitNecessaryData">
+            <!--Events-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer">
+            <summary>
+            Represents question option, chosen by the current user of the application. 
+            Technically, it is a domain object:
+            1) Considered as event sourced aggregate!
+            2) Linked with the event -  user answer of question!
+            </summary>
+            <remarks>
+            The aggregate stream keeps track of the sequence of answers. 
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.UserIdentifier">
+            <remarks>
+            Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.ChosenOptionId">
+            <!--References-->
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/> identifier (ID).
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.TestResultId">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> identifier (ID).
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.TestQuestionAnswer">
+            <!--Events-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult">
+            <summary>
+            Represents <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> which the user received after made <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest"/>.
+            Technically, it is a domain object:
+            1) Considered as event sourced aggregate!
+            2) Linked with the event - User finished test!
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.UserIdentifier">
+            <remarks>
+            Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!
+            </remarks>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.PersonalityTestId">
+            <!--References-->
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest"/> identifier (ID).
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.TestResultsIds">
+            <summary>
+            Identifiers of <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> that describe user personality.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.Result">
+            <!--Events-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities._Base.MultiLanguageTitleRelationalEntity">
+            <summary>
+            Common properties for all 'descriptive' entities, that provides application multi-language.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities._Base.MultiLanguageTitleRelationalEntity.LanguageId">
+            <!--Many-To-One-Relations-->
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion.UserIdentifier">
+            <summary>
+            Same as event stream ID.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Events.UserResultCalculated.UserIdentifier">
+            <summary>
+            Same as event stream ID.
+            </summary>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.OnModelCreatingConfiguration">
+            <summary>
+            Relational database configuration via Entity Framework Code First Fluent API.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.OnModelCreatingConfiguration.SpecifyTablesName(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Keeps the PostgreSQL naming conventions.
+            </summary>
+            <param name="builder">
+            Configures database metadata:
+            shape of the entities, the relationships between them and how they map to the database.
+            </param>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.OnModelCreatingConfiguration.ConfigurePersonalityTestResultRelations(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <!--Relations configuration-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext">
+            <inheritdoc />
+            <summary>
+            Representation of relationship database.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.PersonalityTests">
+            <!--Dependency Hierarchy-->
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.SaveChanges">
+            <!--Overrides-->
+            <inheritdoc />
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.SaveChangesAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <!--Model Creating-->
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.ApplyAuditInfoRules">
+            <!--Helpers-->
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Program">
+            <summary>
+            Root of the service.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.Extensions.Logging.ILoggerFactory,YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext,YngStrs.PersonalityTests.Api.Configuration.DatabaseSeeder)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+        </member>
+    </members>
+</doc>

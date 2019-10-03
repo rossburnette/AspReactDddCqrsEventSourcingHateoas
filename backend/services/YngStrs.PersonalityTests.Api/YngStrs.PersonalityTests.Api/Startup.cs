@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Api.Filters;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
-using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Configuration;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 
@@ -25,7 +24,9 @@ namespace YngStrs.PersonalityTests.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
@@ -41,6 +42,8 @@ namespace YngStrs.PersonalityTests.Api
             services.AddAutoMapper(typeof(Startup));
 
             services.AddMediatR(typeof(Startup));
+
+            services.AddSwagger();
 
             services.AddCqrs();
 
@@ -65,7 +68,9 @@ namespace YngStrs.PersonalityTests.Api
                 .SetConnectionString(Configuration.GetConnectionString("DefaultConnection"));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
@@ -87,6 +92,8 @@ namespace YngStrs.PersonalityTests.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseSwagger("Personality Test");
 
             app.UseHttpsRedirection();
             app.UseMvc();

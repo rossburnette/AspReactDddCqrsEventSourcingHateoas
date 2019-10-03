@@ -6,6 +6,5 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries
 {
     public class GetInitialPersonalityTest : IQuery<IList<InitPersonalityTestView>>
     {
-        
     }
 }
