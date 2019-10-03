@@ -9,6 +9,11 @@
             Controller responsible for retrieving the main business logic for <c>YngStrs.PersonalityTests.Api</c>.
             </summary>
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController"/> class.
+            </summary>
+        </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.GetFullPersonalityTest">
             GET /api/personality-tests
             <summary>
@@ -22,13 +27,18 @@
             Creates event stream for <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/> aggregate.
             </summary>
             <returns>
-            Event Stream ID
+            Event Stream ID.
             </returns>
             <response code="200"></response>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController">
             <summary>
             Controller responsible for business logic linked with <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/>.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController"/> class.
             </summary>
         </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserAnswersController.RegisterUserAnswer(YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands.RegisterUserAnswer)">
@@ -45,6 +55,11 @@
             Controller responsible for properly persisting user data.
             </summary>
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserDataController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Controllers.UserDataController"/> class.
+            </summary>
+        </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserDataController.SaveUserData(YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands.SubmitNecessaryData)">
             <summary>
             Saves user email and name after test completed.
@@ -57,6 +72,11 @@
         <member name="T:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController">
             <summary>
             A controller responsible for user test result.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController"/> class.
             </summary>
         </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.UserResult(YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult)">
@@ -289,7 +309,7 @@
         </member>
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Events.UserResultCalculated.UserIdentifier">
             <summary>
-            Same as event stream ID.
+            Gets or sets same as event stream ID.
             </summary>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.OnModelCreatingConfiguration">

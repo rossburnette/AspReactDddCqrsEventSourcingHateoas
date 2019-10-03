@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Marten;
+﻿using Marten;
 using Marten.Events;
 using Optional;
 using Optional.Async.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using YngStrs.Common;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Entities;

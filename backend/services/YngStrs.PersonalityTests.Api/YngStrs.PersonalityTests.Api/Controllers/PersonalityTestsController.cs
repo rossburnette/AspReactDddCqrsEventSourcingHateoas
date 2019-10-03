@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Optional.Async.Extensions;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries;
+using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
 using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserQuestionAnswer;
-using Optional.Async.Extensions;
-using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
-using YngStrs.PersonalityTests.Api.Domain.Entities;
 
 namespace YngStrs.PersonalityTests.Api.Controllers
 {
@@ -22,6 +22,9 @@ namespace YngStrs.PersonalityTests.Api.Controllers
     [ApiController]
     public class PersonalityTestsController : ApiController
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonalityTestsController"/> class.
+        /// </summary>
         public PersonalityTestsController(IResourceMapper resourceMapper, IMediator mediator)
             : base(resourceMapper, mediator)
         {
@@ -43,7 +46,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// Creates event stream for <see cref="UserQuestionAnswer"/> aggregate.
         /// </summary>
         /// <returns>
-        /// Event Stream ID
+        /// Event Stream ID.
         /// </returns>
         /// <response code="200"></response>
         [HttpPost("begin", Name = nameof(BeginTest))]

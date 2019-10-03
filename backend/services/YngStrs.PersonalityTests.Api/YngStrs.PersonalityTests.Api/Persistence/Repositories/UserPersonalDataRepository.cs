@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Marten;
+using System;
 using System.Threading.Tasks;
-using Marten;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 

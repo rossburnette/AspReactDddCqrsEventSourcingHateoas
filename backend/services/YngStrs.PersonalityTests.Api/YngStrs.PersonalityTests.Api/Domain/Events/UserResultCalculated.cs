@@ -13,7 +13,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Events
         }
 
         /// <summary>
-        /// Same as event stream ID.
+        /// Gets or sets same as event stream ID.
         /// </summary>
         public Guid UserIdentifier { get; set; }
 

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using YngStrs.Common.Api.Entities.Core;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 
