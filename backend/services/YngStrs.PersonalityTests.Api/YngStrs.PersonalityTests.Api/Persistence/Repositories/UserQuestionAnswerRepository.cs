@@ -26,7 +26,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
         public Task<StreamState> GetUserQuestionAnswerEventStreamByIdAsync(Guid id) =>
             _session.Events.FetchStreamStateAsync(id);
 
-        public Task<Option<StreamState, Error>> GetUserAnswerEventStreamByIdAsync(Guid eventStreamId) => 
+        public Task<Option<StreamState, Error>> GetUserAnswerEventStreamByIdAsync(Guid eventStreamId) =>
             GetUserQuestionAnswerEventStreamByIdAsync(eventStreamId)
                 .SomeNotNullAsync(Error.NotFound($"Event stream with ID '{eventStreamId}' does not exists!"));
 
@@ -41,10 +41,10 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
         {
             var events = await _session.Events.FetchStreamAsync(streamId);
             return events
-                .Select(@event => (UserAnsweredQuestion) @event.Data);
+                .Select(@event => (UserAnsweredQuestion)@event.Data);
         }
 
-        public Task<IReadOnlyList<UserQuestionAnswer>> GetAnswersByUserStreamAsync(Guid streamId) => 
+        public Task<IReadOnlyList<UserQuestionAnswer>> GetAnswersByUserStreamAsync(Guid streamId) =>
             _session
                 .Query<UserQuestionAnswer>()
                 .Where(answer => answer.UserIdentifier == streamId)

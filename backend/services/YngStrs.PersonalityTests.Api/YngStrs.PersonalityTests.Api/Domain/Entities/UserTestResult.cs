@@ -14,7 +14,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     {
         public UserTestResult()
         {
-            
         }
 
         public UserTestResult(Guid personalityTestId, Guid userIdentifier, Guid[] testResultsIds)
@@ -44,7 +43,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public Guid[] TestResultsIds { get; set; }
 
         /// <!--Events-->
-        public UserResultCalculated Result() => 
+        public UserResultCalculated Result() =>
             new UserResultCalculated(UserIdentifier, PersonalityTestId, TestResultsIds);
 
         public void Apply(UserResultCalculated @event)

@@ -16,7 +16,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
     {
         public PersonalityTestDbContext(DbContextOptions<PersonalityTestDbContext> options)
             : base(options)
-        {            
+        {
         }
 
         /// <!--Dependency Hierarchy-->
@@ -102,7 +102,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
 
             foreach (var changedEntry in changedEntries)
             {
-                var entity = (IAuditInfo) changedEntry.Entity;
+                var entity = (IAuditInfo)changedEntry.Entity;
                 if (changedEntry.State == EntityState.Added &&
                     entity.CreatedOn == default)
                 {

@@ -427,7 +427,7 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             "78.jpg"
         };
 
-        private static readonly Dictionary<string, string> ImagesMetaDataDictionary 
+        private static readonly Dictionary<string, string> ImagesMetaDataDictionary
             = new Dictionary<string, string>
             {
                 { "1.jpg", "I'm acting." }, // 0
@@ -438,18 +438,18 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 { "24.jpg", "I'm acting on the merits." }, // 5 ---
                 { "31.jpg", "Multitasking." }, // 6
                 { "32.jpg", "I think carefully." }, // 7 --
-                { "41.jpg", "I'm an adventurer."           }, // 8
-                { "42.jpg", "I'm a researcher."            }, // 9
-                { "45.jpg", "I love to read."              }, // 10
-                { "46.jpg", "I solve problems."            }, // 11
-                { "5.jpg", "I am a dreamer."               }, // 12
-                { "51.jpg", "I trust the facts."           }, // 13
-                { "52.jpg", "I use my imagination."        }, //14
-                { "6.jpg", "I'm sociable."                 }, // 15
-                { "69.jpg", "I'm organized."               }, // 16
-                { "70.jpg", "I jump from task to task."    }, // 17
-                { "77.jpg", "I think abstractly."          }, // 18
-                { "78.jpg", "I am focused on the details." } //19
+                { "41.jpg", "I'm an adventurer." }, // 8
+                { "42.jpg", "I'm a researcher." }, // 9
+                { "45.jpg", "I love to read." }, // 10
+                { "46.jpg", "I solve problems." }, // 11
+                { "5.jpg", "I am a dreamer." }, // 12
+                { "51.jpg", "I trust the facts." }, // 13
+                { "52.jpg", "I use my imagination." }, // 14
+                { "6.jpg", "I'm sociable." }, // 15
+                { "69.jpg", "I'm organized." }, // 16
+                { "70.jpg", "I jump from task to task." }, // 17
+                { "77.jpg", "I think abstractly." }, // 18
+                { "78.jpg", "I am focused on the details." } // 19
             };
 
         private static readonly List<OptionImageBinary> OptionImages = new List<OptionImageBinary>
@@ -495,7 +495,6 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             new OptionImageBinary
                 (BuildOptionImageBinaryByEmbeddedResource("78.jpg", "I am focused on the details.")),
         };
-
 
         private static OptionImageBinary BuildOptionImageBinaryByEmbeddedResource(string fileName, string description)
         {

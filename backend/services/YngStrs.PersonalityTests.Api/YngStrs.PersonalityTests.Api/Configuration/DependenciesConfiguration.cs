@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Marten;
@@ -6,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RiskFirst.Hateoas;
+using Swashbuckle.AspNetCore.Swagger;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
@@ -48,7 +51,6 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             this IServiceCollection services,
             IConfiguration configuration)
         {
-
             var documentStore = DocumentStore.For(options =>
             {
                 var config = configuration.GetSection("EventStore");
@@ -148,6 +150,40 @@ namespace YngStrs.PersonalityTests.Api.Configuration
 
                 services.AddScoped(repositoryType, implementation);
             }
+
+            return services;
+        }
+
+        internal static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(setup =>
+            {
+                var documentationPath = Path.Combine(AppContext.BaseDirectory, "YngStrs.PersonalityTests.Api.Documentation.xml");
+
+                if (!File.Exists(documentationPath))
+                {
+                    return;
+                }
+
+                setup.IncludeXmlComments(documentationPath);
+
+                var securityScheme = new ApiKeyScheme
+                {
+                    In = "header",
+                    Description = "Enter 'Bearer {token}' (don't forget to add 'bearer') into the field below.",
+                    Name = "Authorization",
+                    Type = "apiKey"
+                };
+
+                setup.AddSecurityDefinition("Bearer", securityScheme);
+
+                setup.SwaggerDoc("v1", new Info { Title = "PersonalityTests.Api", Version = "v1" });
+
+                setup.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "Bearer", Enumerable.Empty<string>() },
+                });
+            });
 
             return services;
         }

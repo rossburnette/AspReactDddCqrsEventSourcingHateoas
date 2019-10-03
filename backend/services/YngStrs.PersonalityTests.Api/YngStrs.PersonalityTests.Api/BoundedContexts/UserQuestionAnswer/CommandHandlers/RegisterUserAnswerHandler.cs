@@ -35,10 +35,10 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
             RegisterUserAnswer command,
             CancellationToken cancellationToken) =>
             EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
-            EnsureSimilarAnswerDoesNotExistsAsync(command).FlatMapAsync(__ => 
+            EnsureSimilarAnswerDoesNotExistsAsync(command).FlatMapAsync(__ =>
             EnsureQuestionOptionExistsAsync(command).MapAsync(questionOption =>
             PublishEventsAsync(
-                command.EventStreamId, 
+                command.EventStreamId,
                 CreateAggregate(command, questionOption).TestQuestionAnswer()))));
 
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>

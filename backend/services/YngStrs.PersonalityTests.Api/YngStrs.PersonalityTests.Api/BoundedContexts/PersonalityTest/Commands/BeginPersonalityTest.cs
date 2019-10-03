@@ -5,6 +5,5 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands
 {
     public class BeginPersonalityTest : ICommand<UserAnswersStreamView>
     {
-        
     }
 }

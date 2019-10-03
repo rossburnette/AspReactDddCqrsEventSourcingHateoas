@@ -4,6 +4,5 @@ namespace YngStrs.PersonalityTests.Api.Hateoas.Resources.UserPersonalData
 {
     public class UserDataResource : Resource
     {
-        
     }
 }

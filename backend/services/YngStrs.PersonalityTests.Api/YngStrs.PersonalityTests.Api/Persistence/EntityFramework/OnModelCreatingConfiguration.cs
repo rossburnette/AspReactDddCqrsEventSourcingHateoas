@@ -169,7 +169,6 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
                 .Property(x => x.Value)
                 .HasColumnName("value");
 
-
             builder
                 .Entity<TestResult>()
                 .Property(x => x.PersonalityTestId)

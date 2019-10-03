@@ -14,7 +14,6 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
     {
         public OptionImageBinary()
         {
-            
         }
 
         public OptionImageBinary(OptionImageBinary imageBinary)
@@ -26,7 +25,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
             DeletedOn = imageBinary.DeletedOn;
             Description = imageBinary.Description;
             FileName = imageBinary.FileName;
-            ImageData = imageBinary.ImageData;           
+            ImageData = imageBinary.ImageData;
         }
 
         public string Description { get; set; }
