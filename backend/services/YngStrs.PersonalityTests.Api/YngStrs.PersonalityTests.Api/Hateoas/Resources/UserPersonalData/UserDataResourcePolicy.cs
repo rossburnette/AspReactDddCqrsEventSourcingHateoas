@@ -1,5 +1,5 @@
-﻿using System;
-using RiskFirst.Hateoas;
+﻿using RiskFirst.Hateoas;
+using System;
 using YngStrs.Common.Hateoas.Core;
 
 namespace YngStrs.PersonalityTests.Api.Hateoas.Resources.UserPersonalData

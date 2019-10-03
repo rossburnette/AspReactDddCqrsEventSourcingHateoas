@@ -1,8 +1,8 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Optional.Async.Extensions;
+using System.Net;
+using System.Threading.Tasks;
 using YngStrs.Common;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
@@ -18,7 +18,11 @@ namespace YngStrs.PersonalityTests.Api.Controllers
     [ApiController]
     public class UserDataController : ApiController
     {
-        public UserDataController(IResourceMapper resourceMapper, IMediator mediator) : base(resourceMapper, mediator)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserDataController"/> class.
+        /// </summary>
+        public UserDataController(IResourceMapper resourceMapper, IMediator mediator)
+            : base(resourceMapper, mediator)
         {
         }
 

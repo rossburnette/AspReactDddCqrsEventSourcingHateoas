@@ -1,6 +1,6 @@
-﻿using System.Threading;
+﻿using Optional;
+using System.Threading;
 using System.Threading.Tasks;
-using Optional;
 using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;

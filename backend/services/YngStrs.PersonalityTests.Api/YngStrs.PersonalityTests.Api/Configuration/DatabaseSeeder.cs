@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Baseline;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Baseline;
 using YngStrs.Common.Api;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Marten.Events;
+using Optional;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Marten.Events;
-using Optional;
 using YngStrs.Common;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Events;

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Marten.Events;
+using MediatR;
+using Optional;
+using Optional.Async.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Marten.Events;
-using MediatR;
-using Optional;
-using Optional.Async.Extensions;
 using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;

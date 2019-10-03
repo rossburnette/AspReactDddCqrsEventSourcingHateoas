@@ -1,7 +1,7 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Threading.Tasks;
 using YngStrs.Common;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
@@ -17,6 +17,9 @@ namespace YngStrs.PersonalityTests.Api.Controllers
     [ApiController]
     public class UserAnswersController : ApiController
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserAnswersController"/> class.
+        /// </summary>
         public UserAnswersController(
             IResourceMapper resourceMapper,
             IMediator mediator)
