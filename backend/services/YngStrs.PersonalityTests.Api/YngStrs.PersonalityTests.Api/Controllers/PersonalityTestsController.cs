@@ -10,6 +10,7 @@ using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
+using YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
 using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserQuestionAnswer;
 
@@ -40,6 +41,17 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         [ResponseCache(Duration = int.MaxValue, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> GetFullPersonalityTest() =>
             Ok(await Mediator.Send(new GetInitialPersonalityTest()));
+
+        /// GET /api/personality-tests/structured
+        /// <summary>
+        /// Retrieves the entire personality test structured in a tree.
+        /// </summary>
+        /// <response code="200"></response>
+        [HttpGet("structured", Name = nameof(GetStructuredPersonalityTest))]
+        [ProducesResponseType(typeof(IList<IList<TestQuestionView>>), (int)HttpStatusCode.OK)]
+        [ResponseCache(Duration = int.MaxValue, Location = ResponseCacheLocation.Any, NoStore = false)]
+        public async Task<IActionResult> GetStructuredPersonalityTest() =>
+            Ok(await Mediator.Send(new GetStructuredTest()));
 
         /// POST /api/personality-tests/begin
         /// <summary>

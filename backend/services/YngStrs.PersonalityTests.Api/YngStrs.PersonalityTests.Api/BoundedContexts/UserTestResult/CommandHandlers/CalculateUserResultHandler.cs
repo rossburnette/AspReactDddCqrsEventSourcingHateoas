@@ -48,6 +48,36 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
             ParseResultAsync(answers).FlatMapAsync(topResults =>
             SaveUserTestResultAsync(command, topResults).MapAsync(___ =>
             Task.FromResult(new UserTestResultView(topResults)))))));
+        private static Dictionary<Guid, List<Guid>> ConvertCollectionToTree(
+            IEnumerable<Domain.Entities.UserQuestionAnswer> events)
+        {
+            var dictionary = new Dictionary<Guid, List<Guid>>();
+
+            foreach (var @event in events)
+            {
+                if (dictionary.ContainsKey(@event.TestResultId))
+                {
+                    dictionary[@event.TestResultId].Add(@event.ChosenOptionId);
+                }
+                else
+                {
+                    dictionary.Add(@event.TestResultId, new List<Guid>
+                    {
+                        @event.ChosenOptionId
+                    });
+                }
+            }
+
+            return dictionary;
+        }
+
+        private static Domain.Entities.UserTestResult CreateAggregate(
+            Guid eventStreamId,
+            Guid[] testResultIds) =>
+            new Domain.Entities.UserTestResult(
+                personalityTestId: InitialPersonalityTestId,
+                userIdentifier: eventStreamId,
+                testResultsIds: testResultIds);
 
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(
             CalculateUserResult command) =>
@@ -85,30 +115,6 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
                     CreateAggregate(command.UserAnswersEventStreamId, topResult).Result())
                 .SomeNotNullAsync(
                     Error.Critical("Something wend wrong while persisting the data in the event store!"));
-
-        private static Dictionary<Guid, List<Guid>> ConvertCollectionToTree(
-            IEnumerable<Domain.Entities.UserQuestionAnswer> events)
-        {
-            var dictionary = new Dictionary<Guid, List<Guid>>();
-
-            foreach (var @event in events)
-            {
-                if (dictionary.ContainsKey(@event.TestResultId))
-                {
-                    dictionary[@event.TestResultId].Add(@event.ChosenOptionId);
-                }
-                else
-                {
-                    dictionary.Add(@event.TestResultId, new List<Guid>
-                    {
-                        @event.ChosenOptionId
-                    });
-                }
-            }
-
-            return dictionary;
-        }
-
         private async Task<Guid[]> ParseTopTwoTestResultIdsAsync(
             Dictionary<Guid, List<Guid>> eventTree)
         {
@@ -139,13 +145,5 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHan
 
             return topTestResultIds.ToArray();
         }
-
-        private static Domain.Entities.UserTestResult CreateAggregate(
-            Guid eventStreamId,
-            Guid[] testResultIds) =>
-            new Domain.Entities.UserTestResult(
-                personalityTestId: InitialPersonalityTestId,
-                userIdentifier: eventStreamId,
-                testResultsIds: testResultIds);
     }
 }

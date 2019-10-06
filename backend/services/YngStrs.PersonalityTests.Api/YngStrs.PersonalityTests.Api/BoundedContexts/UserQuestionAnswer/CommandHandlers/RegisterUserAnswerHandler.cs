@@ -10,7 +10,6 @@ using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
-using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.CommandHandlers
@@ -44,7 +43,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>
             _answerRepository.GetUserAnswerEventStreamByIdAsync(command.EventStreamId);
 
-        private Task<Option<QuestionOption, Error>> EnsureQuestionOptionExistsAsync(RegisterUserAnswer command) =>
+        private Task<Option<Domain.Entities.QuestionOption, Error>> EnsureQuestionOptionExistsAsync(RegisterUserAnswer command) =>
             _questionOptionRepository
                 .GetWithResultMapByIdAsync(command.ChosenOptionId)
                 .SomeNotNullAsync(Error.NotFound($"Test question option with ID '{command.ChosenOptionId}' does not exists!"));
@@ -59,7 +58,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
                 Error.Conflict($"There is already such answer for the current user stream!"))
             .Map(_ => Unit.Value);
 
-        private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, QuestionOption option) =>
+        private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, Domain.Entities.QuestionOption option) =>
             new Domain.Entities.UserQuestionAnswer(
                 command.EventStreamId, // Because event stream is unique, it is used as user identifier
                 command.ChosenOptionId, // chosen question option

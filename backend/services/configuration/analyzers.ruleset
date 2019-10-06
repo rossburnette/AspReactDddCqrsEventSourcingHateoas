@@ -23,6 +23,12 @@
     <Rule Id="SA1313" Action="None" />
     <Rule Id="SA1008" Action="None" />
 	<Rule Id="SA1300" Action="None" />
+	<Rule Id="SA1604" Action="None" />
+	<Rule Id="SA1629" Action="None" />
+	<Rule Id="SA1614" Action="None" />
+	<Rule Id="SA1591" Action="None" />
+	<Rule Id="SA1623" Action="None" />
+	<Rule Id="SA1601" Action="None" />
   </Rules>
   <Rules AnalyzerId="System.Runtime.CSharp.Analyzers" RuleNamespace="System.Runtime.CSharp.Analyzers">
     <Rule Id="CA2213" Action="None" />

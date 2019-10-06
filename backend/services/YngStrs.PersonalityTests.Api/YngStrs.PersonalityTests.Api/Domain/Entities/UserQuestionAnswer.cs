@@ -5,13 +5,13 @@ using YngStrs.PersonalityTests.Api.Domain.Events;
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Represents question option, chosen by the current user of the application. 
+    /// Represents question option, chosen by the current user of the application.
     /// Technically, it is a domain object:
     /// 1) Considered as event sourced aggregate!
-    /// 2) Linked with the event -  user answer of question!
+    /// 2) Linked with the event -  user answer of question!.
     /// </summary>
     /// <remarks>
-    /// The aggregate stream keeps track of the sequence of answers. 
+    /// The aggregate stream keeps track of the sequence of answers.
     /// </remarks>
     public class UserQuestionAnswer : IAggregate
     {
@@ -30,7 +30,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         public Guid Id { get; set; }
 
         /// <remarks>
-        /// Same as <see cref="UserAnsweredQuestion"/> event stream!
+        /// Same as <see cref="UserAnsweredQuestion"/> event stream!.
         /// </remarks>
         public Guid UserIdentifier { get; set; }
 
