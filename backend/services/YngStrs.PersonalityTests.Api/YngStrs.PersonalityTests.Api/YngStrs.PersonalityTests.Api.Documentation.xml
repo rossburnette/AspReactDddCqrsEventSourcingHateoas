@@ -21,6 +21,13 @@
             </summary>
             <response code="200"></response>
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.GetStructuredPersonalityTest">
+            GET /api/personality-tests/structured
+            <summary>
+            Retrieves the entire personality test structured in a tree.
+            </summary>
+            <response code="200"></response>
+        </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.BeginTest">
             POST /api/personality-tests/begin
             <summary>
@@ -90,6 +97,15 @@
             <response code="200">User result saved.</response>
             <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
             <response code="409">Already processed result for user.</response>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
+            <summary>
+            Abstract data model that defines the personality test question -> title data structure.
+            This is part of the multi-language support.
+            </summary>
+            <remarks>
+            Stored in the relationship database as 'common_question_title'.
+            </remarks>
         </member>
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle.TestQuestionTitles">
             <!--One-To-Many-Relations-->
@@ -187,8 +203,8 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestionTitle">
             <summary>
-            Abstract data model that defines the personality test question -> title data structure.
-            This is part of the multi-language support.
+            Abstract data model that defines mapping
+            between <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestionTitle.TestQuestion"/> and <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestionTitle.CommonQuestionTitle"/>.
             </summary>
             <remarks>
             Stored in the relationship database as 'test_question_titles'.
@@ -239,18 +255,18 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer">
             <summary>
-            Represents question option, chosen by the current user of the application. 
+            Represents question option, chosen by the current user of the application.
             Technically, it is a domain object:
             1) Considered as event sourced aggregate!
-            2) Linked with the event -  user answer of question!
+            2) Linked with the event -  user answer of question!.
             </summary>
             <remarks>
-            The aggregate stream keeps track of the sequence of answers. 
+            The aggregate stream keeps track of the sequence of answers.
             </remarks>
         </member>
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.UserIdentifier">
             <remarks>
-            Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!
+            Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!.
             </remarks>
         </member>
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer.ChosenOptionId">
@@ -310,6 +326,86 @@
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Events.UserResultCalculated.UserIdentifier">
             <summary>
             Gets or sets same as event stream ID.
+            </summary>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView">
+            <summary>
+            Query from <see cref="F:YngStrs.PersonalityTests.Api.Domain.SQL.PersonalityTestSqlQueries.InitialTest"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.QuestionId">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.QuestionNumber">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.OptionId">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.OptionDescription">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.OptionResult">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.IsTextOnly">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView.Base64Image">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.Id">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/> ID.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.Description">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOptionTitle"/> Description.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.QuestionNumber">
+            <summary>
+            <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion.SerialNumber"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.ResultValue">
+            <summary>
+            <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult.Value"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.IsTextOnly">
+            <summary>
+            <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption.IsTextOnly"/>.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.Base64Image">
+            <summary>
+            <see cref="P:YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary.ImageData"/> converted to Base64 string.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions.TestQuestionView.Id">
+            <summary>
+            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion"/> ID.
+            </summary>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions.TestQuestionView.Options">
+            <summary>
+            Parsed <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/>.
             </summary>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.OnModelCreatingConfiguration">

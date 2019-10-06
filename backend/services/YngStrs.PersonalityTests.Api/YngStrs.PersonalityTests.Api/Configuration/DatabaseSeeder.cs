@@ -481,17 +481,17 @@ namespace YngStrs.PersonalityTests.Api.Configuration
             new OptionImageBinary(
                 BuildOptionImageBinaryByEmbeddedResource("5.jpg", "I am a dreamer.")),
             new OptionImageBinary(
-                BuildOptionImageBinaryByEmbeddedResource("51.jpg", "I trust the facts." )),
+                BuildOptionImageBinaryByEmbeddedResource("51.jpg", "I trust the facts.")),
             new OptionImageBinary(
                 BuildOptionImageBinaryByEmbeddedResource("52.jpg", "I use my imagination.")),
             new OptionImageBinary(
                 BuildOptionImageBinaryByEmbeddedResource("6.jpg", "I'm sociable.")),
             new OptionImageBinary
-                (BuildOptionImageBinaryByEmbeddedResource("69.jpg", "I'm organized." )),
+                (BuildOptionImageBinaryByEmbeddedResource("69.jpg", "I'm organized.")),
             new OptionImageBinary(
-                BuildOptionImageBinaryByEmbeddedResource("70.jpg", "I jump from task to task." )),
+                BuildOptionImageBinaryByEmbeddedResource("70.jpg", "I jump from task to task.")),
             new OptionImageBinary(
-                BuildOptionImageBinaryByEmbeddedResource("77.jpg", "I think abstractly." )),
+                BuildOptionImageBinaryByEmbeddedResource("77.jpg", "I think abstractly.")),
             new OptionImageBinary
                 (BuildOptionImageBinaryByEmbeddedResource("78.jpg", "I am focused on the details.")),
         };
@@ -612,7 +612,8 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                 TestQuestionId = TestQuestions[6].Id,
                 IsTextOnly = true,
                 OptionImageBinaryId = null
-            },new QuestionOption
+            },
+            new QuestionOption
             {
                 Id = Guid.NewGuid(),
                 TestQuestionId = TestQuestions[7].Id,

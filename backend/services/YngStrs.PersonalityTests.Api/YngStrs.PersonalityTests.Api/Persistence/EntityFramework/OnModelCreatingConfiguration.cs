@@ -91,7 +91,6 @@ namespace YngStrs.PersonalityTests.Api.Persistence.EntityFramework
             builder.Entity<QuestionOptionTitle>().ToTable("question_option_titles");
 
             builder.Entity<ResultOptionMap>().ToTable("result_option_maps");
-
         }
 
         internal static void SpecifyPersonalityTestColumnsMapping(this ModelBuilder builder)
