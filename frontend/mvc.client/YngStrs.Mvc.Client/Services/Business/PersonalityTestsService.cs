@@ -26,6 +26,45 @@ namespace YngStrs.Mvc.Client.Services.Business
             _mapper = mapper;
         }
 
+        public async Task<Guid> BeginAsync()
+        {
+            Guid userAnswersEventStreamId;
+
+            var httpClient = _httpClientFactory.CreateClient("PersonalityTestClient");
+
+            var request = new HttpRequestMessage(
+                HttpMethod.Post,
+                "/api/personality-tests/begin");
+
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
+
+            using (var response = await httpClient.SendAsync(
+                request,
+                HttpCompletionOption.ResponseHeadersRead,
+                _cancellationTokenSource.Token))
+            {
+                if (!response.IsSuccessStatusCode)
+                {
+                    switch (response.StatusCode)
+                    {
+                        case System.Net.HttpStatusCode.NotFound:
+                        case System.Net.HttpStatusCode.Unauthorized:
+                            return default;
+                        default:
+                            response.EnsureSuccessStatusCode();
+                            break;
+                    }
+                }
+
+                var stream = await response.Content.ReadAsStreamAsync();
+                var objectResult = stream.ReadAndDeserializeFromJson<UserAnswersStreamServiceModel>();
+                userAnswersEventStreamId = objectResult.UserAnswersEventStreamId;
+            }
+
+            return userAnswersEventStreamId;
+        }
+
         public async Task<IEnumerable<PersonalityTestQuestion>> GetAsync()
         {
             IEnumerable<PersonalityTestServiceModel> result;

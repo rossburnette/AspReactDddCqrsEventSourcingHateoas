@@ -4,15 +4,16 @@ namespace YngStrs.PersonalityTests.Api.Configuration
 {
     internal static class CorsConfiguration
     {
-        internal static IApplicationBuilder UseCors(this IApplicationBuilder applicationBuilder)
+        internal static IApplicationBuilder UseCrossOriginResourceSharing(this IApplicationBuilder applicationBuilder)
         {
-            return applicationBuilder
-                .UseCors(builder => builder
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .WithOrigins("http://localhost:3000", "https://*.yngstrs.net")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+            applicationBuilder.UseCors(builder => builder
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
+                .WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+
+            return applicationBuilder;
         }
     }
 }
