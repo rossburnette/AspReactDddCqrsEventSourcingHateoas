@@ -18,6 +18,7 @@ export function beginTest() {
         dispatch(beginTestSuccess(resource.userAnswersEventStreamId));
       })
       .catch(error => {
+      alert(error);
         dispatch(beginTestFailure());
         throw error;
       });

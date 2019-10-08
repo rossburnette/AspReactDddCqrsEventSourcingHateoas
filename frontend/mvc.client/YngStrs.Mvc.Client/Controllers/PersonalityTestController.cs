@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Services.Core;
@@ -18,8 +16,9 @@ namespace YngStrs.Mvc.Client.Controllers
 
 
         // GET
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.UserAnswersEventStreamId = await _personalityTestsService.BeginAsync();
             return View();
         }
 

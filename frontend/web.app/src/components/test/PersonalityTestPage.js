@@ -1,11 +1,26 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import top from '../../images/test/top-bg.jpg';
 import bottom from "../../images/test/bottom-bg.jpg";
 import boy from "../../images/test/boy.png"
 import makeYou from "../../images/test/what-is-your-sphere-of-development-2.jpg";
 
+import * as testActions from "../../redux/actions/personalityTestActions";
+import {bindActionCreators} from "redux";
+
 class PersonalityTestPage extends React.Component {
+
+    componentDidMount() {
+        const { actions } = this.props;
+    }
+
+    handleBeginTest = async event =>{
+      try {
+          await this.props.actions.beginTest();
+      }catch (e) {
+          alert(e);
+      }
+    };
 
     render() {
         return (
@@ -45,7 +60,12 @@ class PersonalityTestPage extends React.Component {
                                             позиции са
                                             подходящи за теб.</p>
                                         <div className="btn-box">
-                                            <a href="./begin" className="btn-mid btn-red ">ЗАПОЧНИ ТЕСТА</a>
+                                            <a
+                                                href="./begin"
+                                                className="btn-mid btn-red "
+                                                onClick={this.handleBeginTest}>
+                                                ЗАПОЧНИ ТЕСТА
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,4 +81,12 @@ class PersonalityTestPage extends React.Component {
     }
 }
 
-export default PersonalityTestPage;
+function mapDispatchToProps(dispatch) {
+    return{
+        actions:{
+            beginTest: bindActionCreators(testActions.beginTest, dispatch)
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(PersonalityTestPage);

@@ -4,6 +4,7 @@ import history from "../history";
 export const BASE_PERSONALITY_TEST_URL = "https://localhost:5101/api/personality-tests"
 
 export function post(url, body) {
+    alert("post" + url);
     return fetchWrapper(url, "POST", body);
 }
 
