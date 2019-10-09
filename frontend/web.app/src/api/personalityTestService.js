@@ -7,7 +7,7 @@ export function beginTest() {
 }
 
 export function getQuestions() {
-    const url = joinUrlWithRoute(apiClient.BASE_PERSONALITY_TEST_URL, "????"); // TODO
+    const url = joinUrlWithRoute(apiClient.BASE_PERSONALITY_TEST_URL, "structured");
     return apiClient.get(url);
 }
 
