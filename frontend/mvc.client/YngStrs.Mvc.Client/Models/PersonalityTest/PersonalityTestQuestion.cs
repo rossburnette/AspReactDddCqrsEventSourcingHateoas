@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace YngStrs.Mvc.Client.Models
+namespace YngStrs.Mvc.Client.Models.PersonalityTest
 {
     public class PersonalityTestQuestion
     {

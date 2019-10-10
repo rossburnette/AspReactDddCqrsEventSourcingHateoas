@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using YngStrs.Mvc.Client.Models.Chatbot;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Controllers
@@ -22,5 +24,14 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return Json(_chatbotService.GetQuestionsContent());
         }
+
+        [HttpPost]
+        public IActionResult SaveResults([FromForm] ChatbotResultsRootObject rootObject)
+        {
+            var xas = "as";
+            var x = rootObject;
+            return Ok();
+        }
+
     }
 }

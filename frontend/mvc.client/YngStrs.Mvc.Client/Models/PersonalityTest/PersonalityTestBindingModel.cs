@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace YngStrs.Mvc.Client.Models
+namespace YngStrs.Mvc.Client.Models.PersonalityTest
 {
     public class PersonalityTestBindingModel
     {
