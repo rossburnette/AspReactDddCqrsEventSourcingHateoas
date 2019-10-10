@@ -28,8 +28,8 @@ namespace YngStrs.Mvc.Client.Controllers
         [HttpPost]
         public IActionResult SaveResults([FromForm] ChatbotResultsRootObject rootObject)
         {
-            var xas = "as";
-            var x = rootObject;
+            _chatbotService.ArrangeUserAnswers(rootObject);
+
             return Ok();
         }
 
