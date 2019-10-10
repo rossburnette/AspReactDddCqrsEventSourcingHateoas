@@ -1,3 +1,4 @@
+using System.Reflection;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
 using YngStrs.Chatbot.Api.Configuration;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Api.Filters;
@@ -38,7 +40,7 @@ namespace YngStrs.Chatbot.Api
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddSwagger();
 
@@ -57,7 +59,7 @@ namespace YngStrs.Chatbot.Api
                 })
                 .AddFluentValidation(fv =>
                 {
-                    //fv.RegisterValidatorsFromAssemblyContaining<BeginPersonalityTestValidator>();
+                    fv.RegisterValidatorsFromAssemblyContaining<SaveUserAnswersValidator>();
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
