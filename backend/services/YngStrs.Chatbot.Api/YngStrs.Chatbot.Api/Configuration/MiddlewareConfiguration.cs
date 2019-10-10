@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace YngStrs.PersonalityTests.Api.Configuration
+namespace YngStrs.Chatbot.Api.Configuration
 {
     internal static class MiddlewareConfiguration
     {

@@ -1,7 +1,7 @@
 ﻿using Marten;
 using Microsoft.Extensions.Configuration;
 
-namespace YngStrs.PersonalityTests.Api.Configuration
+namespace YngStrs.Chatbot.Api.Configuration
 {
     internal class DatabaseConfiguration
     {
