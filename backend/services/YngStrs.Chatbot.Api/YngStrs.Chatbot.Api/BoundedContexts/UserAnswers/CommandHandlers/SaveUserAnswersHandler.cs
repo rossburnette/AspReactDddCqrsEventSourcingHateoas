@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
@@ -51,14 +52,28 @@ namespace YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.CommandHandlers
 
         private static Task<Option<List<UserChatBotAnswer>, Error>> ParseUserChatBotAnswers(SaveUserAnswers command)
         {
-            var options = new JsonSerializerOptions
+            try
             {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            };
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
 
-            var answers = JsonSerializer.Deserialize<IEnumerable<UserChatBotAnswer>>(command.Res, options);
+                var answers = JsonSerializer.Deserialize<IEnumerable<UserChatBotAnswer>>(command.Res, options);
 
-            return Task.FromResult(answers.ToList().Some<List<UserChatBotAnswer>, Error>());
+                return Task.FromResult(answers.ToList().Some<List<UserChatBotAnswer>, Error>());
+            }
+            catch (Exception e)
+            {
+                var monad = Option.None<List<UserChatBotAnswer>, Error>(
+                    Error.Validation(new[]
+                    {
+                        "Unexpected error occurred while converting user answers!",
+                        $"Exception: {e.Message}."
+                    }));
+
+                return Task.FromResult(monad);
+            }
         }
 
         private Task<Option<Unit, Error>> SaveUserNameAndEmailAsync(

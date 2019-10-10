@@ -34,6 +34,16 @@
             <param name="resourceMapper"></param>
             <param name="mediator"></param>
         </member>
+        <member name="M:YngStrs.Chatbot.Api.Controllers.ChatbotController.SaveUserResults(YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands.SaveUserAnswers)">
+            <summary>
+            Creates new events for aggregates:
+            <see cref="T:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers"/> and
+            <see cref="T:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData"/>.
+            </summary>
+            <param name="command"></param>
+            <response code="201">User answers saved.</response>
+            <response code="400">Could not parse answers or email or name.</response>
+        </member>
         <member name="T:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers">
             <summary>
             Represents a collection of answers by the current user of the application.
