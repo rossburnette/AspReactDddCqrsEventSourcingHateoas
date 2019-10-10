@@ -18,6 +18,17 @@ namespace YngStrs.Chatbot.Api.Domain.Entities
         {
         }
 
+        /// <param name="userIdentifier"></param>
+        /// <param name="email"></param>
+        /// <param name="name"></param>
+        public UserPersonalData(Guid userIdentifier, string email, string name)
+        {
+            Id = Guid.NewGuid();
+            Email = email;
+            Name = name;
+            UserIdentifier = userIdentifier;
+        }
+
         /// <summary>
         /// Aggregate identifier.
         /// </summary>

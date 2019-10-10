@@ -23,10 +23,11 @@ namespace YngStrs.Chatbot.Api.Domain.Entities
         /// <summary>
         /// Initializes a new instance of the <see cref="UserAnswers"/> class.
         /// </summary>
-        public UserAnswers(IEnumerable<UserChatBotAnswer> answers)
+        public UserAnswers(Guid userIdentifier, IEnumerable<UserChatBotAnswer> answers)
         {
             Id = Guid.NewGuid();
             Answers = answers;
+            UserIdentifier = userIdentifier;
         }
 
         /// <summary>
@@ -34,17 +35,21 @@ namespace YngStrs.Chatbot.Api.Domain.Entities
         /// </summary>
         public Guid Id { get; set; }
 
+        public Guid UserIdentifier { get; set; }
+
         /// <summary>
         /// User's chat-bot answers.
         /// </summary>
         public IEnumerable<UserChatBotAnswer> Answers { get; set; }
 
         /// <!--Events-->
-        public UserSubmittedChatbotAnswers SubmitAnswers() => new UserSubmittedChatbotAnswers(Answers);
+        public UserSubmittedChatbotAnswers SubmitAnswers() =>
+            new UserSubmittedChatbotAnswers(UserIdentifier, Answers);
 
         public void Apply(UserSubmittedChatbotAnswers @event)
         {
             Id = Guid.NewGuid();
+            UserIdentifier = @event.UserIdentifier;
             Answers = @event.Answers;
         }
     }
