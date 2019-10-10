@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YngStrs.Chatbot.Api</name>
+    </assembly>
+    <members>
+        <member name="T:YngStrs.Chatbot.Api.Configuration.DependenciesConfiguration">
+            <summary>
+            Helper class for <see cref="T:YngStrs.Chatbot.Api.Startup"/>.
+            </summary>
+        </member>
+        <member name="T:YngStrs.Chatbot.Api.Domain.Repositories.IUserAnswersRepository">
+            <summary>
+            Repository linked with <see cref="!:"/>
+            </summary>
+        </member>
+        <member name="T:YngStrs.Chatbot.Api.Persistence.Repositories.UserAnswersRepository">
+            <inheritdoc cref="T:YngStrs.Chatbot.Api.Domain.Repositories.IUserAnswersRepository"/>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configures the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
