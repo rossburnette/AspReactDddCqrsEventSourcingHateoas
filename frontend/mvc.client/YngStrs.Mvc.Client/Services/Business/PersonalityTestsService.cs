@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Marvin.StreamExtensions;
 using YngStrs.Mvc.Client.Models;
+using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Services.Business

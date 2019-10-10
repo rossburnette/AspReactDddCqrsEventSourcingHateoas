@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YngStrs.Mvc.Client.Models
+namespace YngStrs.Mvc.Client.Models.PersonalityTest
 {
     public class PersonalityTestServiceModel
     {
