@@ -9,6 +9,84 @@
             Helper class for <see cref="T:YngStrs.Chatbot.Api.Startup"/>.
             </summary>
         </member>
+        <member name="T:YngStrs.Chatbot.Api.Controllers.ChatbotController">
+            <summary>
+            A controller responsible for Chat-bot functionality.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Controllers.ChatbotController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Chatbot.Api.Controllers.ChatbotController"/> class.
+            </summary>
+            <param name="resourceMapper"></param>
+            <param name="mediator"></param>
+        </member>
+        <member name="T:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers">
+            <summary>
+            Represents a collection of answers by the current user of the application.
+            Technically, it is a domain object:
+            1) Considered as event sourced aggregate!
+            2) Linked with the event - user completed conversation with the chatbot!
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers"/> class.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers.#ctor(System.Collections.Generic.IEnumerable{YngStrs.Chatbot.Api.Domain.Entities.UserChatBotAnswer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers"/> class.
+            </summary>
+        </member>
+        <member name="P:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers.Id">
+            <summary>
+            Aggregate identifier.
+            </summary>
+        </member>
+        <member name="P:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers.Answers">
+            <summary>
+            User's chat-bot answers.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Domain.Entities.UserAnswers.SubmitAnswers">
+            <!--Events-->
+        </member>
+        <member name="T:YngStrs.Chatbot.Api.Domain.Entities.UserChatBotAnswer">
+            <summary>
+            A domain object that represents the pair: Chatbot Question / User Answer.
+            </summary>
+        </member>
+        <member name="P:YngStrs.Chatbot.Api.Domain.Entities.UserChatBotAnswer.Question">
+            <summary>
+            Chat-bot question.
+            </summary>
+        </member>
+        <member name="P:YngStrs.Chatbot.Api.Domain.Entities.UserChatBotAnswer.Answer">
+            <summary>
+            User answer.
+            </summary>
+        </member>
+        <member name="T:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData">
+            <summary>
+            Represents a domain objects, linked with event
+            that occurs when a user  completed conversation with the chatbot,
+            accepts terms and conditions and submits name and email.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData"/> class.
+            </summary>
+        </member>
+        <member name="P:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData.Id">
+            <summary>
+            Aggregate identifier.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Chatbot.Api.Domain.Entities.UserPersonalData.SubmitNecessaryData">
+            <!--Events-->
+        </member>
         <member name="T:YngStrs.Chatbot.Api.Domain.Repositories.IUserAnswersRepository">
             <summary>
             Repository linked with <see cref="!:"/>
