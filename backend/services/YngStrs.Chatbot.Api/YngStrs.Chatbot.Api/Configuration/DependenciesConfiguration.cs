@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Marten;
+﻿using Marten;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using RiskFirst.Hateoas;
-using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using YngStrs.Chatbot.Api.Domain.Entities;
+using YngStrs.Chatbot.Api.Domain.Events;
 using YngStrs.Chatbot.Api.Domain.Repositories;
 using YngStrs.Chatbot.Api.Persistence.Repositories;
 using YngStrs.Common.Api.DatabaseConnectors;
@@ -47,7 +47,10 @@ namespace YngStrs.Chatbot.Api.Configuration
                 options.Events.DatabaseSchemaName = schemaName;
                 options.DatabaseSchemaName = schemaName;
 
-                var events = typeof(Startup)
+                options.Events.InlineProjections.AggregateStreamsWith<UserAnswers>();
+                options.Events.InlineProjections.AggregateStreamsWith<UserPersonalData>();
+
+                var events = typeof(UserSubmittedChatbotAnswers)
                     .Assembly
                     .GetTypes()
                     .Where(t => typeof(IEvent).IsAssignableFrom(t))
@@ -148,10 +151,7 @@ namespace YngStrs.Chatbot.Api.Configuration
 
                 setup.IncludeXmlComments(documentationPath);
 
-
-
                 setup.SwaggerDoc("v1", new OpenApiInfo { Title = "Chatbot API", Version = "v1" });
-
             });
 
             return services;
