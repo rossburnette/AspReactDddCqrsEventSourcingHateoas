@@ -50,6 +50,7 @@ namespace YngStrs.Mvc.Client.Configuration
         {
             serviceCollection.AddTransient<IPersonalityTestsService, PersonalityTestsService>();
             serviceCollection.AddTransient<IChatbotService, ChatbotService>();
+            serviceCollection.AddTransient<IUserIdentifierService, UserIdentifierService>();
 
             return serviceCollection;
         }

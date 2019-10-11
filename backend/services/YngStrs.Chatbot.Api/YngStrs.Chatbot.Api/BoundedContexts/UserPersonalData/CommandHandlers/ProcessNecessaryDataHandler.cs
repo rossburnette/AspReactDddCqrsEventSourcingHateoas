@@ -35,7 +35,7 @@ namespace YngStrs.Chatbot.Api.BoundedContexts.UserPersonalData.CommandHandlers
             ProcessNecessaryData command)
         {
             var name = command.RawData.GetStringBetween("name=", "&email");
-            var email = command.RawData.GetStringBetween("&email", "&hr-checkbox");
+            var email = command.RawData.GetStringBetween("&email=", "&hr-checkbox");
 
             if (name == string.Empty)
             {
@@ -51,7 +51,7 @@ namespace YngStrs.Chatbot.Api.BoundedContexts.UserPersonalData.CommandHandlers
                         Error.Validation($"Cannot parse user's email from: {command.RawData}")));
             }
 
-            var aggregate = new Domain.Entities.UserPersonalData(command.EventStreamId, email, name);
+            var aggregate = new Domain.Entities.UserPersonalData(command.EventStreamId, email.UrlDecode(), name);
 
             return Task.FromResult(aggregate.Some<Domain.Entities.UserPersonalData, Error>());
         }

@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Mvc.Client.Models.Chatbot;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Controllers
 {
-    public class ChatbotController : Controller
+    public class ChatbotController : BaseController
     {
         private readonly IChatbotService _chatbotService;
 
@@ -21,6 +20,7 @@ namespace YngStrs.Mvc.Client.Controllers
             return View();
         }
 
+        // GET
         public IActionResult Questions()
         {
             return Json(_chatbotService.GetQuestionsContent());
@@ -38,6 +38,5 @@ namespace YngStrs.Mvc.Client.Controllers
 
             return BadRequest();
         }
-
     }
 }

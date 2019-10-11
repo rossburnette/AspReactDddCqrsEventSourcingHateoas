@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Marvin.StreamExtensions;
 using Newtonsoft.Json;
-using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.Chatbot;
 using YngStrs.Mvc.Client.Services.Core;
 
@@ -37,7 +34,7 @@ namespace YngStrs.Mvc.Client.Services.Business
         {
             var httpClient = _httpClientFactory.CreateClient("ChatbotClient");
 
-            var sendUserAnswersModel = new SendUserAnswersModel(rootObject, Guid.NewGuid()); //TODO: from cookies
+            var sendUserAnswersModel = new SendUserAnswersModel(rootObject, Guid.NewGuid()); //TODO: this
 
             var response = await httpClient
                 .PostAsJsonAsync("/api/Chatbot/save-results", sendUserAnswersModel);
