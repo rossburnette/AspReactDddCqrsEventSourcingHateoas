@@ -2,8 +2,8 @@
 {
     public class ChatbotResultsRootObject
     {
-        public string res { get; set; }
+        public string Res { get; set; }
 
-        public string form { get; set; }
+        public string Form { get; set; }
     }
 }

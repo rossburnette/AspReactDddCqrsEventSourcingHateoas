@@ -29,6 +29,11 @@ namespace YngStrs.Mvc.Client.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveResults([FromForm] ChatbotResultsRootObject rootObject)
         {
+            if (rootObject.Res == "[]")
+            {
+                return BadRequest();
+            }
+
             var isSuccessResult = await _chatbotService.SaveUserChatbotAnswersAsync(rootObject);
 
             if (isSuccessResult)
