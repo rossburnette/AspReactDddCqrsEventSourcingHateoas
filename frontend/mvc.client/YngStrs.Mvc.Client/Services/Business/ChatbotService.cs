@@ -44,8 +44,8 @@ namespace YngStrs.Mvc.Client.Services.Business
 
         public void ArrangeUserAnswers(ChatbotResultsRootObject rootObject)
         {
-           var userAnswers = JsonConvert.DeserializeObject<IEnumerable<UserChatBotAnswer>>(rootObject.res);
-           var userData = rootObject.form; //"name=dsfsfds&email=admin%40jbet.org&hr-checkbox=1"
+           var userAnswers = JsonConvert.DeserializeObject<IEnumerable<UserChatBotAnswer>>(rootObject.Res);
+           var userData = rootObject.Form; //"name=dsfsfds&email=admin%40jbet.org&hr-checkbox=1"
         }
     }
 }

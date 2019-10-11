@@ -6,8 +6,8 @@ namespace YngStrs.Mvc.Client.Models.Chatbot
     {
         public SendUserAnswersModel(ChatbotResultsRootObject rootObject, Guid eventStreamId)
         {
-            form = rootObject.form;
-            res = rootObject.res;
+            Form = rootObject.Form;
+            Res = rootObject.Res;
             EventStreamId = eventStreamId;
         }
 
