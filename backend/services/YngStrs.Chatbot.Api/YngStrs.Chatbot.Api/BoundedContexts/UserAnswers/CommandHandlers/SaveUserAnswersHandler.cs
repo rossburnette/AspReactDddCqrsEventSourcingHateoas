@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Newtonsoft.Json;
 using Optional;
 using Optional.Async.Extensions;
 using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
@@ -14,6 +15,7 @@ using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.CommandHandlers
 {
@@ -54,12 +56,7 @@ namespace YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.CommandHandlers
         {
             try
             {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                };
-
-                var answers = JsonSerializer.Deserialize<IEnumerable<UserChatBotAnswer>>(command.Res, options);
+                var answers = JsonConvert.DeserializeObject<IEnumerable<UserChatBotAnswer>>(command.Res);
 
                 return Task.FromResult(answers.ToList().Some<List<UserChatBotAnswer>, Error>());
             }
