@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 
 namespace YngStrs.Mvc.Client.Services.Core
@@ -10,6 +9,6 @@ namespace YngStrs.Mvc.Client.Services.Core
     {
         Task<IEnumerable<PersonalityTestQuestion>> GetAsync();
 
-        Task<Guid> BeginAsync();
+        Task<Guid> GetAnswersEventStreamIdAsync();
     }
 }

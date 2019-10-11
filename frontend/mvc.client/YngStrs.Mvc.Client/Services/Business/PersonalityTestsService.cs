@@ -27,7 +27,7 @@ namespace YngStrs.Mvc.Client.Services.Business
             _mapper = mapper;
         }
 
-        public async Task<Guid> BeginAsync()
+        public async Task<Guid> GetAnswersEventStreamIdAsync()
         {
             Guid userAnswersEventStreamId;
 

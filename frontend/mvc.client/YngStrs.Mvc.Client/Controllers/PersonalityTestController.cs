@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
 
 namespace YngStrs.Mvc.Client.Controllers
 {
-    public class PersonalityTestController : Controller
+    public class PersonalityTestController : BaseController
     {
         private readonly IPersonalityTestsService _personalityTestsService;
 
@@ -15,15 +14,13 @@ namespace YngStrs.Mvc.Client.Controllers
             _personalityTestsService = personalityTestsService;
         }
 
-
         // GET
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            ViewBag.UserAnswersEventStreamId = await _personalityTestsService.BeginAsync();
             return View();
         }
 
-        //
+        // GET
         public async Task<IActionResult> Start()
         {
             var testModel = await _personalityTestsService.GetAsync();
@@ -44,6 +41,7 @@ namespace YngStrs.Mvc.Client.Controllers
             return Json(result);
         }
 
+        // GET
         public IActionResult Done()
         {
             return View();
