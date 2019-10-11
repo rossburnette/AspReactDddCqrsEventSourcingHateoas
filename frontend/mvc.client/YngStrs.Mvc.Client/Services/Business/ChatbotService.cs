@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -36,21 +37,10 @@ namespace YngStrs.Mvc.Client.Services.Business
         {
             var httpClient = _httpClientFactory.CreateClient("ChatbotClient");
 
-            var request = new HttpRequestMessage(
-                HttpMethod.Post,
-                "/api/Chatbot/save-results");
+            var sendUserAnswersModel = new SendUserAnswersModel(rootObject, Guid.NewGuid()); //TODO: from cookies
 
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
-
-            var serializedRootObject = JsonConvert.SerializeObject(rootObject);
-
-            request.Content = new StringContent(serializedRootObject)
-
-            var response = await httpClient.SendAsync(
-                request,
-                HttpCompletionOption.ResponseHeadersRead,
-                CancellationToken.None);
+            var response = await httpClient
+                .PostAsJsonAsync("/api/Chatbot/save-results", sendUserAnswersModel);
 
             return response.IsSuccessStatusCode;
         }

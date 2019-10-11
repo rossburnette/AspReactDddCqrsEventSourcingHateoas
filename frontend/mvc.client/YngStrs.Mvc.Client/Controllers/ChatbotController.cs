@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Mvc.Client.Models.Chatbot;
 using YngStrs.Mvc.Client.Services.Core;
@@ -26,11 +27,16 @@ namespace YngStrs.Mvc.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveResults([FromForm] ChatbotResultsRootObject rootObject)
+        public async Task<IActionResult> SaveResults([FromForm] ChatbotResultsRootObject rootObject)
         {
-            _chatbotService.ArrangeUserAnswers(rootObject);
+            var isSuccessResult = await _chatbotService.SaveUserChatbotAnswersAsync(rootObject);
 
-            return Ok();
+            if (isSuccessResult)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
         }
 
     }
