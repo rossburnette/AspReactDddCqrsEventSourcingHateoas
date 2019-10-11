@@ -27,6 +27,22 @@ namespace YngStrs.Mvc.Client.Configuration
 
                 });
 
+            serviceCollection
+                .AddHttpClient("ChatbotClient", client =>
+                {
+                    client.BaseAddress = new Uri("https://localhost:5201");
+                    client.Timeout = new TimeSpan(0, 0, 30);
+                    client.DefaultRequestHeaders.Clear();
+
+                })
+                .AddHttpMessageHandler(handler => new TimeOutDelegatingHandler(TimeSpan.FromSeconds(20)))
+                .AddHttpMessageHandler(handler => new RetryPolicyDelegatingHandler(2))
+                .ConfigurePrimaryHttpMessageHandler(handler => new HttpClientHandler
+                {
+                    AutomaticDecompression = System.Net.DecompressionMethods.GZip
+
+                });
+
             return serviceCollection;
         }
 
