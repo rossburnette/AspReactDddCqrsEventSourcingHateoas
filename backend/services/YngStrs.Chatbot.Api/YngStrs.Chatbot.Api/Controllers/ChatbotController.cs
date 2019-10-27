@@ -39,7 +39,11 @@ namespace YngStrs.Chatbot.Api.Controllers
         public async Task<IActionResult> SaveUserResults([FromBody] SaveUserAnswers command) =>
             (await Mediator.Send(command))
             .Match(
-                some: _ => CreatedAtAction(nameof(SaveUserResults), null),
+                some: _ => CreatedAtAction(nameof(SaveUserResults), new
+                {
+                    status = true,
+                    errors = new string[0]
+                }),
                 none: Error);
     }
 }
