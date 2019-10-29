@@ -2,7 +2,6 @@
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ using YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.QueryHandlers
 {
-    public class GetStructuredTestHandler : IQueryHandler<GetStructuredTest, IList<TestQuestionView>>
+    public class GetStructuredTestHandler : IQueryHandler<GetStructuredTest, RootTestView>
     {
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
@@ -25,10 +24,11 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.QueryHand
             _mediator = mediator;
         }
 
-        public async Task<IList<TestQuestionView>> Handle(GetStructuredTest request, CancellationToken cancellationToken)
+        public async Task<RootTestView> Handle(GetStructuredTest request, CancellationToken cancellationToken)
         {
             var data = await FetchDataFromDatabaseAsync(cancellationToken);
-            return StructureDataInTree(data);
+            var questionsWithOptions = StructureDataInTree(data);
+            return new RootTestView(questionsWithOptions);
         }
 
         private List<TestQuestionView> StructureDataInTree(

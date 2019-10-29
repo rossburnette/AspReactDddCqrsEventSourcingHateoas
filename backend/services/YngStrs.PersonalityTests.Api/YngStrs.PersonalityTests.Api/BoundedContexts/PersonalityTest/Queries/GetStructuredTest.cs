@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using YngStrs.Common.Cqrs.Core;
-using YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions;
+﻿using YngStrs.Common.Cqrs.Core;
+using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries
 {
-    public class GetStructuredTest : IQuery<IList<TestQuestionView>>
+    public class GetStructuredTest : IQuery<RootTestView>
     {
     }
 }

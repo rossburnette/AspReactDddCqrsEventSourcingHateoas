@@ -48,7 +48,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// </summary>
         /// <response code="200"></response>
         [HttpGet("structured", Name = nameof(GetStructuredPersonalityTest))]
-        [ProducesResponseType(typeof(IList<IList<TestQuestionView>>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(RootTestView), (int)HttpStatusCode.OK)]
         [ResponseCache(Duration = int.MaxValue, Location = ResponseCacheLocation.Any, NoStore = false)]
         public async Task<IActionResult> GetStructuredPersonalityTest() =>
             Ok(await Mediator.Send(new GetStructuredTest()));
