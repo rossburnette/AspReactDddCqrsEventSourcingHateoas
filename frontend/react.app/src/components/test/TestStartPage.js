@@ -4,21 +4,22 @@ import * as testActions from "../../redux/actions/testActions";
 import PropTypes from "prop-types";
 import QuestionsList from "./QuestionsList";
 
-const TestStartPage = ({ loadTestQuestions, testQuestions }) =>{
-  useEffect(() =>{
-      loadTestQuestions();
-  }, []);
-
-  return(
-      <div>
-          <p>Questions</p>
-          <QuestionsList testQuestions={testQuestions}/>
-      </div>
-  )
+const TestStartPage = ({ loadTestQuestions, testQuestions }) => {
+    useEffect(() =>{
+       loadTestQuestions();
+    }, []);
+    
+    return(
+        <>
+            <p>Questions</p>
+            <QuestionsList testQuestions={testQuestions}/>
+        </>
+    );
 };
 
 TestStartPage.propTypes = {
-    testQuestions: PropTypes.func.isRequired
+    testQuestions: PropTypes.array.isRequired,
+    loadTestQuestions: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
