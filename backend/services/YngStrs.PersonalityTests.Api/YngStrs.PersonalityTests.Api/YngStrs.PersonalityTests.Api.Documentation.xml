@@ -368,6 +368,23 @@
             <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.OptionImageBinary"/>.
             </summary>
         </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.RootTestView">
+            <summary>
+            Root view model for a personality test.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.RootTestView.#ctor(System.Collections.Generic.List{YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions.TestQuestionView})">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.RootTestView"/> struct.
+            Basic constructor.
+            </summary>
+            <param name="testQuestions"></param>
+        </member>
+        <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.RootTestView.TestQuestions">
+            <summary>
+            Structures test questions with options.
+            </summary>
+        </member>
         <member name="P:YngStrs.PersonalityTests.Api.Domain.Views.QuestionOptions.QuestionOptionView.Id">
             <summary>
             <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption"/> ID.
