@@ -22,7 +22,6 @@ export function httpDelete(url) {
 function fetchWrapper(url, method, body) {
     return fetch(url, {
         method,
-        credentials: "include",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json"

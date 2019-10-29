@@ -8,12 +8,15 @@ export function loadTestQuestionsSuccess(testQuestions) {
     };
 }
 
-export function loadTestQuestions(testQuestions) {
+export function loadTestQuestions() {
     return function (dispatch) {
         return testApi
             .getQuestions()
             .then(value =>
-                dispatch(loadTestQuestionsSuccess(value.testQuestions))
+                console.log(value)
+            )
+            .catch(err =>
+                alert(err)
             );
     }
 }

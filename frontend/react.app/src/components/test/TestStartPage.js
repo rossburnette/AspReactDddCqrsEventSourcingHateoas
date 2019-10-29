@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 import QuestionsList from "./QuestionsList";
 
 const TestStartPage = ({ loadTestQuestions, testQuestions }) => {
-    useEffect(() =>{
-       loadTestQuestions();
-    }, []);
+    useEffect(() =>{ loadTestQuestions(); }, []);
     
     return(
         <>
@@ -18,8 +16,8 @@ const TestStartPage = ({ loadTestQuestions, testQuestions }) => {
 };
 
 TestStartPage.propTypes = {
-    testQuestions: PropTypes.array.isRequired,
-    loadTestQuestions: PropTypes.func.isRequired
+    loadTestQuestions: PropTypes.func.isRequired,
+    testQuestions: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
@@ -29,7 +27,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    testQuestions: testActions.loadTestQuestions
+    loadTestQuestions: testActions.loadTestQuestions
 };
 
 export default connect(
