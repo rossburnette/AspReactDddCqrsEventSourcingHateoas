@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import * as testActions from "../../redux/actions/testActions";
+import { loadTestQuestions } from "../../redux/actions/testActions";
 import PropTypes from "prop-types";
 import QuestionsList from "./QuestionsList";
 
 const TestStartPage = ({ loadTestQuestions, testQuestions }) => {
-    useEffect(() =>{ loadTestQuestions(); }, []);
-    
+
+    useEffect(() => {
+        loadTestQuestions().then(quest => {console.log(quest)});
+    });
+
     return(
         <>
             <p>Questions</p>
@@ -16,8 +19,8 @@ const TestStartPage = ({ loadTestQuestions, testQuestions }) => {
 };
 
 TestStartPage.propTypes = {
-    loadTestQuestions: PropTypes.func.isRequired,
-    testQuestions: PropTypes.array.isRequired
+    testQuestions: PropTypes.array.isRequired,
+    loadTestQuestions: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -27,7 +30,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    loadTestQuestions: testActions.loadTestQuestions
+    loadTestQuestions
 };
 
 export default connect(
