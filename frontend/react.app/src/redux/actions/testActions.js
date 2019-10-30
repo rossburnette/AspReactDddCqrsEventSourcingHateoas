@@ -12,11 +12,11 @@ export function loadTestQuestions() {
     return function (dispatch) {
         return testApi
             .getQuestions()
-            .then(value =>
-                console.log(value)
-            )
-            .catch(err =>
-                alert(err)
-            );
+            .then(questions =>{
+                dispatch(loadTestQuestionsSuccess(questions));
+            })
+            .catch(err =>{
+               alert(err);
+            });
     }
 }

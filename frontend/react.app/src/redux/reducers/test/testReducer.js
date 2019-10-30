@@ -3,7 +3,8 @@ import initialState from "../../initialState";
 
 export function testReducer(state = initialState.testQuestions, action) {
     if (action.type === ActionTypes.LOAD_TEST_QUESTIONS_SUCCESS) {
-        return { ...state, testQuestions: action.testQuestions };
+        console.log("reducer:  " + action.testQuestions)
+        return action.testQuestions;
     } else {
         return state;
     }
