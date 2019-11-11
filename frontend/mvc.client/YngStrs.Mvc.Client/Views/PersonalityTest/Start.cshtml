@@ -6,27 +6,7 @@
 
 <div class="total-wrap-content">
 
-    <div class="template-top-section">
-        <div class="bg-image" style="background-image: url('../../images/test/top-bg.jpg')"></div>
-        <div class="main-wrap-content">
-            <div class="template-top-grid anim-block">
-                <div class="image-item anim-elem left-visibility">
-                    <div class="boy-image">
-                        <img src="~/images/test/boy.png" alt="boy" class="template-image">
-                    </div>
-                </div>
-                <div class="content-item anim-elem top-visibility">
-                    <div class="content-box">
-                        <div class="content-box-inner">
-                            <p>
-                                Открий твоите <br /><strong>#силни страни</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @await Html.PartialAsync("_TemplateTopSectionPartial")
 
     <section class="section-test-layout anim-block">
         <div class="main-wrap-content anim-elem top delay-03">
@@ -58,11 +38,7 @@
             </div>
         </div>
     </section>
-    
-    
 
-    <div class="templete-bottom-section">
-        <div class="bg-image" style="background-image: url('../../images/test/bottom-bg.jpg')"></div>
-    </div>
+    @await Html.PartialAsync("_TemplateBottomSectionPartial")
 
 </div>
