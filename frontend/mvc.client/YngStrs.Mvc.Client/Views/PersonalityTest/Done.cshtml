@@ -1,25 +1,6 @@
 ﻿<div class="total-wrap-content">
-    <div class="template-top-section">
-        <div class="bg-image" style="background-image:url('../../images/test/top-bg.jpg')"></div>
-        <div class="main-wrap-content">
-            <div class="template-top-grid anim-block">
-                <div class="image-item anim-elem left-visibility done">
-                    <div class="boy-image">
-                        <img src="~/images/test/boy.png" alt="boy" class="template-image">
-                    </div>
-                </div>
-                <div class="content-item anim-elem top-visibility done">
-                    <div class="content-box">
-                        <div class="content-box-inner">
-                            <p>
-                                Открий твоите <br><strong>#силни страни</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    @await Html.PartialAsync("_TemplateTopSectionWithBoyPartial")
 
     <section class="test-result-section">
         <div class="bg-image" style="background-image:url('../../images/test/test-result-image.jpg')"></div>
@@ -36,7 +17,8 @@
                         </div>
                         <p class="p-mid-s">Ако искаш да получиш резултатите си и те автоматично да бъдат насочени към HR отдел, попълни формата по-долу. </p>
                         <div class="wrapper login-section">
-                            <form action="./interview/save_results" method="POST" id="get-results-email" class="test-form"> // TODO
+                            <form action="./interview/save_results" method="POST" id="get-results-email" class="test-form">
+                                // TODO
                                 <div class="form-row required">
                                     <label for="name" class="label-form-fld">Име</label>
                                     <input type="text" class="form-fld" id="name" name="name">
@@ -146,7 +128,6 @@
             </div>
         </div>
     </div>
-    <div class="templete-bottom-section">
-        <div class="bg-image" style="background-image:url('../../images/test/bottom-bg.jpg')"></div>
-    </div>
+
+    @await Html.PartialAsync("_TemplateBgBottomSectionPartial")
 </div>

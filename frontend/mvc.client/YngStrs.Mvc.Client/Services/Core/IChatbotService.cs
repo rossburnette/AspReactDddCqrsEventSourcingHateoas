@@ -7,7 +7,7 @@ namespace YngStrs.Mvc.Client.Services.Core
     {
         object GetQuestionsContent();
 
-        Task<bool> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject);
+        Task<SaveChatbotResultsServiceModel> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject);
 
         void ArrangeUserAnswers(ChatbotResultsRootObject rootObject);
     }

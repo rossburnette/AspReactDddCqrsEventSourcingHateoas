@@ -62,7 +62,7 @@ namespace YngStrs.Mvc.Client.Services.Business
                 }
 
                 var stream = await response.Content.ReadAsStreamAsync();
-                var objectResult = stream.ReadAndDeserializeFromJson<UserAnswersStreamServiceModel>();
+                var objectResult = await stream.ReadAndDeserializeFromJsonAsync<UserAnswersStreamServiceModel>();
                 userAnswersEventStreamId = objectResult.UserAnswersEventStreamId;
             }
 
