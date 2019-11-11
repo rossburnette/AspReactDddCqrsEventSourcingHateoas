@@ -11,6 +11,9 @@ using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
 
+using static YngStrs.Mvc.Client.GlobalConstants.HttpClientNames;
+using static YngStrs.Mvc.Client.GlobalConstants.PersonalityTestApiUrls;
+
 namespace YngStrs.Mvc.Client.Services.Business
 {
     public class PersonalityTestsService : IPersonalityTestsService
@@ -66,15 +69,29 @@ namespace YngStrs.Mvc.Client.Services.Business
             return userAnswersEventStreamId;
         }
 
-        public async Task<IEnumerable<PersonalityTestQuestion>> GetAsync()
+        /// <summary>
+        /// Returns ready to use model with questions and its options.
+        /// </summary>
+        public async Task<PersonalityTestViewModel> GetPersonalityTestAsync()
         {
-            IEnumerable<PersonalityTestServiceModel> result;
+            var serviceResult = await FetchStructuredAsync();
+            return serviceResult == null ?
+                null :
+                new PersonalityTestViewModel(serviceResult);
+        }
 
-            var httpClient = _httpClientFactory.CreateClient("PersonalityTestClient");
+        /// <summary>
+        /// Pulls the Personality Test questions and options from the API.
+        /// </summary>
+        public async Task<StructuredTestServiceModel> FetchStructuredAsync()
+        {
+            StructuredTestServiceModel result;
+
+            var httpClient = _httpClientFactory.CreateClient(TestClientName);
 
             var request = new HttpRequestMessage(
                 HttpMethod.Get,
-                "/api/personality-tests");
+                GetStructuredUrlPath);
 
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
@@ -90,7 +107,7 @@ namespace YngStrs.Mvc.Client.Services.Business
                     {
                         case System.Net.HttpStatusCode.NotFound:
                         case System.Net.HttpStatusCode.Unauthorized:
-                            return new List<PersonalityTestQuestion>();
+                            return default;
                         default:
                             response.EnsureSuccessStatusCode();
                             break;
@@ -98,42 +115,10 @@ namespace YngStrs.Mvc.Client.Services.Business
                 }
 
                 var stream = await response.Content.ReadAsStreamAsync();
-                result = stream.ReadAndDeserializeFromJson<IEnumerable<PersonalityTestServiceModel>>();
+                result = stream.ReadAndDeserializeFromJson<StructuredTestServiceModel>();
             }
 
-            return ConvertServiceModelToView(result);
-        }
-
-        private IEnumerable<PersonalityTestQuestion> ConvertServiceModelToView(
-            IEnumerable<PersonalityTestServiceModel> serviceModels)
-        {
-            IDictionary<Guid, List<QuestionOption>> dictionary = new Dictionary<Guid, List<QuestionOption>>();
-
-            foreach (var serviceModel in serviceModels)
-            {
-                if (dictionary.ContainsKey(serviceModel.QuestionId))
-                {
-                    dictionary[serviceModel.QuestionId].Add(
-                        _mapper.Map<QuestionOption>(serviceModel));
-                }
-                else
-                {
-                    var questionOptions = new List<QuestionOption>
-                    {
-                        _mapper.Map<QuestionOption>(serviceModel)
-                    };
-
-                    dictionary.Add(serviceModel.QuestionId, questionOptions);
-                }
-            }
-
-            return dictionary
-                .Select(item => new PersonalityTestQuestion
-                {
-                    QuestionId = item.Key,
-                    QuestionOptions = item.Value
-                })
-                .ToList();
+            return result;
         }
     }
 }

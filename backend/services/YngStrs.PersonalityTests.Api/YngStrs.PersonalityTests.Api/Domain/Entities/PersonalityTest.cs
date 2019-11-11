@@ -5,7 +5,7 @@ using YngStrs.Common.Api.Entities;
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Abstract data model that defines the personality test data structure.
+    /// Abstract data model that defines the personality test .
     /// </summary>
     /// <remarks>
     /// Stored in the relationship database as 'personality_tests'.

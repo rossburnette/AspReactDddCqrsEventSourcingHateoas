@@ -1,4 +1,4 @@
-﻿@model List<PersonalityTestQuestion>
+﻿@model PersonalityTestViewModel
 
 @{
     ViewData["Title"] = "Personality test start";
@@ -37,86 +37,17 @@
                         <form action="Form" method="POST" id="test">
                             <div class="cover-div"></div>
 
-                            <div class="question active section-test-layout-question images-question">
-                                <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
-                                <div class="section-test-layout-answer cf">
-                                    <!-- answer 1 -->
-                                    <div class="answer question-item-img">
-                                        <h3 class="new-test-title">Действам</h3>
-                                        <label class="container">
-                                            <input type="radio" data-answer="1" data-question="1" name="question-1" value="action">
-                                            <img src="~/images/test/1.jpg" class="responsive question-item-bckg" alt="first image">
-                                        </label>
-                                    </div>
-                                    <!-- answer 2 -->
-                                    <div class="answer question-item-img">
-                                        <h3 class="new-test-title">Намирам решение</h3>
-                                        <label class="container">
-                                            <input type="radio" data-answer="2" data-question="1" name="question-1" value="process">
-                                            <img src="~/images/test/2.jpg" class="responsive question-item-bckg" alt="second image">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+                            @await Html.PartialAsync("_ActiveQuestionSectionPartial")
 
-                            @for (var i = 1; i < Model.Count; i++)
+                            @foreach (var question in Model.AllButFirstQuestions)
                             {
-                                if (Model[i].QuestionOptions.First().IsTextOnly)
+                                if (question.Options.First().IsTextOnly)
                                 {
-                                    <div class="question section-test-layout-question text-question">
-                                        <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
-                                        <div class="section-test-layout-answer cf">
-                                            @for (var j = 0; j < Model[i].QuestionOptions.Count; j++)
-                                            {
-                                                <div class="answer question-item-onlyText">
-                                                    <label class="container">
-                                                        <input 
-                                                            type="radio"
-                                                            data-answer="@(j + 1)"
-                                                            data-question="@Model[i].QuestionOptions[j].QuestionNumber"
-                                                            name="question-@Model[i].QuestionOptions[j].QuestionNumber"
-                                                            value="@Model[i].QuestionOptions[j].OptionResult">
-                                                        <span class="only-text-content">
-                                                            <span class="only-text-content-wrap">
-                                                                <span class="checkmark"></span>
-                                                                <span class="question-item-txt">
-                                                                    <span>
-                                                                        @Model[i].QuestionOptions[j].OptionDescription
-                                                                    </span>
-                                                                </span>
-                                                            </span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
+                                    @await Html.PartialAsync("_TextQuestionSectionPartial", question)
                                 }
                                 else
                                 {
-                                    <div class="question section-test-layout-question images-question">
-                                        <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
-                                        <div class="section-test-layout-answer cf">
-                                            @for (var j = 0; j < Model[i].QuestionOptions.Count; j++)
-                                            {
-                                                <div class="answer question-item-img">
-                                                    <h3 class="new-test-title">
-                                                        @Model[i].QuestionOptions[j].OptionDescription
-                                                    </h3>
-                                                    <label class="container">
-                                                        <input type="radio"
-                                                               data-answer="@(j + 1)"
-                                                               data-question="@Model[i].QuestionOptions[j].QuestionNumber"
-                                                               name="question-@Model[i].QuestionOptions[j].QuestionNumber"
-                                                               value="@Model[i].QuestionOptions[j].OptionResult">
-                                                        <img src="data:image/png;base64, @Model[i].QuestionOptions[j].Base64Image"
-                                                             class="responsive question-item-bckg"
-                                                             alt="@Model[i].QuestionOptions[j].OptionResult">
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
+                                    @await Html.PartialAsync("_ImageQuestionSectionPartial", question)
                                 }
                             }
                         </form>

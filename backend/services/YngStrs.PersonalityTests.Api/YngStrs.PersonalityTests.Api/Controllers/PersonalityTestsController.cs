@@ -10,7 +10,6 @@ using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Queries;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests;
-using YngStrs.PersonalityTests.Api.Domain.Views.TestQuestions;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserQuestionAnswers;
 using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserQuestionAnswer;
 

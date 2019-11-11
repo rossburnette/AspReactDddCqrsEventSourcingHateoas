@@ -4,7 +4,7 @@ using YngStrs.PersonalityTests.Api.Domain.Entities._Base;
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Abstract data model that defines the personality test result -> title data structure.
+    /// Abstract data model that defines the personality test result -> title .
     /// This is part of the multi-language support.
     /// </summary>
     /// <remarks>

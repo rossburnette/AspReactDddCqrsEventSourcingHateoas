@@ -100,7 +100,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
-            Abstract data model that defines the personality test question -> title data structure.
+            Abstract data model that defines the personality test question -> title .
             This is part of the multi-language support.
             </summary>
             <remarks>
@@ -112,7 +112,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.Language">
             <summary>
-            Abstract data model that defines the application language data structure.
+            Abstract data model that defines the application language .
             </summary>
             <remarks>
             Stored in the relationship database as 'languages'.
@@ -137,7 +137,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest">
             <summary>
-            Abstract data model that defines the personality test data structure.
+            Abstract data model that defines the personality test .
             </summary>
             <remarks>
             Stored in the relationship database as 'personality_tests'.
@@ -151,7 +151,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOption">
             <summary>
-            Abstract data model that defines the personality test question option data structure.
+            Abstract data model that defines the personality test question option .
             </summary>
             <remarks>
             Stored in the relationship database as 'question_options'.
@@ -165,7 +165,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.QuestionOptionTitle">
             <summary>
-            Abstract data model that defines the personality test question option -> title data structure.
+            Abstract data model that defines the personality test question option -> title .
             This is part of the multi-language support.
             </summary>
             <remarks>
@@ -189,7 +189,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestQuestion">
             <summary>
-            Abstract data model that defines the personality test question data structure.
+            Abstract data model that defines the personality test question .
             </summary>
             <remarks>
             Stored in the relationship database as 'test_questions'.
@@ -215,7 +215,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult">
             <summary>
-            Abstract data model that defines the personality test result data structure.
+            Abstract data model that defines the personality test result .
             </summary>
             <remarks>
             Stored in the relationship database as 'test_results'.
@@ -229,7 +229,7 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResultTitle">
             <summary>
-            Abstract data model that defines the personality test result -> title data structure.
+            Abstract data model that defines the personality test result -> title .
             This is part of the multi-language support.
             </summary>
             <remarks>
