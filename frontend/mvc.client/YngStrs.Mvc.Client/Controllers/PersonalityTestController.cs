@@ -26,8 +26,8 @@ namespace YngStrs.Mvc.Client.Controllers
         /// </summary>
         public async Task<IActionResult> Start()
         {
-            var testModel = await _personalityTestsService.GetStructuredAsync();
-            return View(testModel);
+            var viewModel = await _personalityTestsService.GetPersonalityTestAsync();
+            return View(viewModel);
         }
 
         [HttpPost]

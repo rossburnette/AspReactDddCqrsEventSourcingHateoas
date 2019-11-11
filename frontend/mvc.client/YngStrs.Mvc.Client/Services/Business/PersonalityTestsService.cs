@@ -69,7 +69,21 @@ namespace YngStrs.Mvc.Client.Services.Business
             return userAnswersEventStreamId;
         }
 
-        public async Task<StructuredTestServiceModel> GetStructuredAsync()
+        /// <summary>
+        /// Returns ready to use model with questions and its options.
+        /// </summary>
+        public async Task<PersonalityTestViewModel> GetPersonalityTestAsync()
+        {
+            var serviceResult = await FetchStructuredAsync();
+            return serviceResult == null ?
+                null :
+                new PersonalityTestViewModel(serviceResult);
+        }
+
+        /// <summary>
+        /// Pulls the Personality Test questions and options from the API.
+        /// </summary>
+        public async Task<StructuredTestServiceModel> FetchStructuredAsync()
         {
             StructuredTestServiceModel result;
 
@@ -105,38 +119,6 @@ namespace YngStrs.Mvc.Client.Services.Business
             }
 
             return result;
-        }
-
-        private IEnumerable<PersonalityTestQuestion> ConvertServiceModelToView(
-            IEnumerable<PersonalityTestServiceModel> serviceModels)
-        {
-            IDictionary<Guid, List<QuestionOption>> dictionary = new Dictionary<Guid, List<QuestionOption>>();
-
-            foreach (var serviceModel in serviceModels)
-            {
-                if (dictionary.ContainsKey(serviceModel.QuestionId))
-                {
-                    dictionary[serviceModel.QuestionId].Add(
-                        _mapper.Map<QuestionOption>(serviceModel));
-                }
-                else
-                {
-                    var questionOptions = new List<QuestionOption>
-                    {
-                        _mapper.Map<QuestionOption>(serviceModel)
-                    };
-
-                    dictionary.Add(serviceModel.QuestionId, questionOptions);
-                }
-            }
-
-            return dictionary
-                .Select(item => new PersonalityTestQuestion
-                {
-                    QuestionId = item.Key,
-                    QuestionOptions = item.Value
-                })
-                .ToList();
         }
     }
 }

@@ -9,6 +9,8 @@ namespace YngStrs.Mvc.Client.Services.Core
     {
         Task<Guid> GetAnswersEventStreamIdAsync();
 
-        Task<StructuredTestServiceModel> GetStructuredAsync();
+        Task<PersonalityTestViewModel> GetPersonalityTestAsync();
+
+        Task<StructuredTestServiceModel> FetchStructuredAsync();
     }
 }

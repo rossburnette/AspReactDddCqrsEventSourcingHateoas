@@ -1,0 +1,27 @@
+﻿<div class="question section-test-layout-question text-question">
+    <div class="section-test-layout-title medium">Избери едно от двете твърдения, което в по-голяма степен се отнася за теб.</div>
+    <div class="section-test-layout-answer cf">
+        @for (var j = 0; j < Model.Options.Count; j++)
+        {
+            <div class="answer question-item-onlyText">
+                <label class="container">
+                    <input type="radio"
+                           data-answer="@(j + 1)"
+                           data-question="@Model.Options[j].QuestionNumber"
+                           name="question-@Model.Options[j].QuestionNumber"
+                           value="@Model.Options[j].ResultValue">
+                    <span class="only-text-content">
+                        <span class="only-text-content-wrap">
+                            <span class="checkmark"></span>
+                            <span class="question-item-txt">
+                                <span>
+                                    @Model.Options[j].Description
+                                </span>
+                            </span>
+                        </span>
+                    </span>
+                </label>
+            </div>
+        }
+    </div>
+</div>
