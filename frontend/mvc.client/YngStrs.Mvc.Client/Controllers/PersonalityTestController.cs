@@ -20,10 +20,13 @@ namespace YngStrs.Mvc.Client.Controllers
             return View();
         }
 
-        // GET
+        /// GET /PersonalityTest/Start
+        /// <summary>
+        /// Personality test page.
+        /// </summary>
         public async Task<IActionResult> Start()
         {
-            var testModel = await _personalityTestsService.GetAsync();
+            var testModel = await _personalityTestsService.GetStructuredAsync();
             return View(testModel);
         }
 

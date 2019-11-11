@@ -5,6 +5,8 @@ using YngStrs.Mvc.Client.DelegatingHandlers;
 using YngStrs.Mvc.Client.Services.Business;
 using YngStrs.Mvc.Client.Services.Core;
 
+using static YngStrs.Mvc.Client.GlobalConstants.HttpClientNames;
+
 namespace YngStrs.Mvc.Client.Configuration
 {
     internal static class DependenciesConfiguration
@@ -12,9 +14,9 @@ namespace YngStrs.Mvc.Client.Configuration
         internal static IServiceCollection AddHttpClients(this IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddHttpClient("PersonalityTestClient", client =>
+                .AddHttpClient(TestClientName, client =>
                 {
-                     client.BaseAddress = new Uri("https://localhost:5101");
+                     client.BaseAddress = new Uri("https://localhost:5101"); // TODO: Hosting dependent
                      client.Timeout = new TimeSpan(0, 0, 30);
                      client.DefaultRequestHeaders.Clear();
 

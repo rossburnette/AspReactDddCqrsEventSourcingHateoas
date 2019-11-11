@@ -6,7 +6,7 @@ using YngStrs.Common.Api.Entities;
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
 {
     /// <summary>
-    /// Abstract data model that defines the application language data structure.
+    /// Abstract data model that defines the application language .
     /// </summary>
     /// <remarks>
     /// Stored in the relationship database as 'languages'.

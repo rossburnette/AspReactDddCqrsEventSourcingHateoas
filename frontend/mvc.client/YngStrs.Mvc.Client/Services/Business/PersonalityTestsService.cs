@@ -11,6 +11,9 @@ using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
 
+using static YngStrs.Mvc.Client.GlobalConstants.HttpClientNames;
+using static YngStrs.Mvc.Client.GlobalConstants.PersonalityTestApiUrls;
+
 namespace YngStrs.Mvc.Client.Services.Business
 {
     public class PersonalityTestsService : IPersonalityTestsService
@@ -66,15 +69,15 @@ namespace YngStrs.Mvc.Client.Services.Business
             return userAnswersEventStreamId;
         }
 
-        public async Task<IEnumerable<PersonalityTestQuestion>> GetAsync()
+        public async Task<StructuredTestServiceModel> GetStructuredAsync()
         {
-            IEnumerable<PersonalityTestServiceModel> result;
+            StructuredTestServiceModel result;
 
-            var httpClient = _httpClientFactory.CreateClient("PersonalityTestClient");
+            var httpClient = _httpClientFactory.CreateClient(TestClientName);
 
             var request = new HttpRequestMessage(
                 HttpMethod.Get,
-                "/api/personality-tests");
+                GetStructuredUrlPath);
 
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Headers.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
@@ -90,7 +93,7 @@ namespace YngStrs.Mvc.Client.Services.Business
                     {
                         case System.Net.HttpStatusCode.NotFound:
                         case System.Net.HttpStatusCode.Unauthorized:
-                            return new List<PersonalityTestQuestion>();
+                            return default;
                         default:
                             response.EnsureSuccessStatusCode();
                             break;
@@ -98,10 +101,10 @@ namespace YngStrs.Mvc.Client.Services.Business
                 }
 
                 var stream = await response.Content.ReadAsStreamAsync();
-                result = stream.ReadAndDeserializeFromJson<IEnumerable<PersonalityTestServiceModel>>();
+                result = stream.ReadAndDeserializeFromJson<StructuredTestServiceModel>();
             }
 
-            return ConvertServiceModelToView(result);
+            return result;
         }
 
         private IEnumerable<PersonalityTestQuestion> ConvertServiceModelToView(

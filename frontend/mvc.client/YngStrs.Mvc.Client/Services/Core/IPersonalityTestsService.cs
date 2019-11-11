@@ -7,8 +7,8 @@ namespace YngStrs.Mvc.Client.Services.Core
 {
     public interface IPersonalityTestsService
     {
-        Task<IEnumerable<PersonalityTestQuestion>> GetAsync();
-
         Task<Guid> GetAnswersEventStreamIdAsync();
+
+        Task<StructuredTestServiceModel> GetStructuredAsync();
     }
 }
