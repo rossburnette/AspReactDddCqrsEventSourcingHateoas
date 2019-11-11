@@ -1,0 +1,6 @@
+... [] 
+Request URL: http://demo.edesign.bg/git/soge_young/chatbot/save_results
+Request Method: POST
+Status Code: 200 OK
+
+{"status":false,"errors":[]}
