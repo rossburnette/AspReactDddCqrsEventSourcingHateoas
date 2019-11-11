@@ -34,14 +34,14 @@ namespace YngStrs.Mvc.Client.Controllers
                 return BadRequest();
             }
 
-            var isSuccessResult = await _chatbotService.SaveUserChatbotAnswersAsync(rootObject);
+            var result = await _chatbotService.SaveUserChatbotAnswersAsync(rootObject);
 
-            if (isSuccessResult)
+            if (result == null)
             {
-                return Ok();
+                return BadRequest();
             }
 
-            return BadRequest();
+            return Ok(result);
         }
     }
 }

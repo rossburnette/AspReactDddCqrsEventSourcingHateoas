@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using YngStrs.Mvc.Client.Models.Chatbot;
 using YngStrs.Mvc.Client.Services.Core;
 
+using static YngStrs.Mvc.Client.GlobalConstants.HttpClientNames;
+using static YngStrs.Mvc.Client.GlobalConstants.ChatbotApiUrls;
+
 namespace YngStrs.Mvc.Client.Services.Business
 {
     public class ChatbotService : IChatbotService
@@ -30,16 +33,23 @@ namespace YngStrs.Mvc.Client.Services.Business
             return questionsResourceStream.ReadAndDeserializeFromJson();
         }
 
-        public async Task<bool> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject)
+        public async Task<SaveChatbotResultsServiceModel> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject)
         {
-            var httpClient = _httpClientFactory.CreateClient("ChatbotClient");
+            var httpClient = _httpClientFactory.CreateClient(ChatbotClientName);
 
             var sendUserAnswersModel = new SendUserAnswersModel(rootObject, Guid.NewGuid()); //TODO: this
 
             var response = await httpClient
-                .PostAsJsonAsync("/api/Chatbot/save-results", sendUserAnswersModel);
+                .PostAsJsonAsync(SaveUserResultsUrlPath, sendUserAnswersModel);
 
-            return response.IsSuccessStatusCode;
+            if (!response.IsSuccessStatusCode)
+            {
+                return default;
+            }
+
+            var stream = await response.Content.ReadAsStreamAsync();
+
+            return await stream.ReadAndDeserializeFromJsonAsync<SaveChatbotResultsServiceModel>();
         }
 
         public void ArrangeUserAnswers(ChatbotResultsRootObject rootObject)

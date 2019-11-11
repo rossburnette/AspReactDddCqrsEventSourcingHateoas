@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
 using YngStrs.Chatbot.Api.Domain.Entities;
 using YngStrs.Common.Api;
