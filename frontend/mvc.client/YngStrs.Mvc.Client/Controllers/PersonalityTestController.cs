@@ -37,11 +37,17 @@ namespace YngStrs.Mvc.Client.Controllers
         /// <param name="i">Test Stats & Answers</param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult SubmitAnswers(
+        public async Task<IActionResult> SubmitAnswers(
             [FromQuery]string v,
             [FromBody]PersonalityTestBindingModel i)
         {
-            var x = i;
+            var requestSucceeded = await _personalityTestsService.SaveUserTestResultsAsync(i);
+
+            if (!requestSucceeded)
+            {
+                return BadRequest();
+            }
+
             var result = new
             {
                 redirect = "https://localhost:5001/PersonalityTest/Done",

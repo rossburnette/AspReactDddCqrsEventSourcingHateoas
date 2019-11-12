@@ -12,7 +12,6 @@ using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
-using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Domain.Views.UserTestResult;
 
