@@ -37,11 +37,10 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <response code="200">User test result saved.</response>
         /// <response code="404">Invalid <see cref="SaveUserTestResult.UserIdentifier"/></response>
         [HttpPost("save", Name = nameof(PersistUserTestResult))]
-        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> PersistUserTestResult(SaveUserTestResult command)
-        {
-            return Ok();
-        }
+        [ProducesResponseType(typeof(Unit), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Error), (int) HttpStatusCode.NotFound)]
+        public async Task<IActionResult> PersistUserTestResult(SaveUserTestResult command) =>
+            (await Mediator.Send(command))
+            .Match(_ => Ok(), Error);
     }
 }
