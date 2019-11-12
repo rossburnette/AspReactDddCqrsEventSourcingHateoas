@@ -62,8 +62,8 @@ namespace YngStrs.PersonalityTests.Api.Controllers
         /// <response code="200"></response>
         [HttpPost("begin", Name = nameof(BeginTest))]
         [ProducesResponseType(typeof(UserAnswersStreamResource), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> BeginTest() =>
-            (await Mediator.Send(new BeginPersonalityTest())
+        public async Task<IActionResult> BeginTest([FromBody]BeginPersonalityTest command) =>
+            (await Mediator.Send(command)
                 .MapAsync(ToResourceAsync<UserAnswersStreamView, UserAnswersStreamResource>))
                 .Match(Ok, Error);
     }

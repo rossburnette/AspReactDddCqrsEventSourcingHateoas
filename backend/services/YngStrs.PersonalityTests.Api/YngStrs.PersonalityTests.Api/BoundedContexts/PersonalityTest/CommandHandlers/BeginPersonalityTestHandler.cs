@@ -28,7 +28,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.CommandHa
             BeginPersonalityTest command,
             CancellationToken cancellationToken)
         {
-            var eventStream = _answerRepository.CreateUserQuestionAnswerEventStream();
+            var eventStream = _answerRepository.CreateUserQuestionAnswerEventStream(command);
             var result = new UserAnswersStreamView(eventStream.Id).Some<UserAnswersStreamView, Error>();
             return Task.FromResult(result);
         }
