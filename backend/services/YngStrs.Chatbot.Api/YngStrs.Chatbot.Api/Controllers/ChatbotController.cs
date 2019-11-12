@@ -27,16 +27,6 @@ namespace YngStrs.Chatbot.Api.Controllers
         {
         }
 
-        /// POST /api/chatbot/begin
-        /// <summary>
-        /// Creates event stream for <see cref="UserAnswers"/> aggregate.
-        /// </summary>
-        /// <param name="command"></param>
-        [HttpPost("event-stream")]
-        public async Task<IActionResult> RegisterUserAnswersEventStream(RegisterEventStream command) =>
-            (await Mediator.Send(command))
-            .Match(_ => Ok(), Error);
-
         /// <summary>
         /// Creates new events for aggregates:
         /// <see cref="UserAnswers"/> and

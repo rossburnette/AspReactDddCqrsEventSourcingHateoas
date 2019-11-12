@@ -20,12 +20,5 @@ namespace YngStrs.Chatbot.Api.Persistence.Repositories
         {
             _session = session;
         }
-
-        public async Task<EventStream> CreateUserAnswersEventStreamAsync(RegisterEventStream command)
-        {
-            var eventStream = _session.Events.StartStream<UserAnswers>();
-            await _session.SaveChangesAsync();
-            return eventStream;
-        }
     }
 }
