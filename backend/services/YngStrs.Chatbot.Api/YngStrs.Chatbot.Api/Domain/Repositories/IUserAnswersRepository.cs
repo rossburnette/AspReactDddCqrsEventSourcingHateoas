@@ -10,6 +10,5 @@ namespace YngStrs.Chatbot.Api.Domain.Repositories
     /// </summary>
     public interface IUserAnswersRepository
     {
-        Task<EventStream> CreateUserAnswersEventStreamAsync(RegisterEventStream command);
     }
 }
