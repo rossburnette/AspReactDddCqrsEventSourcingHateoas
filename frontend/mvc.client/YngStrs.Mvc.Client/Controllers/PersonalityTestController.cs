@@ -30,8 +30,14 @@ namespace YngStrs.Mvc.Client.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Receives current user answers and results.
+        /// </summary>
+        /// <param name="v">Date of submission.</param>
+        /// <param name="i">Test Stats & Answers</param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult Form(
+        public IActionResult SubmitAnswers(
             [FromQuery]string v,
             [FromBody]PersonalityTestBindingModel i)
         {
