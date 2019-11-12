@@ -26,8 +26,12 @@ namespace YngStrs.Mvc.Client.Controllers
             return Json(_chatbotService.GetQuestionsContent());
         }
 
+        /// <summary>
+        /// Sends chatbot question/user answer collection to the API.
+        /// </summary>
         [HttpPost]
-        public async Task<IActionResult> SaveResults([FromForm] ChatbotResultsRootObject rootObject)
+        public async Task<IActionResult> SaveResults(
+            [FromForm] ChatbotResultsRootObject rootObject)
         {
             if (rootObject.Res == "[]")
             {
