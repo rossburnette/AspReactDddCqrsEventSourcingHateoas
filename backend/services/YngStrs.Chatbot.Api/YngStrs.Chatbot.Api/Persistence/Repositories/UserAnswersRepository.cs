@@ -1,4 +1,8 @@
-﻿using Marten;
+﻿using System.Threading.Tasks;
+using Marten;
+using Marten.Events;
+using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
+using YngStrs.Chatbot.Api.Domain.Entities;
 using YngStrs.Chatbot.Api.Domain.Repositories;
 
 namespace YngStrs.Chatbot.Api.Persistence.Repositories
@@ -15,6 +19,13 @@ namespace YngStrs.Chatbot.Api.Persistence.Repositories
         public UserAnswersRepository(IDocumentSession session)
         {
             _session = session;
+        }
+
+        public async Task<EventStream> CreateUserAnswersEventStreamAsync(RegisterEventStream command)
+        {
+            var eventStream = _session.Events.StartStream<UserAnswers>();
+            await _session.SaveChangesAsync();
+            return eventStream;
         }
     }
 }

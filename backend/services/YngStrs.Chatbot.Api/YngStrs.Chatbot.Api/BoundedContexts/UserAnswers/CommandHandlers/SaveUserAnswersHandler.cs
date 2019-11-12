@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Newtonsoft.Json;
 using Optional;
 using Optional.Async.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
 using YngStrs.Chatbot.Api.BoundedContexts.UserPersonalData.Commands;
 using YngStrs.Chatbot.Api.Domain.Entities;
@@ -15,7 +14,6 @@ using YngStrs.Common;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.CommandHandlers
 {
