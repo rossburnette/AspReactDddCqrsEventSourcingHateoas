@@ -31,7 +31,7 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             if (rootObject.Res == "[]")
             {
-                return BadRequest();
+                return Ok(new SaveChatbotResultsModel(false));
             }
 
             var result = await _chatbotService.SaveUserChatbotAnswersAsync(rootObject);

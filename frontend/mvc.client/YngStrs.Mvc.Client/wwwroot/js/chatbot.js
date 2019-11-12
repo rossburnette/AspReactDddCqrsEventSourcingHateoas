@@ -2610,7 +2610,7 @@ var SoGeYoung = {
                 // cleans answer container from form on finish
                 // $('.soge-answer').empty();
                 // cleans answer container from form on finish
-                var parsed = JSON.parse(data);
+                var parsed = data;
                 var checkAnswers = JSON.parse(chatBotData.res).length;
                 try {
                     if (parsed.status === false && checkAnswers > 0) {
