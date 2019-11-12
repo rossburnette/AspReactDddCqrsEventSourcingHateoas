@@ -16,10 +16,14 @@ namespace YngStrs.Mvc.Client.Services.Business
     public class ChatbotService : IChatbotService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IUserIdentifierService _identifierService;
 
-        public ChatbotService(IHttpClientFactory httpClientFactory)
+        public ChatbotService(
+            IHttpClientFactory httpClientFactory,
+            IUserIdentifierService identifierService)
         {
             _httpClientFactory = httpClientFactory;
+            _identifierService = identifierService;
         }
 
         public object GetQuestionsContent()
@@ -37,7 +41,7 @@ namespace YngStrs.Mvc.Client.Services.Business
         {
             var httpClient = _httpClientFactory.CreateClient(ChatbotClientName);
 
-            var sendUserAnswersModel = new SendUserAnswersModel(rootObject, Guid.NewGuid()); //TODO: this
+            var sendUserAnswersModel = new SendUserAnswersModel(rootObject, _identifierService.GetAnswersEventStreamId());
 
             var response = await httpClient
                 .PostAsJsonAsync(SaveUserResultsUrlPath, sendUserAnswersModel);

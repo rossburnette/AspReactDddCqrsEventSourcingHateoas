@@ -1,33 +1,30 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using YngStrs.Mvc.Client.Configuration;
 using YngStrs.Mvc.Client.Services.Core;
+
+using static YngStrs.Mvc.Client.GlobalConstants.UserIdentifier;
 
 namespace YngStrs.Mvc.Client.Services.Business
 {
     public class UserIdentifierService : IUserIdentifierService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IPersonalityTestsService _personalityTestsService;
 
-        public UserIdentifierService(
-            IHttpContextAccessor httpContextAccessor,
-            IPersonalityTestsService personalityTestsService)
+        public UserIdentifierService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-            _personalityTestsService = personalityTestsService;
         }
 
-        public async Task<Guid> SetUserAnswersEventStreamIdAsync()
+        public Guid SetUserAnswersEventStreamId()
         {
-            var answersEventStreamId = await _personalityTestsService.GetAnswersEventStreamIdAsync();
+            var answersEventStreamId = Guid.NewGuid();
 
             _httpContextAccessor
                 .HttpContext
                 .Response
                 .Cookies
-                .Append(Constants.UserIdentifier.UserAnswersEventStreamId, answersEventStreamId.ToString());
+                .Append(UserAnswersEventStreamId, answersEventStreamId.ToString());
 
             return answersEventStreamId;
         }
@@ -38,7 +35,7 @@ namespace YngStrs.Mvc.Client.Services.Business
                 .HttpContext
                 .Request
                 .Cookies
-                .TryGetValue(Constants.UserIdentifier.UserAnswersEventStreamId, out var streamId);
+                .TryGetValue(UserAnswersEventStreamId, out var streamId);
 
             if (!hasStream)
             {
