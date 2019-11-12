@@ -98,6 +98,14 @@
             <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
             <response code="409">Already processed result for user.</response>
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.PersistUserTestResult(YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.SaveUserTestResult)">
+            <summary>
+            Saves the user test answers and test statistics in the event store.
+            </summary>
+            <param name="command">Client binding model.</param>
+            <response code="200">User test result saved.</response>
+            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
+        </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
             Abstract data model that defines the personality test question -> title .
