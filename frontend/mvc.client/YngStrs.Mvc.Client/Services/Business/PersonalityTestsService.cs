@@ -19,13 +19,18 @@ namespace YngStrs.Mvc.Client.Services.Business
     public class PersonalityTestsService : IPersonalityTestsService
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IUserIdentifierService _identifierService;
+
 
         private readonly CancellationTokenSource _cancellationTokenSource =
             new CancellationTokenSource();
 
-        public PersonalityTestsService(IHttpClientFactory httpClientFactory)
+        public PersonalityTestsService(
+            IHttpClientFactory httpClientFactory,
+            IUserIdentifierService identifierService)
         {
             _httpClientFactory = httpClientFactory;
+            _identifierService = identifierService;
         }
 
         /// <summary>
@@ -78,6 +83,23 @@ namespace YngStrs.Mvc.Client.Services.Business
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Sends a request to the API to save the user test results.
+        /// </summary>
+        /// <param name="bindingModel"></param>
+        /// <returns>if successfully persisted.</returns>
+        public async Task<bool> SaveUserTestResultsAsync(PersonalityTestBindingModel bindingModel)
+        {
+            var httpClient = _httpClientFactory.CreateClient(TestClientName);
+
+            var requestBody = new SaveUserTestAnswers(bindingModel, _identifierService.GetAnswersEventStreamId());
+
+            var response = await httpClient
+                .PostAsJsonAsync(SaveResultsUrlPath, requestBody);
+
+            return response.IsSuccessStatusCode;
         }
     }
 }

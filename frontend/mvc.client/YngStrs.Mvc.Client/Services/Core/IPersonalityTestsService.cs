@@ -8,5 +8,7 @@ namespace YngStrs.Mvc.Client.Services.Core
         Task<PersonalityTestViewModel> GetPersonalityTestAsync();
 
         Task<StructuredTestServiceModel> FetchStructuredAsync();
+
+        Task<bool> SaveUserTestResultsAsync(PersonalityTestBindingModel bindingModel);
     }
 }
