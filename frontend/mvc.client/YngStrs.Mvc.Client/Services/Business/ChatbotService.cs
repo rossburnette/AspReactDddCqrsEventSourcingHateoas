@@ -33,7 +33,7 @@ namespace YngStrs.Mvc.Client.Services.Business
             return questionsResourceStream.ReadAndDeserializeFromJson();
         }
 
-        public async Task<SaveChatbotResultsServiceModel> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject)
+        public async Task<SaveChatbotResultsModel> SaveUserChatbotAnswersAsync(ChatbotResultsRootObject rootObject)
         {
             var httpClient = _httpClientFactory.CreateClient(ChatbotClientName);
 
@@ -49,9 +49,10 @@ namespace YngStrs.Mvc.Client.Services.Business
 
             var stream = await response.Content.ReadAsStreamAsync();
 
-            return await stream.ReadAndDeserializeFromJsonAsync<SaveChatbotResultsServiceModel>();
+            return await stream.ReadAndDeserializeFromJsonAsync<SaveChatbotResultsModel>();
         }
 
+        [Obsolete]
         public void ArrangeUserAnswers(ChatbotResultsRootObject rootObject)
         {
            var userAnswers = JsonConvert.DeserializeObject<IEnumerable<UserChatBotAnswer>>(rootObject.Res);
