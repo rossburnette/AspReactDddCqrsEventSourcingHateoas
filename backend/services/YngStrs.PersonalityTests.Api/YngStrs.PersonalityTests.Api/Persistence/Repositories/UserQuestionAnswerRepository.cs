@@ -33,7 +33,7 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
         public EventStream CreateUserQuestionAnswerEventStream(BeginPersonalityTest command)
         {
             var eventStream = _session.Events.StartStream<UserQuestionAnswer>(command.Identifier);
-            _session.SaveChangesAsync();
+            _session.SaveChanges();
             return eventStream;
         }
 
