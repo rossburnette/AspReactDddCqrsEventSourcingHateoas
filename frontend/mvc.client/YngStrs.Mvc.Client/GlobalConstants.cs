@@ -17,5 +17,10 @@
         {
             public const string SaveUserResultsUrlPath = "/api/chatbot/save-results";
         }
+
+        public static class UserIdentifier
+        {
+            internal const string UserAnswersEventStreamId = "stream_id";
+        }
     }
 }
