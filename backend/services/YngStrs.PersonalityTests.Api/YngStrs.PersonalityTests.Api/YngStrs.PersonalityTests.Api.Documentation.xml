@@ -86,25 +86,13 @@
             Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController"/> class.
             </summary>
         </member>
-        <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.UserResult(YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult)">
-            <summary>
-            Calculates and saves user test result.
-            </summary>
-            <param name="command"></param>
-            <response code="200">
-            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> identifiers (IDs).
-            </response>
-            <response code="200">User result saved.</response>
-            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
-            <response code="409">Already processed result for user.</response>
-        </member>
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserTestResultsController.PersistUserTestResult(YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.SaveUserTestResult)">
             <summary>
             Saves the user test answers and test statistics in the event store.
             </summary>
             <param name="command">Client binding model.</param>
             <response code="200">User test result saved.</response>
-            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.CalculateUserResult.UserAnswersEventStreamId"/></response>
+            <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.SaveUserTestResult.UserIdentifier"/></response>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
@@ -304,18 +292,7 @@
             Same as <see cref="T:YngStrs.PersonalityTests.Api.Domain.Events.UserAnsweredQuestion"/> event stream!
             </remarks>
         </member>
-        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.PersonalityTestId">
-            <!--References-->
-            <summary>
-            <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.PersonalityTest"/> identifier (ID).
-            </summary>
-        </member>
-        <member name="P:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.TestResultsIds">
-            <summary>
-            Identifiers of <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.TestResult"/> that describe user personality.
-            </summary>
-        </member>
-        <member name="M:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.Result">
+        <member name="M:YngStrs.PersonalityTests.Api.Domain.Entities.UserTestResult.SaveResults">
             <!--Events-->
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities._Base.MultiLanguageTitleRelationalEntity">
@@ -331,9 +308,9 @@
             Same as event stream ID.
             </summary>
         </member>
-        <member name="P:YngStrs.PersonalityTests.Api.Domain.Events.UserResultCalculated.UserIdentifier">
+        <member name="T:YngStrs.PersonalityTests.Api.Domain.Events.UserResultSaved">
             <summary>
-            Gets or sets same as event stream ID.
+            An event linked with user finishes a personality test.
             </summary>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Views.PersonalityTests.InitPersonalityTestView">

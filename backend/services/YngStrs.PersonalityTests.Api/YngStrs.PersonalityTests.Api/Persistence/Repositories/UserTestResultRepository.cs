@@ -19,7 +19,6 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
             _session
                 .Query<UserTestResult>()
                 .FirstOrDefaultAsync(result =>
-                    result.UserIdentifier == userIdentifier &&
-                    result.PersonalityTestId == personalityTestId);
+                    result.UserIdentifier == userIdentifier);
     }
 }
