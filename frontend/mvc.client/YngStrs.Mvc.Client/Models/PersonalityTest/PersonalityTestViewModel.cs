@@ -9,7 +9,7 @@ namespace YngStrs.Mvc.Client.Models.PersonalityTest
         public PersonalityTestViewModel(StructuredTestServiceModel serviceModel)
         {
             FirstQuestion = serviceModel.TestQuestions.First();
-            AllButFirstQuestions = serviceModel.TestQuestions.Skip(1).ToList();
+            AllButFirstQuestions = serviceModel.TestQuestions.Skip(1).Take(3).ToList();
         }
 
         public TestQuestionServiceModel FirstQuestion { get; }

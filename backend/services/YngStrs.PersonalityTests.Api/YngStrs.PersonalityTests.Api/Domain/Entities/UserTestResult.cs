@@ -1,5 +1,6 @@
 ﻿using System;
 using YngStrs.Common.EventSourcing.Core;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 
 namespace YngStrs.PersonalityTests.Api.Domain.Entities
@@ -16,12 +17,11 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         {
         }
 
-        public UserTestResult(Guid personalityTestId, Guid userIdentifier, Guid[] testResultsIds)
+        public UserTestResult(SaveUserTestResult command)
         {
-            Id = Guid.NewGuid();
-            PersonalityTestId = personalityTestId;
-            UserIdentifier = userIdentifier;
-            TestResultsIds = testResultsIds;
+            UserIdentifier = command.UserIdentifier;
+            ResultStatistics = command.TestStats;
+            AnswersCollection = command.TestAnswers;
         }
 
         public Guid Id { get; set; }
@@ -31,27 +31,20 @@ namespace YngStrs.PersonalityTests.Api.Domain.Entities
         /// </remarks>
         public Guid UserIdentifier { get; set; }
 
-        /// <!--References-->
-        /// <summary>
-        /// <see cref="PersonalityTest"/> identifier (ID).
-        /// </summary>
-        public Guid PersonalityTestId { get; set; }
+        public TestResultStatistics ResultStatistics { get; set; }
 
-        /// <summary>
-        /// Identifiers of <see cref="TestResult"/> that describe user personality.
-        /// </summary>
-        public Guid[] TestResultsIds { get; set; }
+        public UserAnswersCollection AnswersCollection { get; set; }
 
         /// <!--Events-->
-        public UserResultCalculated Result() =>
-            new UserResultCalculated(UserIdentifier, PersonalityTestId, TestResultsIds);
+        public UserResultSaved SaveResults() =>
+            new UserResultSaved(ResultStatistics, AnswersCollection, UserIdentifier);
 
-        public void Apply(UserResultCalculated @event)
+        public void Apply(UserResultSaved @event)
         {
             Id = Guid.NewGuid();
+            ResultStatistics = @event.ResultStatistics;
+            AnswersCollection = @event.AnswersCollection;
             UserIdentifier = @event.UserIdentifier;
-            PersonalityTestId = @event.PersonalityTestId;
-            TestResultsIds = @event.TestResultsIds;
         }
     }
 }
