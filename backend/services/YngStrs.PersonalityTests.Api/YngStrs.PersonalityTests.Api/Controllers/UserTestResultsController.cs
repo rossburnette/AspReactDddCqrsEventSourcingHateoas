@@ -48,5 +48,19 @@ namespace YngStrs.PersonalityTests.Api.Controllers
             (await Mediator.Send(command)
             .MapAsync(ToResourceAsync<UserTestResultView, UserTestResultResource>))
             .Match(Ok, Error);
+
+        /// <summary>
+        /// Saves the user test answers and test statistics in the event store.
+        /// </summary>
+        /// <param name="command">Client binding model.</param>
+        /// <response code="200">User test result saved.</response>
+        /// <response code="404">Invalid <see cref="SaveUserTestResult.UserIdentifier"/></response>
+        [HttpPost("save", Name = nameof(PersistUserTestResult))]
+        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> PersistUserTestResult(SaveUserTestResult command)
+        {
+            return Ok();
+        }
     }
 }
