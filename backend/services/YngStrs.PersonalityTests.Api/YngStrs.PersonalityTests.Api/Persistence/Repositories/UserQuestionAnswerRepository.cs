@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YngStrs.Common;
-using YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Commands;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
@@ -30,9 +30,9 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
             GetUserQuestionAnswerEventStreamByIdAsync(eventStreamId)
                 .SomeNotNullAsync(Error.NotFound($"Event stream with ID '{eventStreamId}' does not exists!"));
 
-        public EventStream CreateUserQuestionAnswerEventStream()
+        public EventStream CreateUserQuestionAnswerEventStream(BeginPersonalityTest command)
         {
-            var eventStream = _session.Events.StartStream<UserQuestionAnswer>();
+            var eventStream = _session.Events.StartStream<UserQuestionAnswer>(command.Identifier);
             _session.SaveChangesAsync();
             return eventStream;
         }

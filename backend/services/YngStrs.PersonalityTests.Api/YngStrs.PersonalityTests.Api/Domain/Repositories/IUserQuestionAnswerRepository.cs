@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using YngStrs.Common;
+using YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands;
 using YngStrs.PersonalityTests.Api.Domain.Entities;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 
@@ -15,7 +16,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Repositories
 
         Task<Option<StreamState, Error>> GetUserAnswerEventStreamByIdAsync(Guid eventStreamId);
 
-        EventStream CreateUserQuestionAnswerEventStream();
+        EventStream CreateUserQuestionAnswerEventStream(BeginPersonalityTest command);
 
         Task<IEnumerable<UserAnsweredQuestion>> GetEventsByStreamIdAsync(Guid streamId);
 

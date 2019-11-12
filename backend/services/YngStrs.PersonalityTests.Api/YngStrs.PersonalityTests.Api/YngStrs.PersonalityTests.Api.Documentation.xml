@@ -28,7 +28,7 @@
             </summary>
             <response code="200"></response>
         </member>
-        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.BeginTest">
+        <member name="M:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController.BeginTest(YngStrs.PersonalityTests.Api.BoundedContexts.PersonalityTest.Commands.BeginPersonalityTest)">
             POST /api/personality-tests/begin
             <summary>
             Creates event stream for <see cref="T:YngStrs.PersonalityTests.Api.Domain.Entities.UserQuestionAnswer"/> aggregate.
