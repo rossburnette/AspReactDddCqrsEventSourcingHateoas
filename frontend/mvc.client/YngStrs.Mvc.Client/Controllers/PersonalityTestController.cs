@@ -30,6 +30,12 @@ namespace YngStrs.Mvc.Client.Controllers
             return View(viewModel);
         }
 
+        public IActionResult RegisterUserAnswer()
+        {
+            _personalityTestsService.RegisterUserAnswerAsync()
+            return Ok();
+        }
+
         /// <summary>
         /// Receives current user answers and results.
         /// </summary>

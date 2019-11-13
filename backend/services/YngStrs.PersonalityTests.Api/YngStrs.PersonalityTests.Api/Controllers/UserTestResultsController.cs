@@ -1,15 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Optional.Async.Extensions;
 using System.Net;
 using System.Threading.Tasks;
 using YngStrs.Common;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
-using YngStrs.PersonalityTests.Api.Domain.Entities;
-using YngStrs.PersonalityTests.Api.Domain.Views.UserTestResult;
-using YngStrs.PersonalityTests.Api.Hateoas.Resources.UserTestResult;
 
 namespace YngStrs.PersonalityTests.Api.Controllers
 {

@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Marvin.StreamExtensions;
-using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
-
 using static YngStrs.Mvc.Client.GlobalConstants.HttpClientNames;
 using static YngStrs.Mvc.Client.GlobalConstants.PersonalityTestApiUrls;
 
@@ -86,6 +81,21 @@ namespace YngStrs.Mvc.Client.Services.Business
         }
 
         /// <summary>
+        /// Saves a chosen question option ID.
+        /// </summary>
+        /// <param name="chosenOptionId"></param>
+        public Task<HttpResponseMessage> RegisterUserAnswerAsync(Guid chosenOptionId)
+        {
+            var httpClient = _httpClientFactory.CreateClient(TestClientName);
+
+            var requestBody = new RegisterUserAnswerModel(
+                _identifierService.GetAnswersEventStreamId(),
+                chosenOptionId);
+
+            return httpClient.PostAsJsonAsync(RegisterUserAnswerUrlPath, requestBody);
+        }
+
+        /// <summary>
         /// Sends a request to the API to save the user test results.
         /// </summary>
         /// <param name="bindingModel"></param>
@@ -94,7 +104,9 @@ namespace YngStrs.Mvc.Client.Services.Business
         {
             var httpClient = _httpClientFactory.CreateClient(TestClientName);
 
-            var requestBody = new SaveUserTestAnswers(bindingModel, _identifierService.GetAnswersEventStreamId());
+            var requestBody = new SaveUserTestAnswers(
+                bindingModel,
+                _identifierService.GetAnswersEventStreamId());
 
             var response = await httpClient
                 .PostAsJsonAsync(SaveResultsUrlPath, requestBody);
