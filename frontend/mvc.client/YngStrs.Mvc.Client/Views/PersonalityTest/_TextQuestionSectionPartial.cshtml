@@ -9,7 +9,8 @@
                            data-answer="@(j + 1)"
                            data-question="@Model.Options[j].QuestionNumber"
                            name="question-@Model.Options[j].QuestionNumber"
-                           value="@Model.Options[j].ResultValue">
+                           value="@Model.Options[j].ResultValue"
+                           onclick="RegisterUserAnswer('@Model.Options[j].Id')">
                     <span class="only-text-content">
                         <span class="only-text-content-wrap">
                             <span class="checkmark"></span>
