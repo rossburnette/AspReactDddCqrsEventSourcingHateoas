@@ -11,6 +11,7 @@
         public static class PersonalityTestApiUrls
         {
             public const string GetStructuredUrlPath = "/api/personality-tests/structured";
+            public const string RegisterUserAnswerUrlPath = "api/personality-tests/user-answer/";
             public const string SaveResultsUrlPath = "api/personality-tests/user-result/save";
         }
 

@@ -16,49 +16,33 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserQuestionAnswer.Comman
 {
     public class RegisterUserAnswerHandler : VoidBaseHandler<RegisterUserAnswer>
     {
-        private readonly IUserQuestionAnswerRepository _answerRepository;
         private readonly IQuestionOptionRepository _questionOptionRepository;
 
         public RegisterUserAnswerHandler(
             IEventBus eventBus,
             ICommandValidator<RegisterUserAnswer> commandValidator,
-            IUserQuestionAnswerRepository answerRepository,
             IQuestionOptionRepository questionOptionRepository)
             : base(eventBus, commandValidator)
         {
-            _answerRepository = answerRepository;
             _questionOptionRepository = questionOptionRepository;
         }
 
         public override Task<Option<Unit, Error>> HandleAsync(
             RegisterUserAnswer command,
             CancellationToken cancellationToken) =>
-            EnsureEventStreamExistsAsync(command).FlatMapAsync(_ =>
-            EnsureSimilarAnswerDoesNotExistsAsync(command).FlatMapAsync(__ =>
             EnsureQuestionOptionExistsAsync(command).MapAsync(questionOption =>
             PublishEventsAsync(
                 command.EventStreamId,
-                CreateAggregate(command, questionOption).TestQuestionAnswer()))));
-
-        private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(RegisterUserAnswer command) =>
-            _answerRepository.GetUserAnswerEventStreamByIdAsync(command.EventStreamId);
+                CreateAggregate(command, questionOption).TestQuestionAnswer()));
 
         private Task<Option<Domain.Entities.QuestionOption, Error>> EnsureQuestionOptionExistsAsync(RegisterUserAnswer command) =>
             _questionOptionRepository
                 .GetWithResultMapByIdAsync(command.ChosenOptionId)
                 .SomeNotNullAsync(Error.NotFound($"Test question option with ID '{command.ChosenOptionId}' does not exists!"));
 
-        private async Task<Option<Unit, Error>> EnsureSimilarAnswerDoesNotExistsAsync(RegisterUserAnswer command) =>
-            (await _answerRepository
-                .GetByUserAndOptionIdAsync(
-                    command.ChosenOptionId,
-                    command.EventStreamId))
-            .SomeWhen(
-                answer => answer == default,
-                Error.Conflict($"There is already such answer for the current user stream!"))
-            .Map(_ => Unit.Value);
-
-        private static Domain.Entities.UserQuestionAnswer CreateAggregate(RegisterUserAnswer command, Domain.Entities.QuestionOption option) =>
+        private static Domain.Entities.UserQuestionAnswer CreateAggregate(
+            RegisterUserAnswer command,
+            Domain.Entities.QuestionOption option) =>
             new Domain.Entities.UserQuestionAnswer(
                 command.EventStreamId, // Because event stream is unique, it is used as user identifier
                 command.ChosenOptionId, // chosen question option
