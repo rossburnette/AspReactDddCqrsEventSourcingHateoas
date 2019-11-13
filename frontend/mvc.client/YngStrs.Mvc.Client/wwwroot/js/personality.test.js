@@ -12,10 +12,5 @@
         data: JSON.stringify(optionModel)
     };
 
-    $.ajax(request)
-        .catch(displayErrorMessage);
-}
-
-function displayErrorMessage() {
-    alert("Could not register user answer.");
+    $.ajax(request);
 }

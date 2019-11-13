@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
@@ -30,9 +32,19 @@ namespace YngStrs.Mvc.Client.Controllers
             return View(viewModel);
         }
 
-        public IActionResult RegisterUserAnswer()
+        /// <summary>
+        /// Registers user answer by
+        /// 'Fire & Forget' principle.
+        /// </summary>
+        /// <param name="optionModel"></param>
+        [HttpPost]
+        public IActionResult RegisterUserAnswer([FromBody]ChosenOptionModel optionModel)
         {
-            _personalityTestsService.RegisterUserAnswerAsync()
+            var task = _personalityTestsService
+                .RegisterUserAnswerAsync(optionModel.ChosenOptionId);
+
+            Task.Run(() => task);
+
             return Ok();
         }
 

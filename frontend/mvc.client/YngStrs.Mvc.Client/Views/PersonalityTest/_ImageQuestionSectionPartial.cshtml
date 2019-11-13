@@ -12,7 +12,8 @@
                            data-answer="@(j + 1)"
                            data-question="@Model.Options[j].QuestionNumber"
                            name="question-@Model.Options[j].QuestionNumber"
-                           value="@Model.Options[j].ResultValue">
+                           value="@Model.Options[j].ResultValue"
+                           onclick="RegisterUserAnswer('@Model.Options[j].Id')">
                     <img src="data:image/png;base64, @Model.Options[j].Base64Image"
                          class="responsive question-item-bckg"
                          alt="@Model.Options[j].ResultValue">
