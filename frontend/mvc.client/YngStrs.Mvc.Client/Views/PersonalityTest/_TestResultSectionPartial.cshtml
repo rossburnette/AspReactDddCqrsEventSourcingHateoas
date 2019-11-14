@@ -1,0 +1,27 @@
+﻿<section class="test-result-section">
+    <div class="bg-image" style="background-image:url('../../images/test/test-result-image.jpg')"></div>
+    <div class="section-box">
+        <div class="intro-test-txt center anim-block parallax-elem" data-move="y" data-val="-150" style="transform: translate3d(0px, -16.0447px, 0px);">
+            <div class="intro-test-txt-box white-box center anim-elem top done">
+
+                <div class="wrap-txt">
+                    <div class="result-title-wrap">
+                        <div class="addition-txt-box">
+                            <span class="p-huge lightGrey addition-txt">Резултат</span>
+                        </div>
+                        <h3 class="title-big black">Справи се страхотно!</h3>
+                    </div>
+                    <p class="p-mid-s">Ако искаш да получиш резултатите си и те автоматично да бъдат насочени към HR отдел, попълни формата по-долу. </p>
+                    <div class="wrapper login-section">
+                        @await Html.PartialAsync("_GetResultsEmaiFormPartial")
+                    </div>
+                    <div class="success-msg">
+                        <span class="success-text">
+                            Изпратен е email с резултатите!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
