@@ -79,5 +79,11 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SubmitUserData(UserDataModel dataModel)
+        {
+            return Ok();
+        }
     }
 }

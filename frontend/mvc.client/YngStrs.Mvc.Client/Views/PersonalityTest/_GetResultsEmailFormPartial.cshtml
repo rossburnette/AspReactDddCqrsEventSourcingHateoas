@@ -1,4 +1,4 @@
-﻿<form action="./interview/save_results" method="POST" id="get-results-email" class="test-form">
+﻿<form asp-action="SubmitUserData" asp-controller="PersonalityTest" method="POST" id="get-results-email" class="test-form">
     <div class="form-row required">
         <label for="name" class="label-form-fld">Име</label>
         <input type="text" class="form-fld" id="name" name="name">
@@ -13,10 +13,17 @@
     </div>
     <div class="form-row row-checkbox">
         <input type="checkbox" value="1" class="form-fld" id="agree_terms" name="agree_terms">
-        <label for="agree_terms" class="label-form-fld">Съгласен съм с <a href="/git/soge_young/terms-and-conditions" class="conditions-link" target="_blank">General terms and Conditions</a></label>
+        <label for="agree_terms" class="label-form-fld">
+            Съгласен съм с
+            <a href="/git/soge_young/terms-and-conditions" class="conditions-link" target="_blank">
+                General terms and Conditions
+            </a>
+        </label>
         <div class="tooltip-div"></div>
     </div>
     <div class="form-row btn-row">
-        <button class="submit-btn" type="submit" id="submit-email-btn">Получи резултата си!</button>
+        <button class="submit-btn" type="submit" id="submit-email-btn">
+            Получи резултата си!
+        </button>
     </div>
 </form>
