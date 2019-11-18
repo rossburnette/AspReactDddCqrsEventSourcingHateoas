@@ -4,3 +4,6 @@ Request Method: POST
 Status Code: 200 OK
 
 {"status":false,"errors":[]}
+
+
+{"status":true,"errors":[]}

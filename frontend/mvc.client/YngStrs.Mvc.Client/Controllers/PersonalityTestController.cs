@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using YngStrs.Mvc.Client.Models;
 using YngStrs.Mvc.Client.Models.PersonalityTest;
 using YngStrs.Mvc.Client.Services.Core;
 
@@ -81,9 +83,11 @@ namespace YngStrs.Mvc.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitUserData(UserDataModel dataModel)
+        public ActionResult<string> SubmitUserData(UserDataModel dataModel)
         {
-            return Ok();
+            var jsonResult = JsonConvert.SerializeObject(new ResultsStatusModel(true));
+
+            return Ok(jsonResult);
         }
     }
 }
