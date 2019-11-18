@@ -12,7 +12,7 @@ namespace YngStrs.EmailWorker.Api.Services.Business
         private const string GmailUserName = "yngstr1111@gmail.com";
         private const string GmailPassword = "qa1ws2ed3";
 
-        public async Task SendMailAsync(SendEmailModel model)
+        public Task SendMailAsync(SendEmailModel model)
         {
             using (var mailMessage = new MailMessage(from: GmailUserName, to: model.EmailAddressTo))
             {
@@ -25,7 +25,7 @@ namespace YngStrs.EmailWorker.Api.Services.Business
                     smtp.UseDefaultCredentials = true;
                     smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
                     smtp.Port = 587;
-                    await smtp.SendMailAsync(mailMessage);
+                    return smtp.SendMailAsync(mailMessage);
                 }
             }
         }

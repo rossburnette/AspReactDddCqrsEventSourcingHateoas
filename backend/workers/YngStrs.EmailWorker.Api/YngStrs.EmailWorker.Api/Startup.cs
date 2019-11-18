@@ -18,6 +18,10 @@ namespace YngStrs.EmailWorker.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSettings(Configuration);
+
+            services.AddEasyNetQAdvancedBus(Configuration);
+
             services.AddApplicationServices();
 
             services
