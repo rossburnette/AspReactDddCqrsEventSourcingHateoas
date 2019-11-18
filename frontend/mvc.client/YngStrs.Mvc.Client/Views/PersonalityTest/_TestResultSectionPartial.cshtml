@@ -7,13 +7,19 @@
                 <div class="wrap-txt">
                     <div class="result-title-wrap">
                         <div class="addition-txt-box">
-                            <span class="p-huge lightGrey addition-txt">Резултат</span>
+                            <span class="p-huge lightGrey addition-txt">
+                                Резултат
+                            </span>
                         </div>
                         <h3 class="title-big black">Справи се страхотно!</h3>
                     </div>
-                    <p class="p-mid-s">Ако искаш да получиш резултатите си и те автоматично да бъдат насочени към HR отдел, попълни формата по-долу. </p>
+                    <p class="p-mid-s">
+                        Ако искаш да получиш резултатите си и те автоматично да бъдат насочени към HR отдел, попълни формата по-долу.
+                    </p>
                     <div class="wrapper login-section">
-                        @await Html.PartialAsync("_GetResultsEmaiFormPartial")
+
+                        @await Html.PartialAsync("_GetResultsEmailFormPartial")
+
                     </div>
                     <div class="success-msg">
                         <span class="success-text">
