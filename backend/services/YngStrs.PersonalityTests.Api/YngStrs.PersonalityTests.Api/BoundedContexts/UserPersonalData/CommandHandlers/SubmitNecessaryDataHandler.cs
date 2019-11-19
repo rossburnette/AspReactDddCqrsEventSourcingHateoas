@@ -38,6 +38,7 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.CommandH
             PublishEventsAsync(
                 Guid.NewGuid(),
                 CreateAggregate(command).SubmitNecessaryData())));
+
         private Task<Option<StreamState, Error>> EnsureEventStreamExistsAsync(SubmitNecessaryData command) =>
             _answerRepository.GetUserAnswerEventStreamByIdAsync(command.UserEventStreamId);
 
