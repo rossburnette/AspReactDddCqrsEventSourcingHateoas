@@ -28,6 +28,7 @@ namespace YngStrs.PersonalityTests.Api.Controllers
 
         /// <summary>
         /// Saves user email and name after test completed.
+        /// Then sends a mail to the user with hes/hers results.
         /// </summary>
         /// <param name="command"></param>
         /// <response code="200">Data saved.</response>
