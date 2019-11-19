@@ -70,6 +70,7 @@
         <member name="M:YngStrs.PersonalityTests.Api.Controllers.UserDataController.SaveUserData(YngStrs.PersonalityTests.Api.BoundedContexts.UserPersonalData.Commands.SubmitNecessaryData)">
             <summary>
             Saves user email and name after test completed.
+            Then sends a mail to the user with hes/hers results.
             </summary>
             <param name="command"></param>
             <response code="200">Data saved.</response>
@@ -93,6 +94,11 @@
             <param name="command">Client binding model.</param>
             <response code="200">User test result saved.</response>
             <response code="404">Invalid <see cref="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands.SaveUserTestResult.UserIdentifier"/></response>
+        </member>
+        <member name="T:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher">
+            <summary>
+            TODO
+            </summary>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
