@@ -66,7 +66,7 @@ namespace YngStrs.Mvc.Client.Services.Business
                     {
                         case System.Net.HttpStatusCode.NotFound:
                         case System.Net.HttpStatusCode.Unauthorized:
-                            return default(Guid);
+                            return default;
                         default:
                             response.EnsureSuccessStatusCode();
                             break;

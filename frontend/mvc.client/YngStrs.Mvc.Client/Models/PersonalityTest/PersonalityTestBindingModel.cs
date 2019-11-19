@@ -6,9 +6,9 @@ namespace YngStrs.Mvc.Client.Models.PersonalityTest
     {
 
         [JsonProperty("testStats")]
-        public TestStats testStats { get; set; }
+        public TestStats TestStats { get; set; }
 
         [JsonProperty("testAnswers")]
-        public TestAnswers testAnswers { get; set; }
+        public TestAnswers TestAnswers { get; set; }
     }
 }
