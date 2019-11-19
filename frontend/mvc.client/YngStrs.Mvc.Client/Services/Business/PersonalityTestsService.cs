@@ -113,5 +113,21 @@ namespace YngStrs.Mvc.Client.Services.Business
 
             return response.IsSuccessStatusCode;
         }
+
+        /// <summary>
+        /// Saves the user data and triggers email with the result.
+        /// </summary>
+        /// <param name="dataModel">Input form model.</param>
+        public Task SaveUserDataAsync(UserDataModel dataModel)
+        {
+            var httpClient = _httpClientFactory.CreateClient(TestClientName);
+
+            var requestBody = new SaveUserDataModel(
+                dataModel,
+                _identifierService.GetAnswersEventStreamId());
+
+
+            return httpClient.PostAsJsonAsync(SaveUserDataUrlPath, requestBody);
+        }
     }
 }

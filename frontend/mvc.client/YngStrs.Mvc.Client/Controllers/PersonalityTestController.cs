@@ -82,9 +82,23 @@ namespace YngStrs.Mvc.Client.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Sends user name and email to the API.
+        /// The API triggers email for the user with his/hers result.
+        /// </summary>
+        /// <param name="dataModel">User name and email data.</param>
         [HttpPost]
-        public ActionResult<string> SubmitUserData(UserDataModel dataModel)
+        public async Task<ActionResult<string>> SubmitUserData(UserDataModel dataModel)
         {
+            try
+            {
+                await _personalityTestsService.SaveUserDataAsync(dataModel);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
             var jsonResult = JsonConvert.SerializeObject(new ResultsStatusModel(true));
 
             return Ok(jsonResult);

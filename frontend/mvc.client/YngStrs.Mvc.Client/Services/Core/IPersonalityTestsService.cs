@@ -14,5 +14,7 @@ namespace YngStrs.Mvc.Client.Services.Core
         Task<HttpResponseMessage> RegisterUserAnswerAsync(Guid chosenOptionId);
 
         Task<bool> SaveUserTestResultsAsync(PersonalityTestBindingModel bindingModel);
+
+        Task SaveUserDataAsync(UserDataModel dataModel);
     }
 }

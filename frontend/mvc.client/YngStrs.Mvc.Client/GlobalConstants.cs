@@ -13,6 +13,7 @@
             public const string GetStructuredUrlPath = "/api/personality-tests/structured";
             public const string RegisterUserAnswerUrlPath = "api/personality-tests/user-answer/";
             public const string SaveResultsUrlPath = "api/personality-tests/user-result/save";
+            public const string SaveUserDataUrlPath = "api/personality-tests/user-data";
         }
 
         public static class ChatbotApiUrls
@@ -22,7 +23,7 @@
 
         public static class UserIdentifier
         {
-            internal const string UserAnswersEventStreamId = "stream_id";
+            public const string UserAnswersEventStreamId = "stream_id";
         }
     }
 }
