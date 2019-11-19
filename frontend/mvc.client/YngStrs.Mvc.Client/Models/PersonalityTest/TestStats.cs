@@ -4,16 +4,12 @@ namespace YngStrs.Mvc.Client.Models.PersonalityTest
 {
     public class TestStats
     {
-        [JsonProperty("action")]
-        public int Action { get; set; }
+        public int action { get; set; }
 
-        [JsonProperty("process")]
-        public int Process { get; set; }
+        public int process { get; set; }
 
-        [JsonProperty("people")]
-        public int People { get; set; }
+        public int people { get; set; }
 
-        [JsonProperty("idea")]
-        public int Idea { get; set; }
+        public int idea { get; set; }
     }
 }
