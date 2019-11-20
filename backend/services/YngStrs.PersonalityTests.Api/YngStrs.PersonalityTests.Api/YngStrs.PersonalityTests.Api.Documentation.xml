@@ -100,6 +100,13 @@
             TODO
             </summary>
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.#ctor(EasyNetQ.IBus,Microsoft.Extensions.Options.IOptions{YngStrs.PersonalityTests.Api.Settings.SendEmailConfig})">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher"/> class.
+            </summary>
+            <param name="bus"></param>
+            <param name="config"></param>
+        </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
             Abstract data model that defines the personality test question -> title .
