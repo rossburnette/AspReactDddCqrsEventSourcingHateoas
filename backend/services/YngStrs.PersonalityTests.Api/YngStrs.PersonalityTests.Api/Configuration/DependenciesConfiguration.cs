@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using EasyNetQ;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
-using YngStrs.Common.EventSourcing.Business;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.Common.Hateoas.Business;
 using YngStrs.Common.Hateoas.Core;
@@ -21,6 +21,8 @@ using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Persistence.EntityFramework;
 using YngStrs.PersonalityTests.Api.Persistence.Repositories;
+using EventBus = YngStrs.Common.EventSourcing.Business.EventBus;
+using IEventBus = YngStrs.Common.EventSourcing.Core.IEventBus;
 
 namespace YngStrs.PersonalityTests.Api.Configuration
 {
@@ -184,6 +186,21 @@ namespace YngStrs.PersonalityTests.Api.Configuration
                     { "Bearer", Enumerable.Empty<string>() },
                 });
             });
+
+            return services;
+        }
+
+        internal static IServiceCollection AddRabbitMqService(
+            this IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var rmqHost = configuration.GetSection("RabbitMQService:Host").Value;
+            var rmqUsername = configuration.GetSection("RabbitMQService:Username").Value;
+            var rmqPassword = configuration.GetSection("RabbitMQService:Password").Value;
+
+            var connectionString = $"host={rmqHost};virtualHost=/;username={rmqUsername};password={rmqPassword}";
+
+            services.AddSingleton(RabbitHutch.CreateBus(connectionString));
 
             return services;
         }

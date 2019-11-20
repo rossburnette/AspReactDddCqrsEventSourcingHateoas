@@ -29,6 +29,8 @@ namespace YngStrs.PersonalityTests.Api
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSettings(Configuration);
+
             services.AddMemoryCache();
 
             services.AddResponseCaching();
@@ -52,6 +54,8 @@ namespace YngStrs.PersonalityTests.Api
             services.AddHateoas();
 
             services.AddRepositories();
+
+            services.AddRabbitMqService(Configuration);
 
             services
                 .AddMvc(options =>
