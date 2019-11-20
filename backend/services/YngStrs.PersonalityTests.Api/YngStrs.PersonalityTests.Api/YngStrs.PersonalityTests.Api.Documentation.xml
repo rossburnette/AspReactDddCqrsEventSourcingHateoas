@@ -462,6 +462,12 @@
         <member name="M:YngStrs.PersonalityTests.Api.Persistence.EntityFramework.PersonalityTestDbContext.ApplyAuditInfoRules">
             <!--Helpers-->
         </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Persistence.Repositories.UserTestResultRepository.#ctor(Marten.IDocumentSession)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Persistence.Repositories.UserTestResultRepository"/> class.
+            </summary>
+            <param name="session"></param>
+        </member>
         <member name="T:YngStrs.PersonalityTests.Api.Program">
             <summary>
             Root of the service.

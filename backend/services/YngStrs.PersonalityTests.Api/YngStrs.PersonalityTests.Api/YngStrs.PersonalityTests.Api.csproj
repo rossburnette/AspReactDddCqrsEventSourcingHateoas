@@ -121,4 +121,8 @@
     <PackageReference Include="YngStrs.Common.Hateoas" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BoundedContexts\UserTestResult\Services\" />
+  </ItemGroup>
+
 </Project>

@@ -10,15 +10,18 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
     {
         private readonly IDocumentSession _session;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserTestResultRepository"/> class.
+        /// </summary>
+        /// <param name="session"></param>
         public UserTestResultRepository(IDocumentSession session)
         {
             _session = session;
         }
 
-        public Task<UserTestResult> GetByUserAndTestAsync(Guid userIdentifier, Guid personalityTestId) =>
+        public Task<UserTestResult> GetByUserAsync(Guid userIdentifier) =>
             _session
                 .Query<UserTestResult>()
-                .FirstOrDefaultAsync(result =>
-                    result.UserIdentifier == userIdentifier);
+                .FirstOrDefaultAsync(result => result.UserIdentifier == userIdentifier);
     }
 }
