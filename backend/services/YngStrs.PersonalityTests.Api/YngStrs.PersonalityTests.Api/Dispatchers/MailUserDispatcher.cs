@@ -72,23 +72,12 @@ namespace YngStrs.PersonalityTests.Api.Dispatchers
 
         private async Task<string> CreateMailBodyByTopResultsAsync(string[] topResults)
         {
-            if (topResults.Length == 1)
-            {
-                if (topResults[0] == "complex")
-                {
-                    var result = await _testResultRepository.GetComplexPersonalityResultAsync();
-                    return result.TestResultTitles.First().Explanation;
-                }
-
-                var testResult = await _testResultRepository.GetByValueAsync(topResults[0]);
-                return testResult.TestResultTitles.First().Explanation;
-            }
-
             var stringBuilder = new StringBuilder();
 
             foreach (var topResult in topResults)
             {
                 var testResult = await _testResultRepository.GetByValueAsync(topResult);
+                stringBuilder.AppendLine(testResult.TestResultTitles.First().Description);
                 stringBuilder.AppendLine(testResult.TestResultTitles.First().Explanation);
             }
 
