@@ -4,6 +4,12 @@
         <name>YngStrs.PersonalityTests.Api</name>
     </assembly>
     <members>
+        <member name="M:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer.#ctor(YngStrs.PersonalityTests.Api.Domain.Entities.TestResultStatistics)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer"/> class.
+            </summary>
+            <param name="userResults"></param>
+        </member>
         <member name="T:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController">
             <summary>
             Controller responsible for retrieving the main business logic for <c>YngStrs.PersonalityTests.Api</c>.
@@ -100,12 +106,21 @@
             TODO
             </summary>
         </member>
-        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.#ctor(EasyNetQ.IBus,Microsoft.Extensions.Options.IOptions{YngStrs.PersonalityTests.Api.Settings.SendEmailConfig})">
+        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.#ctor(EasyNetQ.IBus,Microsoft.Extensions.Options.IOptions{YngStrs.PersonalityTests.Api.Settings.SendEmailConfig},YngStrs.PersonalityTests.Api.Domain.Repositories.IUserTestResultRepository)">
             <summary>
             Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher"/> class.
             </summary>
             <param name="bus"></param>
             <param name="config"></param>
+            <param name="userTestResultRepository"></param>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.Handle(YngStrs.PersonalityTests.Api.Domain.Events.UserSubmittedPersonalData,System.Threading.CancellationToken)">
+            <summary>
+            Enqueue message to the Email Worker API for sending a mail
+            to the user with his/hers results from the test.
+            </summary>
+            <param name="notification"></param>
+            <param name="cancellationToken"></param>
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Domain.Entities.CommonQuestionTitle">
             <summary>
