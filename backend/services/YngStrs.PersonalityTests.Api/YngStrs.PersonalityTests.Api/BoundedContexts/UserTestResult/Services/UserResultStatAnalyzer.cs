@@ -13,49 +13,47 @@ namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services
         /// <param name="userResults"></param>
         public UserResultStatAnalyzer(TestResultStatistics userResults)
         {
-            var dictionary = new SortedDictionary<int, string>
+            var dictionary = new Dictionary<string, int>
             {
-                { userResults.Action, nameof(userResults.Action).ToLower() },
-                { userResults.Idea, nameof(userResults.Idea).ToLower() },
-                { userResults.People, nameof(userResults.People).ToLower() },
-                { userResults.Process, nameof(userResults.Process).ToLower() }
+                { nameof(userResults.Action).ToLower(), userResults.Action },
+                { nameof(userResults.Idea).ToLower(), userResults.Idea },
+                { nameof(userResults.People).ToLower(), userResults.People },
+                { nameof(userResults.Process).ToLower(), userResults.Process }
             };
 
-            ValuesDictionary = dictionary.ToImmutableSortedDictionary();
+            ValuePairs = dictionary.OrderByDescending(pair => pair.Value).ToList();
         }
 
         /// <summary>
         /// Structured user result values.
         /// </summary>
-        public ImmutableSortedDictionary<int, string> ValuesDictionary { get; }
+        public List<KeyValuePair<string, int>> ValuePairs { get; }
 
         /// <summary>
         /// Algorithm for extracting the most common result.
         /// </summary>
         /// <remarks>
-        /// In this context 'firsSchemeCount', 'secondSchemeCount'
+        /// In this context 'firstSchemeCount', 'secondSchemeCount'
         /// are the most relevant schemes of the user.
         /// </remarks>
         public string[] GetTopResults()
         {
-            var keyValuePairs = ValuesDictionary.ToList();
+            var firstSchemeCount = ValuePairs[0].Value;
+            var secondSchemeCount = ValuePairs[1].Value;
+            var thirdSchemeCount = ValuePairs[2].Value;
 
-            var firsSchemeCount = keyValuePairs[3].Key;
-            var secondSchemeCount = keyValuePairs[2].Key;
-            var thirdSchemeCount = keyValuePairs[1].Key;
-
-            if (firsSchemeCount > secondSchemeCount)
+            if (firstSchemeCount > secondSchemeCount)
             {
-                return new[] { keyValuePairs[3].Value };
+                return new[] { ValuePairs[0].Key };
             }
 
-            if (firsSchemeCount == secondSchemeCount &&
+            if (firstSchemeCount == secondSchemeCount &&
                 secondSchemeCount == thirdSchemeCount)
             {
                 return new[] { "complex" };
             }
 
-            return new[] { keyValuePairs[3].Value, keyValuePairs[2].Value };
+            return new[] { ValuePairs[0].Key, ValuePairs[1].Key };
         }
     }
 }
