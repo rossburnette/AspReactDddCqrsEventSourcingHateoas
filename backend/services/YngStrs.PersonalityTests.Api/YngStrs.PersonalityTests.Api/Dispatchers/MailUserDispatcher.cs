@@ -2,10 +2,12 @@
 using EasyNetQ.Topology;
 using MediatR;
 using Microsoft.Extensions.Options;
-using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
+using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services;
 using YngStrs.PersonalityTests.Api.Domain.Events;
 using YngStrs.PersonalityTests.Api.Domain.Repositories;
 using YngStrs.PersonalityTests.Api.Settings;
@@ -13,7 +15,7 @@ using YngStrs.PersonalityTests.Api.Settings;
 namespace YngStrs.PersonalityTests.Api.Dispatchers
 {
     /// <summary>
-    /// TODO
+    /// Analizes user results statistics and enqueues email request .
     /// </summary>
     public class MailUserDispatcher : INotificationHandler<UserSubmittedPersonalData>
     {
@@ -21,6 +23,7 @@ namespace YngStrs.PersonalityTests.Api.Dispatchers
         private readonly IExchange _exchange;
         private readonly IAdvancedBus _advancedBus;
         private readonly IUserTestResultRepository _userTestResultRepository;
+        private readonly ITestResultRepository _testResultRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MailUserDispatcher"/> class.
@@ -31,9 +34,11 @@ namespace YngStrs.PersonalityTests.Api.Dispatchers
         public MailUserDispatcher(
             IBus bus,
             IOptions<SendEmailConfig> config,
-            IUserTestResultRepository userTestResultRepository)
+            IUserTestResultRepository userTestResultRepository,
+            ITestResultRepository testResultRepository)
         {
             _userTestResultRepository = userTestResultRepository;
+            _testResultRepository = testResultRepository;
             _config = config.Value;
             _advancedBus = bus.Advanced;
 
@@ -52,8 +57,9 @@ namespace YngStrs.PersonalityTests.Api.Dispatchers
         {
             var results = await _userTestResultRepository.GetByUserAsync(notification.UserIdentifier);
 
-            var mailBody = $"Action - {results.ResultStatistics.Action}\n" +
-                           $"Idea - {results.ResultStatistics.Idea}";
+            var resultsAnalyzer = new UserResultStatAnalyzer(results.ResultStatistics);
+
+            var mailBody = await CreateMailBodyByTopResultsAsync(resultsAnalyzer.GetTopResults());
 
             var emailModel = new SendUserResultsEmail(notification.Email, mailBody);
 
@@ -62,6 +68,31 @@ namespace YngStrs.PersonalityTests.Api.Dispatchers
                 routingKey: _config.RoutingKey,
                 mandatory: false,
                 message: new Message<SendUserResultsEmail>(emailModel));
+        }
+
+        private async Task<string> CreateMailBodyByTopResultsAsync(string[] topResults)
+        {
+            if (topResults.Length == 1)
+            {
+                if (topResults[0] == "complex")
+                {
+                    var result = await _testResultRepository.GetComplexPersonalityResultAsync();
+                    return result.TestResultTitles.First().Explanation;
+                }
+
+                var testResult = await _testResultRepository.GetByValueAsync(topResults[0]);
+                return testResult.TestResultTitles.First().Explanation;
+            }
+
+            var stringBuilder = new StringBuilder();
+
+            foreach (var topResult in topResults)
+            {
+                var testResult = await _testResultRepository.GetByValueAsync(topResult);
+                stringBuilder.AppendLine(testResult.TestResultTitles.First().Explanation);
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

@@ -18,6 +18,13 @@ namespace YngStrs.PersonalityTests.Api.Persistence.Repositories
         public Task<TestResult> GetComplexPersonalityResultAsync() =>
             _dbContext
                 .TestResults
+                .Include(result => result.TestResultTitles)
                 .FirstOrDefaultAsync(result => result.Value == "complex");
+
+        public Task<TestResult> GetByValueAsync(string value) =>
+            _dbContext
+                .TestResults
+                .Include(result => result.TestResultTitles)
+                .FirstOrDefaultAsync(result => result.Value == value);
     }
 }

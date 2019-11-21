@@ -6,5 +6,7 @@ namespace YngStrs.PersonalityTests.Api.Domain.Repositories
     public interface ITestResultRepository
     {
         Task<TestResult> GetComplexPersonalityResultAsync();
+
+        Task<TestResult> GetByValueAsync(string value);
     }
 }
