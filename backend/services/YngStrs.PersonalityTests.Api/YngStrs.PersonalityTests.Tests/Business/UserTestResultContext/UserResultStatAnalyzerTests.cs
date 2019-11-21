@@ -24,25 +24,25 @@ namespace YngStrs.PersonalityTests.Tests.Business.UserTestResultContext
             var analyzer = new UserResultStatAnalyzer(resultStatistics);
 
             // Assert 
-            var keyValuePairs = analyzer.ValuesDictionary.ToList();
+            var keyValuePairs = analyzer.ValuePairs;
 
-            keyValuePairs[0]
-                .Value
+            keyValuePairs[3]
+                .Key
                 .Should()
                 .Be(nameof(resultStatistics.Idea).ToLower());
 
-            keyValuePairs[1]
-                .Value
+            keyValuePairs[2]
+                .Key
                 .Should()
                 .Be(nameof(resultStatistics.People).ToLower());
 
-            keyValuePairs[2]
-                .Value
+            keyValuePairs[1]
+                .Key
                 .Should()
                 .Be(nameof(resultStatistics.Action).ToLower());
 
-            keyValuePairs[3]
-                .Value
+            keyValuePairs[0]
+                .Key
                 .Should()
                 .Be(nameof(resultStatistics.Process).ToLower());
         }

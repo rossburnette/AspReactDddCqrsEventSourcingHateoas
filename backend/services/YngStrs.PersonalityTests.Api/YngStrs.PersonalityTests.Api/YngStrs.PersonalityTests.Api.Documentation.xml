@@ -10,7 +10,7 @@
             </summary>
             <param name="userResults"></param>
         </member>
-        <member name="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer.ValuesDictionary">
+        <member name="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer.ValuePairs">
             <summary>
             Structured user result values.
             </summary>
@@ -20,7 +20,7 @@
             Algorithm for extracting the most common result.
             </summary>
             <remarks>
-            In this context 'firsSchemeCount', 'secondSchemeCount'
+            In this context 'firstSchemeCount', 'secondSchemeCount'
             are the most relevant schemes of the user.
             </remarks>
         </member>
