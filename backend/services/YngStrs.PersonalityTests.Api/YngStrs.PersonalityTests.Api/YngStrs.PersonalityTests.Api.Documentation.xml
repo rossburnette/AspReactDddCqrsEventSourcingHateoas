@@ -10,6 +10,20 @@
             </summary>
             <param name="userResults"></param>
         </member>
+        <member name="P:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer.ValuesDictionary">
+            <summary>
+            Structured user result values.
+            </summary>
+        </member>
+        <member name="M:YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Services.UserResultStatAnalyzer.GetTopResults">
+            <summary>
+            Algorithm for extracting the most common result.
+            </summary>
+            <remarks>
+            In this context 'firsSchemeCount', 'secondSchemeCount'
+            are the most relevant schemes of the user.
+            </remarks>
+        </member>
         <member name="T:YngStrs.PersonalityTests.Api.Controllers.PersonalityTestsController">
             <summary>
             Controller responsible for retrieving the main business logic for <c>YngStrs.PersonalityTests.Api</c>.
@@ -103,10 +117,10 @@
         </member>
         <member name="T:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher">
             <summary>
-            TODO
+            Analizes user results statistics and enqueues email request .
             </summary>
         </member>
-        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.#ctor(EasyNetQ.IBus,Microsoft.Extensions.Options.IOptions{YngStrs.PersonalityTests.Api.Settings.SendEmailConfig},YngStrs.PersonalityTests.Api.Domain.Repositories.IUserTestResultRepository)">
+        <member name="M:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher.#ctor(EasyNetQ.IBus,Microsoft.Extensions.Options.IOptions{YngStrs.PersonalityTests.Api.Settings.SendEmailConfig},YngStrs.PersonalityTests.Api.Domain.Repositories.IUserTestResultRepository,YngStrs.PersonalityTests.Api.Domain.Repositories.ITestResultRepository)">
             <summary>
             Initializes a new instance of the <see cref="T:YngStrs.PersonalityTests.Api.Dispatchers.MailUserDispatcher"/> class.
             </summary>
