@@ -9,5 +9,10 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return View();
         }
+
+        public IActionResult FilterCategory(int id)
+        {
+            return Json("@@@");
+        }
     }
 }
