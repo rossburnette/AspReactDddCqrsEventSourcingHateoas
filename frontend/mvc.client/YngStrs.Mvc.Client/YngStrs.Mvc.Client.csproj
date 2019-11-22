@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\files\fonts\" />
+    <Folder Include="wwwroot\images\articles\" />
   </ItemGroup>
 
 </Project>
