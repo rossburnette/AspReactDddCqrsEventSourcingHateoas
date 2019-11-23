@@ -15,5 +15,16 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return View();
         }
+
+        public IActionResult ForgottenPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult<string> ForgottenPassword(string email)
+        {
+            return Ok("{\"status\":true,\"errors\":[]}");
+        }
     }
 }
