@@ -1,0 +1,89 @@
+﻿<div class="total-wrap-content">
+    <div class="login-section">
+        <div class="social-links-top-container anim-block">
+            <div class="social-links-top-inner anim-elem bottom">
+                <div class="social-item">
+                    <a href="https://facebook.com" class="top-social-link">
+                        <span class="social-image-container fb">
+                            <img src="~/images/icons/social/top-fb-gray.svg" alt="icon" class="social-image">
+                            <img src="~/images/icons/social/top-fb-hover.svg" alt="icon" class="social-image-hover">
+                        </span>
+                    </a>
+                </div>
+                <div class="social-item">
+                    <a href="https://instagram.com" class="top-social-link">
+                        <span class="social-image-container instagram">
+                            <img src="~/images/icons/social/top-instagram-gray.svg" alt="icon" class="social-image">
+                            <img src="~/images/icons/social/top-instagram-hover.svg" alt="icon" class="social-image-hover">
+                        </span>
+                    </a>
+                </div>
+                <div class="social-item">
+                    <a href="https://twitter.com" class="top-social-link">
+                        <span class="social-image-container twitter">
+                            <img src="~/images/icons/social/top-twitter-gray.svg" alt="icon" class="social-image">
+                            <img src="~/images/icons/social/top-twitter-hover.svg" alt="icon" class="social-image-hover">
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="main-inner-content-wrap anim-block">
+            <div class="login-title-wrap anim-elem top">
+                <h1 class="title-big">Вход</h1>
+            </div>
+            <div class="login-grid">
+                <div class="login-grid-wrap">
+                    <div class="login-image-item anim-elem bottom">
+                        <div class="bg-image" style="background-image:url('../../images/login/login-step1.jpg')"></div>
+                    </div>
+                    <div class="login-content-item anim-elem top">
+                        <div class="login-content-item-wrap">
+                            <form action="/git/soge_young/users/login" class="login-form" id="login-form" autocomplete="off">
+                                <div class="form-row required">
+                                    <label for="email" class="label-form-fld">E-mail</label>
+                                    <input type="text" class="form-fld" id="email" name="email">
+                                    <div class="border-bottom"></div>
+                                    <div class="tooltip-div"></div>
+                                </div>
+                                <div class="form-row required">
+                                    <label for="password" class="label-form-fld">Парола</label>
+                                    <input type="password" class="form-fld" id="password" name="password">
+                                    <div class="border-bottom"></div>
+                                </div>
+                                <div class="form-row row-checkbox">
+                                    <input type="checkbox" value="1" class="form-fld" id="data-save" name="data-save">
+                                    <label for="data-save" class="label-form-fld">Запомни ме</label>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <button class="submit-btn" type="submit" id="submit-btn" data-href="/git/soge_young/users">ВХОД</button>
+                                </div>
+                            </form>
+                            <div class="facebook-row">
+                                <a href="#" class="facebook-login" id="fb-login">
+
+                                    <span class="fb-login-logo">
+                                        <img src="~/images/icons/social/top-fb-gray.svg" alt="facebook logo" class="fb-login-image">
+                                        <img src="~/images/icons/social/top-fb-hover.svg" alt="facebook logo" class="fb-login-image-hover">
+                                    </span>
+                                    <span class="fb-login-text">
+                                        ВЛЕЗ С FACEBOOK
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="login-bottom-row">
+                                <div class="forgotten-password-row">
+                                    <a href="/users/forgotten-password" class="forgotten-password-link">Забравена парола.</a>
+                                </div>
+                                <div class="registration-row">
+                                    <span class="text">Нямате профил?</span>
+                                    <a href="/users/register" class="registration-link">Регистрирайте се сега.</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
