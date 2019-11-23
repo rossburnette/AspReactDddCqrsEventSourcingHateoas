@@ -20,6 +20,7 @@
     <None Include="wwwroot\files\fonts\raleway-medium-webfont.woff2" />
     <None Include="wwwroot\files\fonts\raleway-regular-webfont.woff2" />
     <None Include="wwwroot\files\fonts\raleway-semibold-webfont.woff2" />
+    <None Include="wwwroot\images\login\message.svg" />
   </ItemGroup>
 
 

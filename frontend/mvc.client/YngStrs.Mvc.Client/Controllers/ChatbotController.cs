@@ -17,6 +17,7 @@ namespace YngStrs.Mvc.Client.Controllers
         // GET
         public IActionResult Index()
         {
+            // todo: request 'FIRE & FORGET' to registrar stream for possible answers.
             return View();
         }
 

@@ -30,6 +30,7 @@ namespace YngStrs.Mvc.Client.Controllers
         /// </summary>
         public async Task<IActionResult> Start()
         {
+            // todo:  'FIRE & FORGET' request to registrate stream for answers
             var viewModel = await _personalityTestsService.GetPersonalityTestAsync();
             return View(viewModel);
         }
