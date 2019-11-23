@@ -27,5 +27,10 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return View();
         }
+
+        public IActionResult TermsAndConditions()
+        {
+            return View();
+        }
     }
 }
