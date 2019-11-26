@@ -1,0 +1,13 @@
+{
+  "AppSettings": {
+    "SiteTitle": "ASP.NET MVC",
+    "CacheDbResults": true
+  },
+  "DefaultAdminUsername": "administrator@test.com",
+  "DefaultAdminPassword": "Password1!",
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Test Connection"
+    }
+  }
+}
