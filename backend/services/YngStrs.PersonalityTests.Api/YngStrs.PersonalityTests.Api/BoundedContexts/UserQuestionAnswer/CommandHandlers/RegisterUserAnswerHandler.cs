@@ -1,5 +1,4 @@
-﻿using Marten.Events;
-using MediatR;
+﻿using MediatR;
 using Optional;
 using Optional.Async.Extensions;
 using System.Linq;
