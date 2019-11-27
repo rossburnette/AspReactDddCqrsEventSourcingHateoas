@@ -1,7 +1,5 @@
-﻿using Marten.Events;
-using MediatR;
+﻿using MediatR;
 using Optional;
-using Optional.Async.Extensions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +8,6 @@ using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
 using YngStrs.Common.EventSourcing.Core;
 using YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.Commands;
-using YngStrs.PersonalityTests.Api.Domain.Repositories;
 
 namespace YngStrs.PersonalityTests.Api.BoundedContexts.UserTestResult.CommandHandlers
 {
