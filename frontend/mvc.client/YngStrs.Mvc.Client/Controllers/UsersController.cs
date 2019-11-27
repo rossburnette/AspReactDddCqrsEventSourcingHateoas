@@ -26,5 +26,10 @@ namespace YngStrs.Mvc.Client.Controllers
         {
             return Ok("{\"status\":true,\"errors\":[]}");
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }
