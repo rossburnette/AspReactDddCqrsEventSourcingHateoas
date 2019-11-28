@@ -4,6 +4,6 @@ namespace YngStrs.EmailWorker.Api.Services.Core
 {
     public interface IMessageRequestProcessor
     {
-        Task Process();
+        Task ProcessAsync(byte[] messageData);
     }
 }
