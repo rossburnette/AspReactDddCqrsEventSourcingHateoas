@@ -11,6 +11,7 @@ namespace YngStrs.EmailWorker.Api.Configuration
     {
         internal static IServiceCollection AddApplicationServices(this IServiceCollection serviceCollection)
         {
+            serviceCollection.AddSingleton<IMessageRequestProcessor, MessageRequestProcessor>();
             serviceCollection.AddSingleton<ISendEmailService, SendEmailService>();
 
             return serviceCollection;
@@ -26,7 +27,7 @@ namespace YngStrs.EmailWorker.Api.Configuration
 
             var connectionString = $"host={rmqHost};virtualHost=/;username={rmqUsername};password={rmqPassword}";
 
-            services.AddTransient(_ => RabbitHutch.CreateBus(connectionString).Advanced);
+            services.AddSingleton(_ => RabbitHutch.CreateBus(connectionString).Advanced);
 
             return services;
         }
@@ -34,7 +35,6 @@ namespace YngStrs.EmailWorker.Api.Configuration
         internal static IServiceCollection AddHostedServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<IHostedService, RabbitMqService>();
-            serviceCollection.AddSingleton<IRequestProcessorFactory, RequestProcessorFactory>();
 
             return serviceCollection;
         }

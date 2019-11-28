@@ -29,7 +29,7 @@ namespace YngStrs.EmailWorker.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(e.Message + " | " + e.InnerException?.Message);
             }
 
             return NoContent();

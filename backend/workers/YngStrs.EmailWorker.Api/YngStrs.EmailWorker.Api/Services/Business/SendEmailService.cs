@@ -12,7 +12,7 @@ namespace YngStrs.EmailWorker.Api.Services.Business
         private const string GmailUserName = "yngstr1111@gmail.com";
         private const string GmailPassword = "qa1ws2ed3";
 
-        public Task SendMailAsync(SendEmailModel model)
+        public async Task SendMailAsync(SendEmailModel model)
         {
             using (var mailMessage = new MailMessage(from: GmailUserName, to: model.EmailAddressTo))
             {
@@ -22,10 +22,10 @@ namespace YngStrs.EmailWorker.Api.Services.Business
                 using (var smtp = new SmtpClient(GmailHostName))
                 {
                     smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = true;
+                    smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
                     smtp.Port = 587;
-                    return smtp.SendMailAsync(mailMessage);
+                    await smtp.SendMailAsync(mailMessage);
                 }
             }
         }

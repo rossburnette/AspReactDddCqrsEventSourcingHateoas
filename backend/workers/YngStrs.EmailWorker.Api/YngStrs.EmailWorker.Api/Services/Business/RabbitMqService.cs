@@ -12,19 +12,19 @@ namespace YngStrs.EmailWorker.Api.Services.Business
 {
     public class RabbitMqService : BackgroundService
     {
-        private readonly IRequestProcessorFactory _processorFactory;
         private readonly GetEmailConfig _rabbitMqEmailOptions;
         private readonly IAdvancedBus _bus;
         private IQueue _queue;
         private IDisposable _consumer;
+        private readonly IMessageRequestProcessor _messageRequestProcessor;
 
         public RabbitMqService(
-            IRequestProcessorFactory processorFactory,
             IOptions<GetEmailConfig> rabbitMqEmailOptions,
-            IAdvancedBus bus)
+            IAdvancedBus bus,
+            IMessageRequestProcessor messageRequestProcessor)
         {
-            _processorFactory = processorFactory;
             _bus = bus;
+            _messageRequestProcessor = messageRequestProcessor;
             _rabbitMqEmailOptions = rabbitMqEmailOptions.Value;
         }
 
@@ -49,11 +49,7 @@ namespace YngStrs.EmailWorker.Api.Services.Business
             return Task.CompletedTask;
         }
 
-        private async Task MessageReceived(byte[] body, MessageProperties messageProperties, MessageReceivedInfo info)
-        {
-            var messageProcessor = _processorFactory.CreateMessageProcessor(body);
-
-            await messageProcessor.Process();
-        }
+        private Task MessageReceived(byte[] body, MessageProperties messageProperties, MessageReceivedInfo info) =>
+            _messageRequestProcessor.ProcessAsync(body);
     }
 }
