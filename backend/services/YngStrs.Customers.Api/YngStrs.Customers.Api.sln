@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YngStrs.Customers.Api", "YngStrs.Customers.Api\YngStrs.Customers.Api.csproj", "{6FD198DC-7DC0-49B5-9061-B772B27E658D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YngStrs.Customers.Api.Tests", "YngStrs.Customers.Api.Tests\YngStrs.Customers.Api.Tests.csproj", "{77E4A761-D3AA-4578-9897-54E7DBCB303E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6FD198DC-7DC0-49B5-9061-B772B27E658D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FD198DC-7DC0-49B5-9061-B772B27E658D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FD198DC-7DC0-49B5-9061-B772B27E658D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E4A761-D3AA-4578-9897-54E7DBCB303E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E4A761-D3AA-4578-9897-54E7DBCB303E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E4A761-D3AA-4578-9897-54E7DBCB303E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E4A761-D3AA-4578-9897-54E7DBCB303E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
