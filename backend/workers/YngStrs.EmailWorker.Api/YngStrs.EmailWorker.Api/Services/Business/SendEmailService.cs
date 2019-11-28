@@ -22,7 +22,7 @@ namespace YngStrs.EmailWorker.Api.Services.Business
                 using (var smtp = new SmtpClient(GmailHostName))
                 {
                     smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
+                    smtp.UseDefaultCredentials = true;
                     smtp.Credentials = new NetworkCredential(GmailUserName, GmailPassword);
                     smtp.Port = 587;
                     await smtp.SendMailAsync(mailMessage);

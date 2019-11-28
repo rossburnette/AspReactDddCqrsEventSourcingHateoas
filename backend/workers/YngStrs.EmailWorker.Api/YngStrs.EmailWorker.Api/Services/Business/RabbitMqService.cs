@@ -42,14 +42,14 @@ namespace YngStrs.EmailWorker.Api.Services.Business
             return base.StopAsync(cancellationToken);
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _consumer = _bus.Consume(_queue, MessageReceived);
-
-            return Task.CompletedTask;
+            _consumer = _bus.Consume(
+                _queue, 
+                async (body, properties, info) => await MessageReceivedAsync(body, properties, info));
         }
 
-        private Task MessageReceived(byte[] body, MessageProperties messageProperties, MessageReceivedInfo info) =>
+        private Task MessageReceivedAsync(byte[] body, MessageProperties messageProperties, MessageReceivedInfo info) =>
             _messageRequestProcessor.ProcessAsync(body);
     }
 }
