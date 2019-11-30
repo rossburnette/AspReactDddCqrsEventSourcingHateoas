@@ -31,3 +31,40 @@
 
 - [x] Asynchronous communication via RabbitMQ
   
+- [x] Swagger UI + Fully Documented Controllers
+
+- [x] Thin Controllers
+
+- [x] AutoMapper
+
+- [x] EntityFramework Core with PostgreSQL
+
+- [x] Stylecop
+
+- [x] Neat folder structure
+
+```
+├───backend
+│   ├───common
+│   │   ├───YngStrs.Common.Api
+│   │   ├───YngStrs.Common.Cqrs
+│   │   ├───YngStrs.Common.EventSourcing
+│   │   ├───YngStrs.Common.Hateoas
+│   │   └───YngStrs.Common
+│   ├───configuration
+│       ├───analyzers.ruleset
+│       └───stylecop.json
+│   ├───services
+│       ├───YngStrs.Chatbot.Api
+│       ├───YngStrs.Customers.Api
+│       ├───YngStrs.PersonalityTests.Api
+│       ├───YngStrs.Identity.Api
+│       ├───YngStrs.Downloads.Api
+│       └───YngStrs.Contents.Api
+│   └───workers
+│       ├───YngStrs.EmailWorker.Api
+│       └───YngStrs.ReportsWorker.Api
+└─── frontend
+    └───Conduit.Business.Tests
+```
+
