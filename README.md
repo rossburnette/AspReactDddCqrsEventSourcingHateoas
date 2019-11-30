@@ -4,7 +4,7 @@
 
 ## Features
 - [x] Microservices architecture
- The backend is structured as a collection of web services that are
+ The backend is structured as a collection of web services that are:
   - Highly maintainable and testable
   - Loosely coupled
   - Independently deployable
@@ -12,8 +12,7 @@
   
 ![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/resources/architecture_overview.png)
 
-- [x] Domain-Driven Design done by the book
- Demonstrated DDD concepts:
+- [x] Domain-Driven Design done by the book, demonstrated by the following concepts:
   - Bounded contexts
   - Ubiqutous language
   
