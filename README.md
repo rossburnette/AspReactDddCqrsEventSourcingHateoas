@@ -17,4 +17,17 @@
   - Bounded contexts
   - Ubiqutous language
   
+- [x] Command Query Responsibility Segregation
+
+- [x] Functional style command/query handlers
+
+- [x] Event-sourcing
+
+- [x] Complete tests suite (unit and integration)
+
+- [x] Docker CI setup with multiple data sources
+
+- [x] REST with [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
+
+- [x] Asynchronous communication via RabbitMQ
   
