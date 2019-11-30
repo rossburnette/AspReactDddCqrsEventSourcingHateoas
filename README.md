@@ -65,7 +65,9 @@
 │       ├───YngStrs.EmailWorker.Api
 │       └───YngStrs.ReportsWorker.Api
 └─── frontend
-    └───Conduit.Business.Tests
+│    └───mvc.client
+│       ├───YngStrs.Mvc.Client
+│       └───YngStrs.Mvc.Client.Tests    
 ```
 
 ### Test Suite
