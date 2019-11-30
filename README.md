@@ -10,7 +10,8 @@
   - Independently deployable
   - Organized around business requirements
   
-![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/resources/architecture_overview.png)
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/resources/architecture_overview.PNG)
+
 
 - [x] Domain-Driven Design done by the book, demonstrated by the following concepts:
   - Bounded contexts
