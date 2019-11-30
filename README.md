@@ -9,4 +9,12 @@
   - Loosely coupled
   - Independently deployable
   - Organized around business requirements
+  
 ![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/resources/architecture_overview.png)
+
+- [x] Domain-Driven Design done by the book
+ Demonstrated DDD concepts:
+  - Bounded contexts
+  - Ubiqutous language
+  
+  
