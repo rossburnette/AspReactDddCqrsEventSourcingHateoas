@@ -67,6 +67,8 @@ Quick and easy way engage and attract young people.
 |   |   |   └───YngStrs.Identity.Api.Tests
 │   │   ├───YngStrs.Downloads.Api
 |   |   |   └───YngStrs.Downloads.Api.Tests
+│   │   ├───YngStrs.Blog.Api
+|   |   |   └───YngStrs.Blog.Api.Tests
 │   │   └───YngStrs.Contents.Api
 |   |       └───YngStrs.Contents.Api.Tests
 │   └───workers
