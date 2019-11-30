@@ -52,15 +52,15 @@
 │   │   ├───YngStrs.Common.Hateoas
 │   │   └───YngStrs.Common
 │   ├───configuration
-│       ├───analyzers.ruleset
-│       └───stylecop.json
+│   │   ├───analyzers.ruleset
+│   │   └───stylecop.json
 │   ├───services
-│       ├───YngStrs.Chatbot.Api
-│       ├───YngStrs.Customers.Api
-│       ├───YngStrs.PersonalityTests.Api
-│       ├───YngStrs.Identity.Api
-│       ├───YngStrs.Downloads.Api
-│       └───YngStrs.Contents.Api
+│   │   ├───YngStrs.Chatbot.Api
+│   │   ├───YngStrs.Customers.Api
+│   │   ├───YngStrs.PersonalityTests.Api
+│   │   ├───YngStrs.Identity.Api
+│   │   ├───YngStrs.Downloads.Api
+│   │   └───YngStrs.Contents.Api
 │   └───workers
 │       ├───YngStrs.EmailWorker.Api
 │       └───YngStrs.ReportsWorker.Api
@@ -68,3 +68,9 @@
     └───Conduit.Business.Tests
 ```
 
+### Test Suite
+- [x] xUnit
+- [x] Autofixture
+- [x] Moq
+- [x] Shouldly
+- [x] Arrange Act Assert Pattern
