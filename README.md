@@ -57,21 +57,22 @@
 │   │   └───stylecop.json
 │   ├───services
 │   │   ├───YngStrs.Chatbot.Api
-|   |   |   └───YngStrs.
+|   |   |   └───YngStrs.Chatbot.Api.Tests
 │   │   ├───YngStrs.Customers.Api
-|   |   |   └───YngStrs.
+|   |   |   └───YngStrs.Customers.Api.Tests
 │   │   ├───YngStrs.PersonalityTests.Api
-|   |   |   └───YngStrs.
+|   |   |   └───YngStrs.PersonalityTests.Api.Tests
 │   │   ├───YngStrs.Identity.Api
-|   |   |   └───YngStrs.
+|   |   |   └───YngStrs.Identity.Api.Tests
 │   │   ├───YngStrs.Downloads.Api
-|   |   |   └───YngStrs.
+|   |   |   └───YngStrs.Downloads.Api.Tests
 │   │   └───YngStrs.Contents.Api
-|   |       └───YngStrs.
+|   |       └───YngStrs.Contents.Api.Tests
 │   └───workers
 │       ├───YngStrs.EmailWorker.Api
-|   |   |   └───YngStrs.
+|       |   └───YngStrs.EmailWorker.Api.Tests
 │       └───YngStrs.ReportsWorker.Api
+|           └───YngStrs.ReportsWorker.Api.Tests
 └─── frontend
 │    └───mvc.client
 │       ├───YngStrs.Mvc.Client
@@ -84,3 +85,5 @@
 - [x] Moq
 - [x] Shouldly
 - [x] Arrange Act Assert Pattern
+- [x] MyTested.AspNetCore.Mvc
+
