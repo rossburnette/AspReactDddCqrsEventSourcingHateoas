@@ -47,10 +47,10 @@
 ├───backend
 │   ├───common
 │   │   ├───YngStrs.Common.Api
-|   |   |   └───YngStrs.  
 │   │   ├───YngStrs.Common.Cqrs
 │   │   ├───YngStrs.Common.EventSourcing
 │   │   ├───YngStrs.Common.Hateoas
+|   |   |   └───YngStrs.Common.Hateoas.Tests  
 │   │   └───YngStrs.Common
 │   ├───configuration
 │   │   ├───analyzers.ruleset
