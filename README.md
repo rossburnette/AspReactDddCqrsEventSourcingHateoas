@@ -47,6 +47,7 @@
 ├───backend
 │   ├───common
 │   │   ├───YngStrs.Common.Api
+|   |   |   └───YngStrs.  
 │   │   ├───YngStrs.Common.Cqrs
 │   │   ├───YngStrs.Common.EventSourcing
 │   │   ├───YngStrs.Common.Hateoas
@@ -56,13 +57,20 @@
 │   │   └───stylecop.json
 │   ├───services
 │   │   ├───YngStrs.Chatbot.Api
+|   |   |   └───YngStrs.
 │   │   ├───YngStrs.Customers.Api
+|   |   |   └───YngStrs.
 │   │   ├───YngStrs.PersonalityTests.Api
+|   |   |   └───YngStrs.
 │   │   ├───YngStrs.Identity.Api
+|   |   |   └───YngStrs.
 │   │   ├───YngStrs.Downloads.Api
+|   |   |   └───YngStrs.
 │   │   └───YngStrs.Contents.Api
+|   |       └───YngStrs.
 │   └───workers
 │       ├───YngStrs.EmailWorker.Api
+|   |   |   └───YngStrs.
 │       └───YngStrs.ReportsWorker.Api
 └─── frontend
 │    └───mvc.client
