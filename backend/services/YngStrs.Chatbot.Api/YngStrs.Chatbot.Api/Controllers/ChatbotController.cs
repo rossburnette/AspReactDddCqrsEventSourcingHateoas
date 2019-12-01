@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
+using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Queries;
 using YngStrs.Chatbot.Api.Domain.Entities;
 using YngStrs.Common.Api;
 using YngStrs.Common.Hateoas.Core;
@@ -45,5 +47,16 @@ namespace YngStrs.Chatbot.Api.Controllers
                     errors = new string[0]
                 }),
                 none: Error);
+
+        /// <summary>
+        /// Returns "ChatBot Question - User Answer" pair
+        /// by registated record ID.
+        /// <see cref="UserAnswers.Id"/>
+        /// </summary>
+        /// <param name="aggregateId"></param>
+        [HttpGet("results/{aggregateId}")]
+        public async Task<IActionResult> GetUserResultsByRegistrationId(Guid aggregateId) =>
+            (await Mediator.Send(new GetUserAnswersById(aggregateId)))
+            .Match(Ok, Error);
     }
 }

@@ -1,6 +1,5 @@
-﻿using Marten.Events;
+﻿using System;
 using System.Threading.Tasks;
-using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
 using YngStrs.Chatbot.Api.Domain.Entities;
 
 namespace YngStrs.Chatbot.Api.Domain.Repositories
@@ -10,5 +9,6 @@ namespace YngStrs.Chatbot.Api.Domain.Repositories
     /// </summary>
     public interface IUserAnswersRepository
     {
+        Task<UserAnswers> GetByRegistratedIdAsync(Guid aggregateId);
     }
 }
