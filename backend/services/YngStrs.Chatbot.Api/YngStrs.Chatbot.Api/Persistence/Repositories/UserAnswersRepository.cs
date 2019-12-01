@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
-using Marten;
-using Marten.Events;
-using YngStrs.Chatbot.Api.BoundedContexts.UserAnswers.Commands;
+﻿using Marten;
+using System;
+using System.Threading.Tasks;
 using YngStrs.Chatbot.Api.Domain.Entities;
 using YngStrs.Chatbot.Api.Domain.Repositories;
 
@@ -20,5 +19,10 @@ namespace YngStrs.Chatbot.Api.Persistence.Repositories
         {
             _session = session;
         }
+
+        public Task<UserAnswers> GetByRegistratedIdAsync(Guid aggregateId) =>
+            _session
+            .Query<UserAnswers>()
+            .FirstOrDefaultAsync(x => x.Id == aggregateId);
     }
 }
