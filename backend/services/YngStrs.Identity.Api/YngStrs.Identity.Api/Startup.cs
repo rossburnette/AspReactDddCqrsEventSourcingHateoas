@@ -1,3 +1,6 @@
+using AutoMapper;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,13 +22,17 @@ namespace YngStrs.Identity.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-
-            //services.AddProjectIdentity(
-            //    Configuration.GetSection(nameof(JwtConfiguration)),
-            //    connectionString);
-
             services.AddProjectIdentity(Configuration);
+
+            services.AddCqrs();
+
+            services.AddDbConnectors();
+
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddMediatR(typeof(Startup));
+
+            services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
 
             services.AddControllers();
         }
