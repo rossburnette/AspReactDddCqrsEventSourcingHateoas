@@ -13,7 +13,7 @@ namespace YngStrs.Identity.Api.Domain.Repositories
     {
         Task<Option<User>> Get(Guid id);
 
-        Task<Option<User>> GetByEmail(string email);
+        Task<Option<User, Error>> GetByEmail(string email);
 
         Task<Unit> ReplaceClaim(User account, string claimType, string claimValue);
 
