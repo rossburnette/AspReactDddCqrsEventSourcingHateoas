@@ -4,10 +4,10 @@ using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
-using YngStrs.Identity.Api.AuthContext.Services.Core;
+using YngStrs.Identity.Api.BoundedContexts.Auth.Services.Core;
 using YngStrs.Identity.Api.Domain.Entities;
 
-namespace YngStrs.Identity.Api.AuthContext.Services.Business
+namespace YngStrs.Identity.Api.BoundedContexts.Auth.Services.Business
 {
     public class ProfileService : IProfileService
     {
