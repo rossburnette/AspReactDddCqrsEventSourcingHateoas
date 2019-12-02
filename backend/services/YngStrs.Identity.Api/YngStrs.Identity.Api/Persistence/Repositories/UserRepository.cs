@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Optional;
+using Optional.Async.Extensions;
 using Optional.Extensions;
 using YngStrs.Common;
 using YngStrs.Identity.Api.Domain.Entities;
@@ -57,10 +58,10 @@ namespace YngStrs.Identity.Api.Persistence.Repositories
             return Unit.Value;
         }
 
-        public async Task<Option<User>> GetByEmail(string email) =>
-            (await _userManager
-            .FindByEmailAsync(email))
-            .SomeNotNull();
+        public Task<Option<User, Error>> GetByEmail(string email) =>
+            _userManager
+                .FindByEmailAsync(email)
+                .SomeNotNullAsync(Error.NotFound($"No user with email {email} was found."));
 
         public Task<bool> CheckPassword(User user, string password) =>
             _userManager.CheckPasswordAsync(user, password);
