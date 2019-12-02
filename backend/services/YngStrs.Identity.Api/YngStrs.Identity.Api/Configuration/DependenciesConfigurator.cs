@@ -1,17 +1,17 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using YngStrs.Identity.Api.Domain.Entities;
-using YngStrs.Identity.Api.Persistence.EntityFramework;
+using YngStrs.Identity.Api.Settings;
 
 namespace YngStrs.Identity.Api.Configuration
 {
     internal static class DependenciesConfigurator
     {
-        internal static IServiceCollection AddProjectIdentity(this IServiceCollection services, IConfigurationSection jwtConfiguration, string connectionString)
+        internal static IServiceCollection AddProjectIdentity(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            var jwtConfiguration = configuration.GetSection(nameof(JwtConfiguration));
+
             services.AddDbContext(connectionString);
 
             services.AddIdentity();
@@ -22,7 +22,9 @@ namespace YngStrs.Identity.Api.Configuration
 
             services.AddForwardedHeadersOptions();
 
-            services.AddIdentityServer(jwtConfiguration, connectionString);
+            var keyParameters = configuration.RegistrateKeyParameters();
+
+            services.AddIdentityServer(jwtConfiguration, connectionString, keyParameters.CreateSigningCredentials());
 
             return services;
         }

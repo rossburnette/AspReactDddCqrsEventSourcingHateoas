@@ -21,9 +21,11 @@ namespace YngStrs.Identity.Api
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddProjectIdentity(
-                Configuration.GetSection(nameof(JwtConfiguration)),
-                connectionString);
+            //services.AddProjectIdentity(
+            //    Configuration.GetSection(nameof(JwtConfiguration)),
+            //    connectionString);
+
+            services.AddProjectIdentity(Configuration);
 
             services.AddControllers();
         }
