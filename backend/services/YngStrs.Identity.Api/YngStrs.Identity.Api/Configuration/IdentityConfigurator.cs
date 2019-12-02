@@ -12,6 +12,7 @@ using YngStrs.Identity.Api.AuthContext.Services.Business;
 using YngStrs.Identity.Api.AuthContext.Services.Core;
 using YngStrs.Identity.Api.Domain.Entities;
 using YngStrs.Identity.Api.Persistence.EntityFramework;
+using YngStrs.Identity.Api.Security;
 
 namespace YngStrs.Identity.Api.Configuration
 {
@@ -81,11 +82,12 @@ namespace YngStrs.Identity.Api.Configuration
             return services;
         }
 
-        internal static IServiceCollection AddIdentityServer(this IServiceCollection services, IConfigurationSection jwtConfiguration, string connectionString)
+        internal static IServiceCollection AddIdentityServer(
+            this IServiceCollection services,
+            IConfigurationSection jwtConfiguration,
+            string connectionString,
+            SigningCredentials signingCredentials)
         {
-            var signingKey = new SymmetricSecurityKey(
-                Encoding.Default.GetBytes(jwtConfiguration["Secret"]));
-
             services.AddIdentityServer(options =>
                 {
                     options.Events.RaiseSuccessEvents = true;
@@ -97,11 +99,37 @@ namespace YngStrs.Identity.Api.Configuration
                 })
                 .AddAspNetIdentity<User>()
                 .AddProfileService<ProfileService>()
-                .AddSigningCredential(new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256))
+                .AddSigningCredential(signingCredentials)
                 .AddConfigurationStore(options => options.ConfigureDbContext = ConfigurePostgresStore(connectionString))
                 .AddOperationalStore(options => options.ConfigureDbContext = ConfigurePostgresStore(connectionString));
 
             return services;
+        }
+
+        internal static KeyParameters RegistrateKeyParameters(this IConfiguration configuration)
+        {
+            var keyParametersD = configuration.GetSection("KeyParameters:D").Value;
+            var keyParametersDP = configuration.GetSection("KeyParameters:DP").Value;
+            var keyParametersDQ = configuration.GetSection("KeyParameters:DQ").Value;
+            var keyParametersExponent = configuration.GetSection("KeyParameters:Exponent").Value;
+            var keyParametersInverseQ = configuration.GetSection("KeyParameters:InverseQ").Value;
+            var keyParametersModulus = configuration.GetSection("KeyParameters:Modulus").Value;
+            var keyParametersP = configuration.GetSection("KeyParameters:P").Value;
+            var keyParametersQ = configuration.GetSection("KeyParameters:Q").Value;
+
+            var keyParameters = new KeyParameters
+            {
+                D = keyParametersD,
+                DP = keyParametersDP,
+                DQ = keyParametersDQ,
+                Exponent = keyParametersExponent,
+                InverseQ = keyParametersInverseQ,
+                Modulus = keyParametersModulus,
+                P = keyParametersP,
+                Q = keyParametersQ
+            };
+
+            return keyParameters;
         }
 
         private static IdentityOptions ConfigurePasswordSettings(this IdentityOptions options)
