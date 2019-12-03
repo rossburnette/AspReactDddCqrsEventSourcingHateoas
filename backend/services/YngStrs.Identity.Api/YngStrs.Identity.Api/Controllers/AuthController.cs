@@ -37,12 +37,6 @@ namespace YngStrs.Identity.Api.Controllers
         }
 
         /// <summary>
-        /// Retrieves the currently logged in user.
-        /// </summary>
-        [HttpGet(Name = nameof(GetCurrentUser))]
-        public async Task<IActionResult> GetCurrentUser() => Ok();
-
-        /// <summary>
         /// Register.
         /// </summary>
         /// <param name="command">The user model.</param>
