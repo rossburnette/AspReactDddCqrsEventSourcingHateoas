@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Identity.Api.Configuration;
-using YngStrs.Identity.Api.Settings;
 
 namespace YngStrs.Identity.Api
 {
@@ -22,6 +22,8 @@ namespace YngStrs.Identity.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwagger();
+
             services.AddProjectIdentity(Configuration);
 
             services.AddCqrs();
@@ -41,6 +43,9 @@ namespace YngStrs.Identity.Api
             services.AddHateoas();
 
             services.AddControllers();
+
+            ConnectionManagerBase
+                .SetConnectionString(Configuration.GetConnectionString("DefaultConnection"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -60,6 +65,8 @@ namespace YngStrs.Identity.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger("Identity");
         }
     }
 }

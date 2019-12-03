@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Marten;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using RiskFirst.Hateoas;
+using Swashbuckle.AspNetCore.Swagger;
 using YngStrs.Common.Api.DatabaseConnectors;
 using YngStrs.Common.Cqrs.Business;
 using YngStrs.Common.Cqrs.Core;
@@ -139,6 +143,25 @@ namespace YngStrs.Identity.Api.Configuration
                 {
                     config.AddPolicy(policy.PolicyConfiguration);
                 }
+            });
+
+            return services;
+        }
+
+        internal static IServiceCollection AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(setup =>
+            {
+                var documentationPath = Path.Combine(AppContext.BaseDirectory, "YngStrs.Identity.Api.Documentation.xml");
+
+                if (!File.Exists(documentationPath))
+                {
+                    return;
+                }
+
+                setup.IncludeXmlComments(documentationPath);
+
+                setup.SwaggerDoc("v1", new OpenApiInfo { Title = "Identity API", Version = "v1" });
             });
 
             return services;
