@@ -77,9 +77,9 @@ Quick and easy way engage and attract young people.
 │       └───YngStrs.ReportsWorker.Api
 |           └───YngStrs.ReportsWorker.Api.Tests
 └─── frontend
-│    └───mvc.client
-│       ├───YngStrs.Mvc.Client
-│       └───YngStrs.Mvc.Client.Tests    
+     └───mvc.client
+        ├───YngStrs.Mvc.Client
+        └───YngStrs.Mvc.Client.Tests    
 ```
 ### MVC Client
 - [x] Mobile-First Responsive Design
