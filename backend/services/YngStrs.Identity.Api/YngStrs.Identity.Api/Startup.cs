@@ -34,6 +34,12 @@ namespace YngStrs.Identity.Api
 
             services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
 
+            services.AddRepositories();
+
+            services.AddEventSourcing(Configuration);
+
+            services.AddHateoas();
+
             services.AddControllers();
         }
 
