@@ -10,7 +10,7 @@ namespace YngStrs.Identity.Api.Hateoas.Resources.LoginPrinciple
         public Action<LinksPolicyBuilder<LoginResource>> PolicyConfiguration => policy =>
         {
             policy.RequireSelfLink();
-            policy.RequireRoutedLink(LinkNames.Auth.GetCurrentUser, nameof(AuthController.GetCurrentUser));
+            policy.RequireRoutedLink(LinkNames.Auth.GetCurrentUser, nameof(UsersController.GetCurrentUser));
             policy.RequireRoutedLink(LinkNames.Auth.Logout, nameof(AuthController.Logout));
         };
     }

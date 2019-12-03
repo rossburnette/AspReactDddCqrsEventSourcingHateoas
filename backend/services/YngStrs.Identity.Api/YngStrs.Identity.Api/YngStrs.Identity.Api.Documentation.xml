@@ -17,11 +17,6 @@
             <param name="resourceMapper"></param>
             <param name="mediator"></param>
         </member>
-        <member name="M:YngStrs.Identity.Api.Controllers.AuthController.GetCurrentUser">
-            <summary>
-            Retrieves the currently logged in user.
-            </summary>
-        </member>
         <member name="M:YngStrs.Identity.Api.Controllers.AuthController.Register(YngStrs.Identity.Api.BoundedContexts.Auth.Commands.Register)">
             <summary>
             Register.
@@ -43,6 +38,28 @@
         <member name="M:YngStrs.Identity.Api.Controllers.AuthController.Logout">
             <summary>
             Logout. (unsets the auth cookie)
+            </summary>
+        </member>
+        <member name="T:YngStrs.Identity.Api.Controllers.UsersController">
+            <summary>
+            Controller responsible for user management.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Identity.Api.Controllers.UsersController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Identity.Api.Controllers.UsersController"/> class.
+            </summary>
+            <param name="resourceMapper"></param>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:YngStrs.Identity.Api.Controllers.UsersController.GetCurrentUser">
+            <summary>
+            Retrieves the currently logged in user.
+            </summary>
+        </member>
+        <member name="M:YngStrs.Identity.Api.Controllers.UsersController.GetAllUserAccounts">
+            <summary>
+            Retrieves all user accounts.
             </summary>
         </member>
         <member name="M:YngStrs.Identity.Api.Persistence.EntityFramework.IdentityContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{YngStrs.Identity.Api.Persistence.EntityFramework.IdentityContext})">
