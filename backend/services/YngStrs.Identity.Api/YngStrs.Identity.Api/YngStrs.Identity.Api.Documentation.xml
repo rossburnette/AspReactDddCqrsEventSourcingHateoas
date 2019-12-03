@@ -10,6 +10,13 @@
             authentication and authorization with the Microsoft Identity Server.
             </summary>
         </member>
+        <member name="M:YngStrs.Identity.Api.Controllers.AuthController.#ctor(YngStrs.Common.Hateoas.Core.IResourceMapper,MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:YngStrs.Identity.Api.Controllers.AuthController"/> class.
+            </summary>
+            <param name="resourceMapper"></param>
+            <param name="mediator"></param>
+        </member>
         <member name="M:YngStrs.Identity.Api.Controllers.AuthController.GetCurrentUser">
             <summary>
             Retrieves the currently logged in user.
