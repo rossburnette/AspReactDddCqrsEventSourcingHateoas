@@ -24,6 +24,11 @@ namespace YngStrs.Identity.Api.Controllers
     [ApiController]
     public class AuthController : ApiController
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthController"/> class.
+        /// </summary>
+        /// <param name="resourceMapper"></param>
+        /// <param name="mediator"></param>
         public AuthController(
             IResourceMapper resourceMapper,
             IMediator mediator)
