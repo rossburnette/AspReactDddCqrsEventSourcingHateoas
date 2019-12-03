@@ -142,8 +142,6 @@ namespace YngStrs.Identity.Api.Configuration
             });
 
             return services;
-
-            return services;
         }
     }
 }
