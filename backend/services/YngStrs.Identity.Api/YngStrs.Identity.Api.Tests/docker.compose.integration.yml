@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  identity.tests.sql:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  identity.tests.eventstore:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  identity.tests:
+    image: identitytests
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - identity.tests.sql
+      - identity.tests.eventstore
+    links:
+      - identity.tests.sql:relationaldb
+      - identity.tests.eventstore:eventstore
+    volumes:
+      - ./:/coverage
