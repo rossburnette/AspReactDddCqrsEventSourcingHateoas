@@ -31,13 +31,13 @@ namespace YngStrs.Identity.Api.Tests.Functional.AuthContext
                 .Should()
                 .BeTrue();
 
-            //var userInDb = await _fixture
-            //    .ExecuteDbContextAsync(context => context.Users.FirstOrDefaultAsync(u => u.Email == command.Email));
+            var userInDb = await _fixture
+                .ExecuteDbContextAsync(context => context.Users.FirstOrDefaultAsync(u => u.Email == command.Email));
 
-            //userInDb
-            //    .Email
-            //    .Should()
-            //    .Be(command.Email);
+            userInDb
+                .Email
+                .Should()
+                .Be(command.Email);
         }
 
         [Theory]
