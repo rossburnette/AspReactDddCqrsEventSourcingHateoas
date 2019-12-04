@@ -77,20 +77,12 @@ Quick and easy way engage and attract young people.
 │       └───YngStrs.ReportsWorker.Api
 |           └───YngStrs.ReportsWorker.Api.Tests
 └─── frontend
-     └───mvc.client
-        ├───YngStrs.Mvc.Client
-        └───YngStrs.Mvc.Client.Tests    
+     └───react.app    
 ```
-### MVC Client
-- [x] Mobile-First Responsive Design
-- [x] Works correctly in the latest HTML5-compatible browsers: Chrome, Firefox, Edge, Opera, Safari 
-- [x] Followed the best practices for high-quality HTML and CSS: good formatting, good code structure, consistent naming, semantic HTML, correct usage of classes, etc.
-
 ### Test Suite
 - [x] xUnit
 - [x] Autofixture
 - [x] Moq
 - [x] Shouldly
 - [x] Arrange Act Assert Pattern
-- [x] MyTested.AspNetCore.Mvc
 
