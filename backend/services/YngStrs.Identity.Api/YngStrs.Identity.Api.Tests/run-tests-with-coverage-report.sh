@@ -1,0 +1,2 @@
+#!/bin/bash
+dotnet test YngStrs.Identity.Api.Tests.csproj -p:Exclude="[xunit*]*%2c[YngStrs.Identity.Api.Program]%2c[YngStrs.Identity.Api.Startup]" -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --logger:"console;verbosity=normal"
