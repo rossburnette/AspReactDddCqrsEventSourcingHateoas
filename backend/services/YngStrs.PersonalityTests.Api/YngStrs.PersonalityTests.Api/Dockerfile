@@ -8,6 +8,8 @@ EXPOSE 5101
 
 WORKDIR /src
 COPY . .
+COPY ..\..\..\configuration\stylecop.json ..
+COPY ..\..\..\configuration\analyzers.ruleset ..
 WORKDIR /src
 
 RUN jq '.ConnectionStrings.DefaultConnection = "Server=relationaldb;Port=5432;Database=personality-tests-relational;User Id=postgres;Password=postgres;"' appsettings.json > tmp.$$.json && mv tmp.$$.json appsettings.json
@@ -23,7 +25,7 @@ COPY --from=config /src .
 WORKDIR /src
 
 ARG DOTNET_BUILD_CONFIGURATION
-RUN dotnet publish YngStrs.PersonalityTests.Api.csproj --configuration ${DOTNET_BUILD_CONFIGURATION} --output ./artifacts
+RUN dotnet publish YngStrs.PersonalityTests.Api.csproj --output ./artifacts
 
 WORKDIR /src/artifacts
 
