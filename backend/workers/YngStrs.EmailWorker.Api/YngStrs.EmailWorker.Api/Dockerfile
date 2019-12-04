@@ -1,0 +1,29 @@
+FROM endeveit/docker-jq AS config
+
+ARG ASPNETCORE_ENVIRONMENT
+ENV ASPNETCORE_ENVIRONMENT ${ASPNETCORE_ENVIRONMENT}
+RUN echo $ASPNETCORE_ENVIRONMENT
+
+EXPOSE 5501
+
+WORKDIR /src
+COPY . .
+WORKDIR /src
+
+FROM microsoft/dotnet:2.2-sdk AS build
+
+WORKDIR /src
+
+COPY --from=config /src .
+
+WORKDIR /src
+
+ARG DOTNET_BUILD_CONFIGURATION
+RUN dotnet publish YngStrs.EmailWorker.Api.csproj --output ./artifacts
+
+WORKDIR /src/artifacts
+
+ARG ASPNETCORE_ENVIRONMENT
+ENV ASPNETCORE_ENVIRONMENT ${ASPNETCORE_ENVIRONMENT}
+
+ENTRYPOINT [ "dotnet", "YngStrs.EmailWorker.Api.dll" ]
