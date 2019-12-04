@@ -12,7 +12,7 @@ namespace YngStrs.Identity.Api.Tests.Functional
 {
     public class AppFixture
     {
-        public static readonly string BaseUrl = "";
+        public static readonly string BaseUrl = "https://localhost:5111";
         private static readonly IConfiguration _configuration;
         private static readonly IServiceScopeFactory _scopeFactory;
 
