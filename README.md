@@ -11,7 +11,7 @@ Quick and easy way engage and attract young people.
   - Independently deployable
   - Organized around business requirements
   
-![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/resources/architecture_overview.png)
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/architecture_overview_landscape.png)
 
 
 - [x] Domain-Driven Design done by the book, demonstrated by the following concepts:
@@ -83,6 +83,6 @@ Quick and easy way engage and attract young people.
 - [x] xUnit
 - [x] Autofixture
 - [x] Moq
-- [x] Shouldly
+- [x] Fluent Assertions
 - [x] Arrange Act Assert Pattern
 
