@@ -5,6 +5,7 @@ Quick and easy way engage and attract young people.
 
 ## Features
 - [x] Microservices architecture
+
  The backend is structured as a collection of web services that are:
   - Highly maintainable and testable
   - Loosely coupled
