@@ -90,6 +90,3 @@ Quick and easy way engage and attract young people.
 - [x] Moq
 - [x] Fluent Assertions
 - [x] Arrange Act Assert Pattern
-
-
-
