@@ -90,4 +90,4 @@ Quick and easy way engage and attract young people.
 - [x] Moq
 - [x] Fluent Assertions
 - [x] Arrange Act Assert Pattern
-- [x] complete integration tests suite
+- [x] Complete integration tests suite
