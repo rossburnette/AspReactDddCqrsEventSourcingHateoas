@@ -14,7 +14,9 @@ namespace YngStrs.PersonalityTests.Api
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+            WebHost
+                .CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .UseUrls("http://*:5100");
     }
 }
