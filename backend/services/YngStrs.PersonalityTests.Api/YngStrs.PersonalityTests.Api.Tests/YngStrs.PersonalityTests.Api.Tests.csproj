@@ -30,4 +30,8 @@
     <ProjectReference Include="..\YngStrs.PersonalityTests.Api\YngStrs.PersonalityTests.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Functional\Api\Controllers\" />
+  </ItemGroup>
+
 </Project>
