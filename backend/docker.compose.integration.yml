@@ -1,0 +1,26 @@
+version: "3.4"
+
+services:
+  testsapi.tests.sql:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  testsapi.tests.eventstore:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  testsapi.tests:
+    image: testsapifunctional
+    build:
+      context: ./services
+      dockerfile: ./YngStrs.PersonalityTests.Api/YngStrs.PersonalityTests.Api.Tests/Dockerfile
+    depends_on:
+      - testsapi.tests.sql
+      - testsapi.tests.eventstore
+    links:
+      - testsapi.tests.sql:relationaldb
+      - testsapi.tests.eventstore:eventstore
+    volumes:
+      - ./:/coverage
