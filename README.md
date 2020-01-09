@@ -3,6 +3,8 @@ Quick and easy way engage and attract young people.
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ck1tf59mmq6qo6t8?svg=true)](https://ci.appveyor.com/project/profjordanov/aspreactdddcqrseventsourcinghateoas)
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e70ea46c375d420684d7e4b0cf4bc51b)](https://www.codacy.com/manual/profjordanov/AspReactDddCqrsEventSourcingHateoas?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=profjordanov/AspReactDddCqrsEventSourcingHateoas&amp;utm_campaign=Badge_Grade)
 
 >  Containers based microservices architecture application, cross-platform on Linux and Windows, powered by .NET Core 2.2, Docker engine, Domain-Driven Design, Functional Programming and TDD. 
