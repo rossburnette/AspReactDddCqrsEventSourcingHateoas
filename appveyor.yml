@@ -14,3 +14,7 @@ configuration: Debug
 build:
   project: backend\services\YngStrs.PersonalityTests.Api\YngStrs.PersonalityTests.Api.sln
   verbosity: quiet
+  
+# Execute script before build
+before_build:
+ - nuget restore backend\services\YngStrs.PersonalityTests.Api\YngStrs.PersonalityTests.Api.sln
