@@ -1,15 +1,17 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using YngStrs.HealthCheckUI.Configuration;
+using YngStrs.HealthCheckUI.HealthChecks;
+using YngStrs.HealthCheckUI.Helpers;
+using YngStrs.HealthCheckUI.Middlewares;
 
 namespace YngStrs.HealthCheckUI
 {
@@ -22,30 +24,82 @@ namespace YngStrs.HealthCheckUI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            var checksBuilder = services.AddHealthChecks();
+
+            checksBuilder.AddCheck("HealthCheck UI", () => HealthCheckResult.Healthy());
+
+            var baseApiUrl = Configuration.GetValue<string>("api:BaseAddress");
+            var buildVersionPath = Configuration.GetValue<string>("BuildVersionPath");
+            var buildVersionCheckTimeout = Configuration.GetValue<int>("BuildVersionCheckTimeout");
+
+            var customChecks = Configuration.GetSection("CustomChecks").Get<List<CustomCheck>>();
+
+            if (customChecks != null && customChecks.Count > 0)
+            {
+                var customCheckBaseUrls = Configuration.GetSection("CustomChecksBaseUrls").Get<Dictionary<string, string>>();
+                var customChecksOrder = Configuration.GetSection("CustomChecksOrder").Get<List<string>>();
+
+                var healthChecks = CustomCheckHelper.GetHealthChecks(customChecks, customCheckBaseUrls, customChecksOrder, buildVersionCheckTimeout);
+                foreach (var (name, check) in healthChecks)
+                {
+                    checksBuilder.AddCheck(name, check);
+                }
+            }
+            else
+            {
+                var dfServices = new List<YngStrsService>();
+                dfServices.AddRange(Configuration.GetSection("yngStrsServices").Get<List<YngStrsService>>());
+                dfServices.AddRange(Configuration.GetSection("yngStrsWorkers").Get<List<YngStrsService>>());
+
+                foreach (var dfService in dfServices)
+                {
+                    checksBuilder.AddCheck(dfService.Name, new BuildVersionHealthCheck(
+                        baseApiUrl,
+                        dfService,
+                        buildVersionPath,
+                        buildVersionCheckTimeout));
+                }
+            }
+
+            services.AddHealthChecksUI();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<BasicAuthenticationMiddleware>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.UseRouting()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapGet("/", async context =>
+                    {
+                        context.Response.Redirect("/ui");
 
-            app.UseRouting();
+                        await Task.CompletedTask;
+                    });
 
-            app.UseAuthorization();
+                    endpoints.MapHealthChecks("/yngstrs", new HealthCheckOptions
+                    {
+                        Predicate = _ => true,
+                        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                    });
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+                    endpoints.MapHealthChecksUI(config =>
+                    {
+                        config.UIPath = "/ui";
+                        config.AddCustomStylesheet("HealthCheckUi/style.css");
+                        config.ApiPath = "/ui/api";
+                        config.ResourcesPath = "/ui/resources";
+                        config.WebhookPath = "/ui/webhook";
+                    });
+                });
         }
     }
 }
