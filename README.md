@@ -25,11 +25,11 @@ Quick and easy way engage and attract young people.
   - Bounded contexts
   - Ubiqutous language
   
-- [x] Command Query Responsibility Segregation
+- [x] Command Query Responsibility Segregation with [MediatR](https://github.com/jbogard/MediatR)
 
-- [x] Functional style command/query handlers
+- [x] Functional style command/query handlers with [Optional](https://www.nuget.org/packages/Optional)
 
-- [x] Event-sourcing
+- [x] Event-sourcing with [Marten](https://martendb.io/)
 
 - [x] Complete tests suite (unit and integration)
 
@@ -100,3 +100,43 @@ Quick and easy way engage and attract young people.
 - [x] Fluent Assertions
 - [x] Arrange Act Assert Pattern
 - [x] Complete integration tests suite using Kestrel & Docker
+
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+- with Docker
+TODO:
+- without Docker
+You'll need to have [PostgreSql](https://www.postgresql.org/download/) either installed locally or at least have some instance available to set up the connection strings.
+
+You'll also need at version `2.2` & `3.0` of the [`.NET Core SDK`](https://dotnet.microsoft.com/download).
+
+### Running the API
+
+#### Using Docker
+
+TODO
+
+#### Using Visual Studio
+1. Open all `.sln` files using Visual Studio.
+2. Set up the connection strings inside `appsettings.json` files.
+3. Execute `Update-Database` inside the `Package Manager Console` for each API. 
+4. Run the applications.
+
+#### Using the `dotnet` CLI
+
+1. Open the project folder inside your favorite editor.
+2. Set up the connection strings inside all `appsettings.json`.
+3. Execute `dotnet ef database update` inside all APIs folders.
+4. Execute `dotnet run` for all APIs.
+5. Go to `http://localhost:5000`.
+
+## Running the tests
+
+#### Using Docker
+
+1. Simply run `run-integration-tests.sh`.
+
+#### Using Visual Studio or the `dotnet` CLI
+1. Either run them through the `Test Explorer` in Visual Studio or using `dotnet test` for each API.
