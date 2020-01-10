@@ -33,6 +33,8 @@ Quick and easy way engage and attract young people.
 
 - [x] Complete tests suite (unit and integration)
 
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
+
 - [x] Docker CI setup with multiple data sources
 
 - [x] REST with [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
@@ -86,6 +88,13 @@ Quick and easy way engage and attract young people.
 └─── frontend
      └───react.app    
 ```
+
+- [x] API Gateway with [Ocelot](https://ocelot.readthedocs.io/en/latest/index.html)
+
+- [x] Health Check UI
+
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
+
 ### Test Suite
 - [x] xUnit
 - [x] Autofixture
