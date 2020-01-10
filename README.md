@@ -75,7 +75,7 @@ public async Task<IActionResult> Login([FromBody] Login command) =>
 
 - [x] Health Check UI
 
-![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/hlthc.PNG)
 
 - [x] Neat folder structure
 
