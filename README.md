@@ -67,13 +67,13 @@ public async Task<IActionResult> Login([FromBody] Login command) =>
 
 - [x] Stylecop
 
-- [x] Neat folder structure
-
 - [x] API Gateway with [Ocelot](https://ocelot.readthedocs.io/en/latest/index.html)
 
 - [x] Health Check UI
 
 ![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
+
+- [x] Neat folder structure
 
 ```
 ├───backend
