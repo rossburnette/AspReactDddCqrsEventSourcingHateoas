@@ -1,4 +1,5 @@
 # YNGSTR
+
 Quick and easy way engage and attract young people.
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
@@ -20,7 +21,6 @@ Quick and easy way engage and attract young people.
   
 ![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/architecture_overview_landscape.png)
 
-
 - [x] Domain-Driven Design done by the book, demonstrated by the following concepts:
   - Bounded contexts
   - Ubiqutous language
@@ -28,6 +28,15 @@ Quick and easy way engage and attract young people.
 - [x] Command Query Responsibility Segregation with [MediatR](https://github.com/jbogard/MediatR)
 
 - [x] Functional style command/query handlers with [Optional](https://www.nuget.org/packages/Optional)
+
+```csharp
+public override Task<Option<JwtView, Error>> HandleAsync(
+    Login command,
+    CancellationToken cancellationToken) =>
+    FindUserAsync(command.Email).FlatMapAsync(user =>
+    CheckPasswordAsync(user, command.Password).MapAsync(_ =>
+    GenerateJwtAsync(user)));
+```
 
 - [x] Event-sourcing with [Marten](https://martendb.io/)
 
@@ -43,6 +52,15 @@ Quick and easy way engage and attract young people.
 
 - [x] Thin Controllers
 
+```csharp
+[HttpPost("login", Name = nameof(Login))]
+[ProducesResponseType(typeof(LoginResource), (int)HttpStatusCode.OK)]
+[ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
+public async Task<IActionResult> Login([FromBody] Login command) =>
+    (await Mediator.Send(command)
+    .MapAsync(ToResourceAsync<JwtView, LoginResource>))
+    .Match(jwt => Ok(jwt), Error);
+```
 - [x] AutoMapper
 
 - [x] EntityFramework Core with PostgreSQL
@@ -50,6 +68,12 @@ Quick and easy way engage and attract young people.
 - [x] Stylecop
 
 - [x] Neat folder structure
+
+- [x] API Gateway with [Ocelot](https://ocelot.readthedocs.io/en/latest/index.html)
+
+- [x] Health Check UI
+
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
 
 ```
 ├───backend
@@ -86,12 +110,6 @@ Quick and easy way engage and attract young people.
 └─── frontend
      └───react.app    
 ```
-
-- [x] API Gateway with [Ocelot](https://ocelot.readthedocs.io/en/latest/index.html)
-
-- [x] Health Check UI
-
-![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/healthchecks.PNG)
 
 ### Test Suite
 - [x] xUnit
