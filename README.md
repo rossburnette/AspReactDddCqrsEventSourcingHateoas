@@ -116,7 +116,7 @@ You'll need to have [PostgreSql](https://www.postgresql.org/download/) either in
 
 You'll also need at version `2.2` & `3.0` of the [`.NET Core SDK`](https://dotnet.microsoft.com/download).
 
-### Running the API
+### Running the APIs
 
 #### Using Docker
 
@@ -143,4 +143,5 @@ TODO
 1. Simply run `run-integration-tests.sh`.
 
 #### Using Visual Studio or the `dotnet` CLI
+
 1. Either run them through the `Test Explorer` in Visual Studio or using `dotnet test` for each API.
