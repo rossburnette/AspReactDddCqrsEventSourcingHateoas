@@ -42,6 +42,8 @@ public override Task<Option<JwtView, Error>> HandleAsync(
 
 - [x] Complete tests suite (unit and integration)
 
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/tests-results.PNG)
+
 - [x] Docker CI setup with multiple data sources
 
 - [x] REST with [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
@@ -49,6 +51,8 @@ public override Task<Option<JwtView, Error>> HandleAsync(
 - [x] Asynchronous communication via RabbitMQ
   
 - [x] Swagger UI + Fully Documented Controllers
+
+![alt text](https://raw.githubusercontent.com/profjordanov/AspReactDddCqrsEventSourcingHateoas/master/docs/swagger.JPG)
 
 - [x] Thin Controllers
 
