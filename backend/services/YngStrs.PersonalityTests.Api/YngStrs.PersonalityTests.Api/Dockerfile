@@ -5,11 +5,10 @@ ENV ASPNETCORE_ENVIRONMENT ${ASPNETCORE_ENVIRONMENT}
 RUN echo $ASPNETCORE_ENVIRONMENT
 
 EXPOSE 5101
+EXPOSE 5102
 
 WORKDIR /src
 COPY . .
-COPY ..\..\..\configuration\stylecop.json ..
-COPY ..\..\..\configuration\analyzers.ruleset ..
 WORKDIR /src
 
 RUN jq '.ConnectionStrings.DefaultConnection = "Server=relationaldb;Port=5432;Database=personality-tests-relational;User Id=postgres;Password=postgres;"' appsettings.json > tmp.$$.json && mv tmp.$$.json appsettings.json

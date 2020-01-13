@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  ptests.sql:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  ptests.eventstore:
+    image: postgres:9.5
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+  ptests.api:
+    image: ptestsapi
+    build:
+      context: ./services
+      dockerfile: ./YngStrs.PersonalityTests.Api/YngStrs.PersonalityTests.Api/Dockerfile
+      args:
+        DOTNET_BUILD_CONFIGURATION: Debug
+        ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      - "5100:80"
+      - "5101:443"
+    environment:
+      ASPNETCORE_HTTPS_PORT: 5101
+      ASPNETCORE_URLS: https://+;http://+
+    depends_on:
+      - ptests.sql
+      - ptests.eventstore
+    links:
+      - ptests.sql:relationaldb
+      - ptests.eventstore:eventstore
