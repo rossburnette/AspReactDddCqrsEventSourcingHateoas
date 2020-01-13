@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YngStrs.Blog.Api.Entities;
@@ -42,9 +41,7 @@ namespace YngStrs.Blog.Api.Controllers
             return article;
         }
 
-        // PUT: api/Articles/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
+        // PUT: api/Articles/xxxxxxx-xxx-xxxx-xxxx-xxxxxxx
         [HttpPut("{id}")]
         public async Task<IActionResult> PutArticle(Guid id, Article article)
         {
@@ -75,8 +72,6 @@ namespace YngStrs.Blog.Api.Controllers
         }
 
         // POST: api/Articles
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
         public async Task<ActionResult<Article>> PostArticle(Article article)
         {
@@ -86,7 +81,7 @@ namespace YngStrs.Blog.Api.Controllers
             return CreatedAtAction("GetArticle", new { id = article.Id }, article);
         }
 
-        // DELETE: api/Articles/5
+        // DELETE: api/Articles/xxxxxxx-xxx-xxxx-xxxx-xxxxxxx
         [HttpDelete("{id}")]
         public async Task<ActionResult<Article>> DeleteArticle(Guid id)
         {
