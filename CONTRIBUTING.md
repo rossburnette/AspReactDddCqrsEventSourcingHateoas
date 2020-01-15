@@ -5,3 +5,4 @@ This repo is a reference and learning resource and everyone is invited to contri
 ## Coding Standards
 
 There are no explicit coding standards so pay attention to the general coding style, that's (mostly) used everywhere.
+
