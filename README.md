@@ -145,7 +145,8 @@ You'll also need at version `2.2` & `3.0` of the [`.NET Core SDK`](https://dotne
 TODO
 
 #### Using Visual Studio
-1. Open all `.sln` files using Visual Studio.
+1. Open frontend/mvc.client/YngStrs.Mvc.Client.sln
+backend/services -> YngStrs.PersonalityTests.Api.sln AND YngStrs.Chatbot.Api.sln using Visual Studio.
 2. Set up the connection strings inside `appsettings.json` files.
 3. Execute `Update-Database` inside the `Package Manager Console` for each API. 
 4. Run the applications.
@@ -154,8 +155,8 @@ TODO
 
 1. Open the project folder inside your favorite editor.
 2. Set up the connection strings inside all `appsettings.json`.
-3. Execute `dotnet ef database update` inside all APIs folders.
-4. Execute `dotnet run` for all APIs.
+3. Execute `dotnet ef database update` inside Chatbot API & PersonalityTests API folders.
+4. Execute `dotnet run` for client and Chatbot API & PersonalityTests API folders.
 5. Go to `http://localhost:5000`.
 
 ## Running the tests
@@ -166,4 +167,4 @@ TODO
 
 #### Using Visual Studio or the `dotnet` CLI
 
-1. Either run them through the `Test Explorer` in Visual Studio or using `dotnet test` for each API.
+1. Either run them through the `Test Explorer` in Visual Studio or using `dotnet test` for the client and each API.
