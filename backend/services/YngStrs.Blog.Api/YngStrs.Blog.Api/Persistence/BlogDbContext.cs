@@ -30,11 +30,6 @@ namespace YngStrs.Blog.Api.Persistence
 
             modelBuilder
                .Entity<Article>()
-               .Property(a => a.Language)
-               .HasColumnName("language");
-
-            modelBuilder
-               .Entity<Article>()
                .Property(a => a.Title)
                .HasColumnName("title");
 

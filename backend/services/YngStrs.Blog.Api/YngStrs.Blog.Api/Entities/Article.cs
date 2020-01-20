@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using YngStrs.Common.Api;
 
 namespace YngStrs.Blog.Api.Entities
 {
@@ -13,8 +12,5 @@ namespace YngStrs.Blog.Api.Entities
 
         [Required]
         public string Content { get; set; }
-
-        [Required]
-        public ProjectLanguages Language { get; set; }
     }
 }
